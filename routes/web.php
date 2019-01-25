@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
+
+Route::post('inicio', 'controladorJaime@redirec');
+
+Route::post('compuestos', 'controladorJaime@compuestos');
+Route::post('elementos', 'controladorJaime@elementos');

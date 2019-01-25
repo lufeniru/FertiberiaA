@@ -4,10 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+
+        <title> @yield('titulo') </title>
+
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+
+
+        <link href="css/app.css" rel="stylesheet" type="text/css">
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
 
         <!-- Styles -->
         <style>
@@ -63,36 +71,51 @@
             }
         </style>
     </head>
+
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+        @yield('cabecera')
+        <?php
+        $existe = \Session::get('planta');
+        ?>
+        <div class="container">
+            <header>
+                <div class="row">
+                    <div id="estilocab" class="col-lg-12">
+                        <img src="imagenes/banner.png">
+                    </div>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="row" id="menu">
+                    <form action="compuestos" method="post" action="compuestos">
+                        {{ csrf_field() }}
+                        <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
+                        <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
+                        <input type="submit" class="btn btn-outline-success" value="NITRATO" name="menu">
+                        <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
+                    </form>
                 </div>
+<?php
+if (isset($existe)) {
+    echo 'PLANTA ' . $existe;
+}
+?>
+            </header>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
+            <!-- poner en cuerpo si fuese necesario -->
+            @yield('cuerpo')
+
+
+
+
+            @yield('pie') 
+            <footer>
+                <div id="estilopie" class="col-lg-12">
+                    <img src="imagenes/logo.png">
+                    <p id="letrapie">© 2019 Copyright: <a href="mailto:daw2@cifpvirgendegracia.com">Daw 2 2019</a></p>               
                 </div>
-            </div>
+            </footer>
         </div>
+
+
     </body>
 </html>
