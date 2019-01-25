@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link href="css/app.css" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
@@ -61,38 +62,44 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            #inicio div {
+                padding: 30px;
+                text-align: center;
+
+            }
+            #inicio2{
+                border: thick solid #33cc00;
+            }
+            .row{
+                margin-top: 50px;
+            }
+            .btn-outline-success{
+                width: 200px;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+        <div class="container">
+            <div class="row">
+                <form name="formu" class=" offset-3 col-5" method="post" action="inicio">
+                    {{ csrf_field() }}
+                    <div id="inicio">
+                        <fieldset>
+                            <legend><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjghD4hNePzqXUpoZN4TLc6Ue5lRMWdlBpxGX_Zag6MsXRMBW" alt="logo de fertiberia"></legend>
+                            <div id="inicio2">
+                                <div>
+                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Administrador">
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Laboratorio">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
             </div>
         </div>
+
     </body>
 </html>

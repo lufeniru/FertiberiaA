@@ -1,98 +1,36 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('cabecera')
 
-        <title>Laravel</title>
+@section('titulo')
+Laboratorio
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+@section('cuerpo')
+<?php 
+$elementos = \Session::get('elementos');
+$compuesto = \Session::get('compuesto');
+$tanques = \Session::get('tanques');
+$tanques[0]->tanque
+?>
+<form action="introducir" method="post">
+    {{ csrf_field() }}
+    <input type="text" hidden value="<?php echo $elementos[0]->compuesto;?>" name="comp">
+    <?php echo 'Compuesto: '. $compuesto[0]->compuesto.'<br>';
+    foreach ($elementos as $elem) {
+        echo $elem->describe_elemento.': <input type="number" name="valor">';
+    }
+    if($tanques[0]->tanque != 'Tanque1'){
+        echo 'Tanque: <select name="tanque">';
+        foreach ($tanques as $t) {
+            echo '<option value="'.$t->tanque.'">'.$t->tanque.'</option>';
+        }
+    }else{
+            echo '<input type"text" value="Tanque1" hidden name="tanque">';
+        }
+    
+            ?>
+    <input type="submit" class="btn btn-info" name="boton" value="Introducir">
+</form>
+@endsection
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
 
-            .full-height {
-                height: 100vh;
-            }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
