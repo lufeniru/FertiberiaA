@@ -37,12 +37,16 @@ class controladorJaime extends Controller {
 
     function elementos(Request $req) {
         $comp = $req->get('compuesto');
-         $compuesto= DB::select("SELECT compuestos.compuesto from compuestos where compuestos.id_compuesto = '".$comp."'");
+         $compuesto= DB::select("SELECT compuestos.compuesto,compuestos.granulometria from compuestos where compuestos.id_compuesto = '".$comp."'");
          \Session::put('compuesto',$compuesto);
         $elementos = DB::select("SELECT elementos.* , datos_elementos.describe_elemento FROM elementos, datos_elementos where elementos.compuesto = '".$comp."' and datos_elementos.id_elemento= elementos.id_elem order by orden");
         \Session::put('elementos', $elementos);
         $tanques= DB::select("Select tanques.tanque from tanques where id_compuesto='".$comp."' ");
         \Session::put('tanques', $tanques);
+        if ($compuesto[0]->granulometria != null) {
+            dd($compuesto);
+        }
+        
         return view('elementos');
     }
 

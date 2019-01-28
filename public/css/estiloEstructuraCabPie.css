@@ -1,0 +1,33 @@
+
+
+/* verde oscuro--> #00522A; verde claro--> #4C9B01; */
+            #estilocab{                
+                text-align: center;      
+            }
+             #estilocab *{                
+                text-align: center;      
+                width: 100vh;
+            }
+
+            #estilopie{
+                text-align: center;
+                margin-top: 200px;
+                
+            }
+
+            #letrapie{
+                color: #4C9B01;
+            }
+
+            a{
+                color: #00522A;
+                font-weight:bold;
+                
+            }
+
+            a:hover{
+                color: #4C9B01;
+            }
+            #menu *{
+                margin: auto;
+            }
