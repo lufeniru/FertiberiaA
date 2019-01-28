@@ -44,7 +44,8 @@ class controladorJaime extends Controller {
         $tanques= DB::select("Select tanques.tanque from tanques where id_compuesto='".$comp."' ");
         \Session::put('tanques', $tanques);
         if ($compuesto[0]->granulometria != null) {
-            dd($compuesto);
+            $granu = DB::select("SELECT * FROM `granudatos` where id_granu = '".$compuesto[0]->granulometria."' ORDER by n");
+            \Session::put('granu',$granu);
         }
         
         return view('elementos');
