@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="row" id="menu">
-                    <form action="compuestos" method="post" action="compuestos">
+                    <form action="compuestos" method="post">
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
                         <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
