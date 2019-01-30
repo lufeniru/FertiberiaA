@@ -17,12 +17,13 @@ $tanques[0]->tanque
     {{ csrf_field() }}
     <input type="text" hidden value="<?php echo $elementos[0]->compuesto; ?>" name="comp">
     <?php
-    echo 'Compuesto: ' . $compuesto[0]->compuesto . '<br>';
+    echo 'Compuesto: ' . $compuesto[0]->compuesto . '<br>'; 
+    echo '<input name="fechahora" type="datetime-local">';
     echo '<div class="row">';
     foreach ($elementos as $elem) {
 
         echo '<div class="col-4">';
-        echo $elem->describe_elemento . ': <input type="number" name="valor">';
+        echo $elem->describe_elemento . ': <input type="number" name="valor[]" value="">';
         echo '</div>';
     }
     echo '</div>';
@@ -47,7 +48,7 @@ $tanques[0]->tanque
         echo '<legend>Granulometria</legend>';
         foreach ($granu as $g) {
              echo '<div class="col-3">';
-            echo $g->valor . ' <input type="number" name="granulometria[]">' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo;
+            echo $g->valor . ' <input type="number" name="granulometria[]" value="">' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo;
             echo '</div>';
         }
         echo '</fieldset>';
