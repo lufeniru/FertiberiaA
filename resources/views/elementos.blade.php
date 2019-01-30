@@ -21,9 +21,12 @@ $tanques[0]->tanque
     echo '<input name="fechahora" type="datetime-local">';
     echo '<div class="row">';
     foreach ($elementos as $elem) {
-
+        $segun ='';
+        if($elem->valor2 != null){
+            $segun= $elem->valor2;
+        }
         echo '<div class="col-4">';
-        echo $elem->describe_elemento . ': <input type="number" name="valor[]" value="">'. $elem->condicion.' '.$elem->valor.' '.$elem->simbolo;
+        echo $elem->describe_elemento . ': <input type="number" name="valor[]" value="">'.$elem->valor1.' '. $elem->condicion.' '.$segun.' '.$elem->simbolo.' ';
         echo '</div>';
     }
     echo '</div>';
