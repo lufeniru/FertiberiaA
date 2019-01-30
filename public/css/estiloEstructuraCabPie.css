@@ -31,3 +31,13 @@
             #menu *{
                 margin: auto;
             }
+            .btn-info{
+                background-color: #00522A;
+                color:whitesmoke;
+                border-color: white;
+            }
+            .btn-info:hover{
+                background-color: #4C9B01;
+                border-color: white;
+                
+            }

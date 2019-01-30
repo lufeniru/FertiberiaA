@@ -23,7 +23,7 @@ $tanques[0]->tanque
     foreach ($elementos as $elem) {
 
         echo '<div class="col-4">';
-        echo $elem->describe_elemento . ': <input type="number" name="valor[]" value="">';
+        echo $elem->describe_elemento . ': <input type="number" name="valor[]" value="">'. $elem->condicion.' '.$elem->valor.' '.$elem->simbolo;
         echo '</div>';
     }
     echo '</div>';
