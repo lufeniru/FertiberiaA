@@ -24,6 +24,7 @@ $tanques[0]->tanque
 
         echo '<div class="col-4">';
         echo $elem->describe_elemento . ': <input type="number" name="valor[]" value="">';
+        echo $elem->describe_elemento . ': <input type="number" name="valor"> '. $elem->condicion.' '.$elem->valor.' '.$elem->simbolo;
         echo '</div>';
     }
     echo '</div>';
