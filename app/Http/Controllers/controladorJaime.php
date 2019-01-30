@@ -7,19 +7,28 @@ use Illuminate\Support\Facades\DB;
 
 class controladorJaime extends Controller {
 
-    function redirec(Request $req) {
+function redirec(Request $req) {
         $boton = $req->get('boton');
         \Session::forget('planta');
         \Session::forget('elementos');
-        if ($boton == 'Administrador') {
-            return view('Admin');
-        } else {
-            $plantas = DB::table('plantas')->get();
+        
+        switch($boton)
+        {
+            case "Administrador":
+                    return view('Admin');
+                break;
+            case "Laboratorio":
+                $plantas = DB::table('plantas')->get();
 
-            $datos = ['plantas' => $plantas];
+                $datos = ['plantas' => $plantas];
+                return view('Laboratorio', $datos);
+                break;
+            case "Ver analisis":
+                $plantas = DB::table('plantas')->get();
 
-
-            return view('Laboratorio', $datos);
+                $datos = ['plantas' => $plantas];
+                return view('VerAnalisis', $datos);
+                break;
         }
     }
 

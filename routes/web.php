@@ -20,3 +20,6 @@ Route::post('inicio', 'controladorJaime@redirec');
 Route::post('compuestos', 'controladorJaime@compuestos');
 Route::post('elementos', 'controladorJaime@elementos');
 Route::post('introducir', 'controladorJoaquin@introducirDatos');
+Route::post('vercompuestos', 'controladorSergio@vercompuestos');
+Route::post('elementosAnalisis', 'controladorSergio@verelementos');
+
