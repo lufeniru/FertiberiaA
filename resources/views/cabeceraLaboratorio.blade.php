@@ -95,7 +95,9 @@
                 </div>
 <?php
 if (isset($existe)) {
+    echo '<div class="col-3">';
     echo 'PLANTA ' . $existe;
+    echo '</div>';
 }
 ?>
             </header>

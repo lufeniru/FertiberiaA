@@ -17,30 +17,47 @@ $tanques[0]->tanque
     {{ csrf_field() }}
     <input type="text" hidden value="<?php echo $elementos[0]->compuesto; ?>" name="comp">
     <?php
-    echo 'Compuesto: ' . $compuesto[0]->compuesto . '<br>'; 
-    echo '<input name="fechahora" type="datetime-local">';
+    echo 'Compuesto: ' . $compuesto[0]->compuesto . '<br>';
+    echo '<div class="row">';
+    echo 'Fecha y hora: <input name="fechahora" type="datetime-local">';
+    echo '</div>';
     echo '<div class="row">';
     foreach ($elementos as $elem) {
-        $segun ='';
-        if($elem->valor2 != null){
-            $segun= $elem->valor2;
+        $segun = '';
+        if ($elem->valor2 != null) {
+            $segun = $elem->valor2;
         }
         echo '<div class="col-4">';
-        echo $elem->describe_elemento . ': <input type="number" name="valor[]" value="">'.$elem->valor1.' '. $elem->condicion.' '.$segun.' '.$elem->simbolo.' ';
+        ?> 
+        <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><?php echo $elem->describe_elemento; ?></div>
+            </div>
+            <input type="number" class="form-control" name="valor[]">
+            <div class="input-group-postpend">
+                <div class="input-group-text"><?php echo $elem->valor1 . ' ' . $elem->condicion . ' ' . $segun . ' ' . $elem->simbolo; ?></div>
+            </div>
+        </div>
+
+
+
+        <?php
         echo '</div>';
     }
+    echo '</div>';
+    echo '</div>';
     echo '</div>';
     echo '<div class="row">';
     if ($tanques[0]->tanque != 'Tanque1') {
         echo '<div class="col-4">';
-        echo 'Tanque: <select name="tanque">';
+        echo 'Tanque: <select name="tanque" class="custom-select">';
         foreach ($tanques as $t) {
             echo '<option value="' . $t->tanque . '">' . $t->tanque . '</option>';
         }
         echo '</select>';
         echo '</div>';
     } else {
-        echo '<input type"text" value="Tanque1" hidden name="tanque">';
+        echo '<input type="text" value="Tanque1" hidden name="tanque">';
     }
     echo '</div>';
     if ($compuesto[0]->granulometria != null) {
@@ -50,7 +67,7 @@ $tanques[0]->tanque
         echo '<fieldset>';
         echo '<legend>Granulometria</legend>';
         foreach ($granu as $g) {
-             echo '<div class="col-3">';
+            echo '<div class="col-3">';
             echo $g->valor . ' <input type="number" name="granulometria[]" value="">' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo;
             echo '</div>';
         }
