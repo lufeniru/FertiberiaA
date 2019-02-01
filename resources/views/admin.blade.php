@@ -80,7 +80,7 @@
                         <img src="imagenes/banner.png">
                     </div>
                 </div>
-                <div class="row" id="menuAdmin">
+                <div class="row" id="menu">
                     <form action="admin" method="post">
                         {{ csrf_field() }}
                             <div class="row">
