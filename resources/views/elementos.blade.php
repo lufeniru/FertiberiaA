@@ -32,7 +32,7 @@ $tanques[0]->tanque
                 echo '<div class="row" style= "width:100%">';
             }
             ?> 
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12">
                 <table>
                     <tr><td style="width: 120px;">
                             <?php echo $elem->describe_elemento; ?></td>
@@ -62,7 +62,7 @@ $tanques[0]->tanque
             <div class="col-4">
                 Tanque: <select name="tanque" class="custom-select">
                     <?php foreach ($tanques as $t) { ?>
-                        <option value="<?php echo $t->tanque ?>"> <?php $t->tanque ?></option>
+                        <option value="<?php echo $t->tanque ?>"> <?php echo $t->tanque ?></option>
                     <?php } ?>
                 </select>
             </div><?php } else {
