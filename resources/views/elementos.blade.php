@@ -26,7 +26,10 @@ $tanques[0]->tanque
         foreach ($elementos as $elem) {
             $segun = '';
             if ($elem->valor2 != null) {
-                $segun = $elem->valor2;
+                
+                $segun = $elem->valor1 . ' ' . $elem->condicion . ' ' . $segun . ' ' . $elem->simbolo;
+            }else{
+                $segun = $elem->condicion . ' ' . $elem->valor1.' '. $elem->simbolo;
             }
             if ($i == 0) {
                 echo '<div class="row" style= "width:100%">';
@@ -40,7 +43,7 @@ $tanques[0]->tanque
                             <input type="number" class="form-control" name="valor[]">
                         </td>
                         <td style="width: 120px;">
-                            <?php echo $elem->valor1 . ' ' . $elem->condicion . ' ' . $segun . ' ' . $elem->simbolo; ?>
+                            <?php echo $segun; ?>
                         </td>
                     </tr>
                 </table>
@@ -78,7 +81,7 @@ $tanques[0]->tanque
                 <legend>Granulometria</legend>
                 <div class="row">
                     <?php foreach ($granu as $g) { ?>
-                        <div class="col-3">
+                        <div class="col-4">
                             <?php echo $g->valor . '<br> <input type="number" class="form-control" name="granulometria[]" value=""><br>' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo; ?>
                         </div>
                     <?php } ?>
