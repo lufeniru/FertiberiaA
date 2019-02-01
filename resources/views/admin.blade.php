@@ -73,10 +73,6 @@
     </head>
 
     <body>
-        @yield('cabecera')
-        <?php
-        $existe = \Session::get('planta');
-        ?>
         <div class="container">
             <header>
                 <div class="row">
@@ -84,30 +80,18 @@
                         <img src="imagenes/banner.png">
                     </div>
                 </div>
-                <div class="row" id="menu">
-                    <form action="compuestos" method="post">
+                <div class="row" id="menuAdmin">
+                    <form action="admin" method="post">
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="NITRATO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
+                            <div class="row">
+                            <li><input type="submit" class="btn btn-outline-success col-12" value="Añadir compuesto"   name="menu2"></li>
+                            <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir elemento" name="menu2"></ul>
+                            <ul><input type="submit" class="btn btn-outline-success col-12" value="Validar" name="menu2"></ul>
+                            </div>
                     </form>
                 </div>
-<?php
-if (isset($existe)) {
-    echo 'PLANTA ' . $existe;
-}
-?>
+
             </header>
-
-
-            <!-- poner en cuerpo si fuese necesario -->
-            @yield('cuerpo')
-
-
-
-
-            @yield('pie') 
             <footer>
                 <div id="estilopie" class="col-lg-12">
                     <img src="imagenes/logo.png">
