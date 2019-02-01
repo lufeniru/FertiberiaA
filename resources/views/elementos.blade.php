@@ -27,7 +27,7 @@ $tanques[0]->tanque
             $segun = '';
             if ($elem->valor2 != null) {
                 
-                $segun = $elem->valor1 . ' ' . $elem->condicion . ' ' . $segun . ' ' . $elem->simbolo;
+                $segun = $elem->valor1 . ' ' . $elem->condicion . ' ' . $elem->valor2 . ' ' . $elem->simbolo;
             }else{
                 $segun = $elem->condicion . ' ' . $elem->valor1.' '. $elem->simbolo;
             }
