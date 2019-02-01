@@ -25,7 +25,8 @@ class controladorJoaquin extends Controller {
                 'id_compuesto' => $compuesto[0]->id_compuesto,
                 'id_elemento' => $elementos[$i]->id_elem,
                 'condicion' => $elementos[$i]->condicion,
-                'valor' => $elementos[$i]->valor,
+                'valor1' => $elementos[$i]->valor1,
+                'valor2' => $elementos[$i]->valor2,
                 'simbolo' => $elementos[$i]->simbolo,
                 'lectura' => $valor
             ]);
@@ -52,6 +53,28 @@ class controladorJoaquin extends Controller {
             }
         }
         echo '<script>alert("Insertado con exito");</script>';
+        \Session::forget('planta');
+        return view('Laboratorio');
+    }
+    
+    function admin(Request $req){
+        if($req->get('menu2')!=null) {
+            $opcion=$req->get('menu2');
+            switch ($opcion) {
+                case 'Añadir planta':
+                    return view('addPlanta');
+                    break;
+                case 'Añadir compuesto':
+                    return view('addCompuesto');
+                    break;
+                case 'Añadir elemento':
+                    return view('addElemento');
+                    break;
+                default:
+                    return view('inicio');
+                    break;
+            }
+        }
     }
 
 }

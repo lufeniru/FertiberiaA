@@ -6,7 +6,7 @@
             }
              #estilocab *{                
                 text-align: center;      
-                width: 100vh;
+                width: 100%;
             }
 
             #estilopie{
@@ -41,3 +41,7 @@
                 border-color: white;
                 
             }
+            #menuAdmin li{
+                width: 40px;
+            }
+            
