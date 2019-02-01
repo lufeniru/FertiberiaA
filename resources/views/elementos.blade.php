@@ -63,7 +63,7 @@ $tanques[0]->tanque
     <div class="row">
         <?php if ($tanques[0]->tanque != 'Tanque1') { ?>
             <div class="col-4">
-                Tanque: <select name="tanque" class="custom-select">
+                Muestra: <select name="tanque" class="custom-select">
                     <?php foreach ($tanques as $t) { ?>
                         <option value="<?php echo $t->tanque ?>"> <?php echo $t->tanque ?></option>
                     <?php } ?>
