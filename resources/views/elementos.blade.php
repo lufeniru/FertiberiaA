@@ -1,4 +1,4 @@
-@extends('cabecera')
+@extends('cabeceraLaboratorio')
 
 @section('titulo')
 Laboratorio
@@ -46,7 +46,6 @@ $tanques[0]->tanque
     }
     echo '</div>';
     echo '</div>';
-    echo '</div>';
     echo '<div class="row">';
     if ($tanques[0]->tanque != 'Tanque1') {
         echo '<div class="col-4">';
@@ -77,6 +76,7 @@ $tanques[0]->tanque
     ?>
     <input type="submit" class="btn btn-info" name="boton" value="Introducir">
 </form>
+</div>
 @endsection
 
 

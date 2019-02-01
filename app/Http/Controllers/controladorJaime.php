@@ -15,7 +15,7 @@ function redirec(Request $req) {
         switch($boton)
         {
             case "Administrador":
-                    return view('Admin');
+                    return view('admin');
                 break;
             case "Laboratorio":
                 $plantas = DB::table('plantas')->get();
