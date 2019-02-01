@@ -38,17 +38,17 @@ $tanques[0]->tanque;
         echo '<input type="text" value="Tanque1" hidden name="tanque">';
     }
    
-    echo '<input type="text" name="fecha" id="fecha" value="'.$fecha.'">';
+    echo '<input type="date" name="fecha" id="fecha" value="'.$fecha.'">';
     echo '<input type="submit" class="btn btn-info" name="boton" value="cargar">';
     echo '</div>';
     echo '<div class="row">';
-        echo '<div class=col>';
+        echo '<div class=col-10 style="padding:0; margin:0">';
             if(count($tabla)>0)
             {
                 //Iniciando la tabla--------------------------------------------------------
                 //Cabecera 1--------------------------------------------------------------
-                echo '<table border=2><tr>';
-                echo '<td>Fecha</td>';
+                echo '<table style="width:100%" class="table-striped"><tr>';
+                echo '<td rowspan="2">Fecha</td>';
                 for($i=0; $i<$nelementos;$i++)
                 {
                     $fila=$tabla[$i];
@@ -60,7 +60,6 @@ $tanques[0]->tanque;
 
                 //Cabecera 2--------------------------------------------------------------
                 echo '<tr>';
-                echo '<td>Fecha</td>';
                 for($i=0; $i<$nelementos;$i++)
                 {
                     $fila=$tabla[$i];
@@ -103,25 +102,20 @@ $tanques[0]->tanque;
             {
                 echo 'Sin analisis';
             }
-        echo '</div>';
-        echo '<div class=col>';
+        echo '<div class=col-2 style="padding:0">';
             if(count($tgranu)>0)
             {
                 //Iniciando la tabla--------------------------------------------------------
                 //Cabecera 1--------------------------------------------------------------
-                echo '<table border=2><tr>';
-                echo '<td>Fecha</td>';
-                for($i=0; $i<$ngranulometria;$i++)
-                {
-                    echo '<td>Granulometria</td>';
-                }
+                echo '<table style="width: 100%" class="table-striped"><tr>';
+                echo '<td colspan="'.$ngranulometria.'">Granulometria</td>';
+                
 
                 echo '</tr>';
                 //Fin cabecera 1----------------------------------------------------------
 
                 //Cabecera 2--------------------------------------------------------------
                 echo '<tr>';
-                echo '<td>Fecha</td>';
                 for($i=0; $i<$ngranulometria;$i++)
                 {
                     $fila=$tgranu[$i];
@@ -139,7 +133,6 @@ $tanques[0]->tanque;
 
                 //Datos ------------------------------------------------------------------
                 echo '<tr>';
-                echo '<td>'.$tgranu[0]->fechahora.'</td>';
                 //dd($tabla);
                 foreach ($tgranu as $i=>$fila)
                 {
@@ -147,7 +140,7 @@ $tanques[0]->tanque;
                     {
                         if(($i)%$ngranulometria==0)
                         {
-                            echo '</tr><tr><td>'.$fila->fechahora.'</td>';
+                            echo '</tr><tr>';
                         }
                     }
                     echo '<td>'.$fila->lectura.'</td>';
