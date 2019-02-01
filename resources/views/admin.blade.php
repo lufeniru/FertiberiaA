@@ -4,11 +4,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+
+        <title> @yield('titulo') </title>
+
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+
+
         <link href="css/app.css" rel="stylesheet" type="text/css">
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
 
         <!-- Styles -->
         <style>
@@ -62,50 +69,37 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-
-            #inicio div {
-                padding: 30px;
-                text-align: center;
-
-            }
-            #inicio2{
-                border: thick solid #33cc00;
-            }
-            .row{
-                margin-top: 50px;
-            }
-            .btn-outline-success{
-                width: 200px;
-            }
         </style>
     </head>
+
     <body>
         <div class="container">
-            <div class="row">
-                <form name="formu" class=" offset-3 col-5" method="post" action="inicio">
-                    {{ csrf_field() }}
-                    <div id="inicio">
-                        <fieldset>
-                            <legend><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjghD4hNePzqXUpoZN4TLc6Ue5lRMWdlBpxGX_Zag6MsXRMBW" alt="logo de fertiberia"></legend>
-                            <div id="inicio2">
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Administrador">
-                                </div>
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Laboratorio">
-                                </div>
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Ver analisis">
-                                </div>
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Login">
-                                </div>
-                            </div>
-                        </fieldset>
+            <header>
+                <div class="row">
+                    <div id="estilocab" class="col-lg-12">
+                        <img src="imagenes/banner.png">
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="row" id="menuAdmin">
+                    <form action="admin" method="post">
+                        {{ csrf_field() }}
+                            <div class="row">
+                            <li><input type="submit" class="btn btn-outline-success col-12" value="Añadir compuesto"   name="menu2"></li>
+                            <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir elemento" name="menu2"></ul>
+                            <ul><input type="submit" class="btn btn-outline-success col-12" value="Validar" name="menu2"></ul>
+                            </div>
+                    </form>
+                </div>
+
+            </header>
+            <footer>
+                <div id="estilopie" class="col-lg-12">
+                    <img src="imagenes/logo.png">
+                    <p id="letrapie">© 2019 Copyright: <a href="mailto:daw2@cifpvirgendegracia.com">Daw 2 2019</a></p>               
+                </div>
+            </footer>
         </div>
+
 
     </body>
 </html>

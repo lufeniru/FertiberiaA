@@ -81,7 +81,7 @@
             <header>
                 <div class="row">
                     <div id="estilocab" class="col-lg-12">
-                        <img src="imagenes/banner.png">
+                        <a href="lab"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
                 <div class="row" id="menu">
@@ -95,7 +95,9 @@
                 </div>
 <?php
 if (isset($existe)) {
+    echo '<div class="col-3">';
     echo 'PLANTA ' . $existe;
+    echo '</div>';
 }
 ?>
             </header>

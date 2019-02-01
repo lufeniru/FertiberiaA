@@ -1,7 +1,7 @@
-@extends('cabeceraLaboratorio')
+@extends('cabeceraAnalisis')
 
 @section('titulo')
-Laboratorio
+Analisis
 @endsection
 
 @section('cuerpo')
@@ -10,8 +10,8 @@ $elementos = \Session::get('elementos');
 $compuesto = \Session::get('compuesto');
 $tanques = \Session::get('tanques');
 
-
-$tanques[0]->tanque
+$tanques[0]->tanque;
+        
 ?>
 <form action="introducir" method="post">
     {{ csrf_field() }}
@@ -19,44 +19,28 @@ $tanques[0]->tanque
     <?php
     echo 'Compuesto: ' . $compuesto[0]->compuesto . '<br>';
     echo '<div class="row">';
-    echo 'Fecha y hora: <input name="fechahora" type="datetime-local">';
-    echo '</div>';
-    echo '<div class="row">';
+    echo '<table><tr>';
     foreach ($elementos as $elem) {
-        $segun = '';
-        if ($elem->valor2 != null) {
-            $segun = $elem->valor2;
-        }
-        echo '<div class="col-4">';
-        ?> 
-        <div class="input-group mb-2 mr-sm-2">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><?php echo $elem->describe_elemento; ?></div>
-            </div>
-            <input type="number" class="form-control" name="valor[]">
-            <div class="input-group-postpend">
-                <div class="input-group-text"><?php echo $elem->valor1 . ' ' . $elem->condicion . ' ' . $segun . ' ' . $elem->simbolo; ?></div>
-            </div>
-        </div>
 
-
-
-        <?php
-        echo '</div>';
+        echo '<td>'.$elem->describe_elemento.'</td>';
+        //echo '<div class="col-4">';
+        //echo $elem->describe_elemento . ': <input type="number" name="valor">';
+        //echo '</div>';
     }
-    echo '</div>';
+    echo '</table></tr>';
+    
     echo '</div>';
     echo '<div class="row">';
     if ($tanques[0]->tanque != 'Tanque1') {
         echo '<div class="col-4">';
-        echo 'Tanque: <select name="tanque" class="custom-select">';
+        echo 'Tanque: <select name="tanque">';
         foreach ($tanques as $t) {
             echo '<option value="' . $t->tanque . '">' . $t->tanque . '</option>';
         }
         echo '</select>';
         echo '</div>';
     } else {
-        echo '<input type="text" value="Tanque1" hidden name="tanque">';
+        echo '<input type"text" value="Tanque1" hidden name="tanque">';
     }
     echo '</div>';
     if ($compuesto[0]->granulometria != null) {
@@ -66,8 +50,8 @@ $tanques[0]->tanque
         echo '<fieldset>';
         echo '<legend>Granulometria</legend>';
         foreach ($granu as $g) {
-            echo '<div class="col-3">';
-            echo $g->valor . ' <input type="number" name="granulometria[]" value="">' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo;
+             echo '<div class="col-3">';
+            echo $g->valor . ' <input type="number" name="granulometria[]">' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo;
             echo '</div>';
         }
         echo '</fieldset>';
@@ -76,7 +60,6 @@ $tanques[0]->tanque
     ?>
     <input type="submit" class="btn btn-info" name="boton" value="Introducir">
 </form>
-</div>
 @endsection
 
 
