@@ -56,5 +56,25 @@ class controladorJoaquin extends Controller {
         \Session::forget('planta');
         return view('Laboratorio');
     }
+    
+    function admin(Request $req){
+        if($req->get('menu2')!=null) {
+            $opcion=$req->get('menu2');
+            switch ($opcion) {
+                case 'Añadir planta':
+                    return view('addPlanta');
+                    break;
+                case 'Añadir compuesto':
+                    return view('addCompuesto');
+                    break;
+                case 'Añadir elemento':
+                    return view('addElemento');
+                    break;
+                default:
+                    return view('inicio');
+                    break;
+            }
+        }
+    }
 
 }
