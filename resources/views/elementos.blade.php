@@ -18,65 +18,77 @@ $tanques[0]->tanque
     <input type="text" hidden value="<?php echo $elementos[0]->compuesto; ?>" name="comp">
     <?php
     echo 'Compuesto: ' . $compuesto[0]->compuesto . '<br>';
-    echo '<div class="row">';
-    echo 'Fecha y hora: <input name="fechahora" type="datetime-local">';
-    echo '</div>';
-    echo '<div class="row">';
-    foreach ($elementos as $elem) {
-        $segun = '';
-        if ($elem->valor2 != null) {
-            $segun = $elem->valor2;
-        }
-        echo '<div class="col-4">';
-        ?> 
-        <div class="input-group mb-2 mr-sm-2">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><?php echo $elem->describe_elemento; ?></div>
+    ?><div class="row">
+        Fecha y hora: <input name="fechahora" type="datetime-local">
+    </div>
+    <div class="row"><?php
+        $i = 0;
+        foreach ($elementos as $elem) {
+            $segun = '';
+            if ($elem->valor2 != null) {
+                $segun = $elem->valor2;
+            }
+            if ($i == 0) {
+                echo '<div class="row" style= "width:100%">';
+            }
+            ?> 
+            <div class="col-4">
+                <table>
+                    <tr><td style="width: 120px;">
+                            <?php echo $elem->describe_elemento; ?></td>
+                        <td style="width:80px;">
+                            <input type="number" class="form-control" name="valor[]">
+                        </td>
+                        <td style="width: 120px;">
+                            <?php echo $elem->valor1 . ' ' . $elem->condicion . ' ' . $segun . ' ' . $elem->simbolo; ?>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <input type="number" class="form-control" name="valor[]">
-            <div class="input-group-postpend">
-                <div class="input-group-text"><?php echo $elem->valor1 . ' ' . $elem->condicion . ' ' . $segun . ' ' . $elem->simbolo; ?></div>
-            </div>
-        </div>
-
-
-
-        <?php
-        echo '</div>';
-    }
-    echo '</div>';
-    echo '</div>';
-    echo '<div class="row">';
-    if ($tanques[0]->tanque != 'Tanque1') {
-        echo '<div class="col-4">';
-        echo 'Tanque: <select name="tanque" class="custom-select">';
-        foreach ($tanques as $t) {
-            echo '<option value="' . $t->tanque . '">' . $t->tanque . '</option>';
+            <?php
+            if ($i == 2) {
+                echo '</div>';
+                $i = -1;
+            }
+            $i++;
         }
-        echo '</select>';
-        echo '</div>';
-    } else {
-        echo '<input type="text" value="Tanque1" hidden name="tanque">';
-    }
-    echo '</div>';
-    if ($compuesto[0]->granulometria != null) {
-        echo '<div class="row">';
-        $granu = \Session::get('granu');
-        echo '<input type="text" value="' . $granu[0]->id_granu . '" hidden name="idgranu">';
-        echo '<fieldset>';
-        echo '<legend>Granulometria</legend>';
-        foreach ($granu as $g) {
-            echo '<div class="col-3">';
-            echo $g->valor . ' <input type="number" name="granulometria[]" value="">' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo;
+        if ($i%3 !=0) {
             echo '</div>';
         }
-        echo '</fieldset>';
-        echo '</div>';
-    }
+        ?>
+    </div>
+    <div class="row">
+        <?php if ($tanques[0]->tanque != 'Tanque1') { ?>
+            <div class="col-4">
+                Tanque: <select name="tanque" class="custom-select">
+                    <?php foreach ($tanques as $t) { ?>
+                        <option value="<?php echo $t->tanque ?>"> <?php $t->tanque ?></option>
+                    <?php } ?>
+                </select>
+            </div><?php } else {
+                    ?>
+            <input type="text" value="Tanque1" hidden name="tanque">
+        <?php } ?>
+    </div>
+    <?php if ($compuesto[0]->granulometria != null) { ?>
+        <div class="row">
+            <?php $granu = \Session::get('granu'); ?>
+            <input type="text" value="' . $granu[0]->id_granu . '" hidden name="idgranu">
+            <fieldset class="col-12">
+                <legend>Granulometria</legend>
+                <div class="row">
+                    <?php foreach ($granu as $g) { ?>
+                        <div class="col-3">
+                            <?php echo $g->valor . '<br> <input type="number" class="form-control" name="granulometria[]" value=""><br>' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo; ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            </fieldset>
+        </div>
+    <?php }
     ?>
     <input type="submit" class="btn btn-info" name="boton" value="Introducir">
 </form>
-</div>
 @endsection
 
 

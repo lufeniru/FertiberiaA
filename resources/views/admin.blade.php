@@ -80,11 +80,11 @@
                         <img src="imagenes/banner.png">
                     </div>
                 </div>
-                <div class="row" id="menuAdmin">
+                <div class="row" id="menu">
                     <form action="admin" method="post">
                         {{ csrf_field() }}
                             <div class="row">
-                            <li><input type="submit" class="btn btn-outline-success col-12" value="Añadir compuesto"   name="menu2"></li>
+                            <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir compuesto"   name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir elemento" name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Validar" name="menu2"></ul>
                             </div>
