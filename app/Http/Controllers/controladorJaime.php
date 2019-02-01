@@ -29,6 +29,9 @@ function redirec(Request $req) {
                 $datos = ['plantas' => $plantas];
                 return view('VerAnalisis', $datos);
                 break;
+            case "Login":
+                    return view('login');
+                break;
         }
     }
 
