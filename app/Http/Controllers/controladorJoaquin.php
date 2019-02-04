@@ -56,10 +56,10 @@ class controladorJoaquin extends Controller {
         \Session::forget('planta');
         return view('Laboratorio');
     }
-    
-    function admin(Request $req){
-        if($req->get('menu2')!=null) {
-            $opcion=$req->get('menu2');
+
+    function admin(Request $req) {
+        if ($req->get('menu2') != null) {
+            $opcion = $req->get('menu2');
             switch ($opcion) {
                 case 'Añadir planta':
                     return view('addPlanta');
@@ -75,6 +75,53 @@ class controladorJoaquin extends Controller {
                     break;
             }
         }
+    }
+
+    function addElemento(Request $req) {
+        $compuesto = $req->get('compuesto');
+        $nombreElem = $req->get('nombreElemento');
+        $idElem = $req->get('idElem');
+        $condicion = null;
+        if ($req->get('condicion') != 'null') {
+            $condicion = $req->get('condicion');
+        }
+        $valor1 = $req->get('valor1');
+        $valor2 = null;
+        if ($req->get('valor2') != 0) {
+            $valor2 = $req->get('valor2');
+        }
+        $simbolo = $req->get('simbolo');
+        //dd($compuesto,$nombreElem,$idElem,$condicion,$valor1,$valor2,$simbolo);
+        /*         * * insercion en tabla: datos_elementos*** */
+        \DB::table('datos_elementos')->insert([
+            'id_elemento' => $idElem,
+            'describe_elemento' => $nombreElem,
+        ]);
+
+        /*         * * comprobar cuantos elementos hay en ese compuesto, para aplicar el orden* */
+        $nElementos = \DB::select('select count(*) as resultados from elementos where compuesto like "' . $compuesto . '"');
+        $nElementos[0]->resultados++;
+        $vector=[
+            'orden' => $nElementos[0]->resultados,
+            'id_elem' => $idElem,
+            'condicion' => $condicion,
+            'valor1' => $valor1,
+            'valor2' => $valor2,
+            'simbolo' => $simbolo,
+            'compuesto' => $compuesto
+        ];
+        //dd($vector);
+        /** insercion en tabla: elemento *** */
+        \DB::table('elementos')->insert([
+            'orden' => $nElementos[0]->resultados,
+            'id_elem' => $idElem,
+            'condicion' => $condicion,
+            'valor1' => $valor1,
+            'valor2' => $valor2,
+            'simbolo' => $simbolo,
+            'compuesto' => $compuesto
+        ]);
+        return view('inicio');
     }
 
 }

@@ -23,6 +23,7 @@ Route::post('introducir', 'controladorJoaquin@introducirDatos');
 Route::post('vercompuestos', 'controladorSergio@vercompuestos');
 Route::post('elementosAnalisis', 'controladorSergio@verelementos');
 Route::post('admin','controladorJoaquin@admin');
+Route::post('addElemento','controladorJoaquin@addElemento');
 Route::get('lab', function(){
     \Session::forget('planta');
 return view('Laboratorio');
