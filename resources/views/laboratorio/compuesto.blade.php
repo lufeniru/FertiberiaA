@@ -1,4 +1,4 @@
-@extends('cabeceraLaboratorio')
+@extends('laboratorio/cabeceraLaboratorio')
 
 @section('titulo')
 Laboratorio

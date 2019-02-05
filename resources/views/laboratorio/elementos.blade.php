@@ -1,4 +1,4 @@
-@extends('cabeceraLaboratorio')
+@extends('laboratorio/cabeceraLaboratorio')
 
 @section('titulo')
 Laboratorio
@@ -22,10 +22,13 @@ $tanques[0]->tanque
     ?><div class="row">
         <div class="col-12">
             <?php 
-            $fecha = Date('Y-m-d H:i');
+            date_default_timezone_set('Europe/Madrid');
+            $fecha = Date('Y-m-d');
+            $hora = Date('H:i');
+            $valor = $fecha.'T'.$hora;
             
             ?>
-            Fecha y hora: <input name="fechahora" value="<?php echo $fecha; ?>" type="datetime-local"> No programado: <input type="checkbox" name="prog">
+            Fecha y hora: <input name="fechahora" value="<?php echo $valor ?>" type="datetime-local"> No programado: <input type="checkbox" name="prog">
         </div>
     </div>
     <div class="row" style="margin-top: 30px">
