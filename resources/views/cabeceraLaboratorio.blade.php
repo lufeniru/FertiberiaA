@@ -81,7 +81,7 @@
             <header>
                 <div class="row">
                     <div id="estilocab" class="col-lg-12">
-                        <a href="lab"><img src="imagenes/banner.png"></a>
+                        <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
                 <div class="row" id="menu">
