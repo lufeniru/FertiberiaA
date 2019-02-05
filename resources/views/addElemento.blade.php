@@ -8,7 +8,7 @@ Añadir Elemento
 <div class="container" style="text-align: center">
     <form action="addElemento" name="addElemento" method="post">
         {{ csrf_field() }}
-        <h3>Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la apliación</h3><br>
+        <h3>Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación</h3><br>
         Compuesto al que pertenece: 
         <select name="compuesto">
             <option value="U-18">Compuesto 1</option>

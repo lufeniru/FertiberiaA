@@ -15,7 +15,13 @@ class controladorJoaquin extends Controller {
         $planta = \DB::select("select compuestos.planta from compuestos where compuestos.compuesto='" . $compuesto[0]->compuesto . "'");
         $valores = ($req->get('valor'));
         $tanque = ($req->get('tanque'));
-
+        $prog = $req->get('prog');
+        if ($prog === 'on') {
+            $prog= 0;
+        }
+        else{
+            $prog=1;
+        }
         $i = 0;
         foreach ($valores as $valor) {
             \DB::table('tabla_tocha')->insert([
@@ -28,7 +34,8 @@ class controladorJoaquin extends Controller {
                 'valor1' => $elementos[$i]->valor1,
                 'valor2' => $elementos[$i]->valor2,
                 'simbolo' => $elementos[$i]->simbolo,
-                'lectura' => $valor
+                'lectura' => $valor,
+                'programado' => $prog
             ]);
             $i++;
         }
