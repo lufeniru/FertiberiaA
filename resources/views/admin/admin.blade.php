@@ -74,6 +74,7 @@
 
     <body>
         <div class="container">
+            @yield('cabecera')
             <header>
                 <div class="row">
                     <div id="estilocab" class="col-lg-12">
@@ -96,6 +97,14 @@
                 </div>
 
             </header>
+            @yield('cuerpo')
+            
+            
+            
+            
+            
+            
+            @yield('pie') 
             <footer>
                 <div id="estilopie" class="col-lg-12">
                     <img src="imagenes/logo.png">

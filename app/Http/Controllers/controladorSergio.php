@@ -17,7 +17,7 @@ class controladorSergio extends Controller {
 
 
 
-        return view('compuestoAnalisis');
+        return view('vista/compuestoAnalisis');
     }
 
     function verelementos(Request $req) {
@@ -75,7 +75,7 @@ class controladorSergio extends Controller {
             'tgranu' => $tgranu,
             'fecha' => $fecha
         ];
-        return view('elementosAnalisis', $datos);
+        return view('vista/elementosAnalisis', $datos);
     }
 
 }

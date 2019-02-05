@@ -1,11 +1,12 @@
-@extends('cabeceraAnalisis')
+@extends('admin/admin')
 
 @section('titulo')
-Ver Analisis
+Validaciones
 @endsection
 
 @section('cuerpo')
-   
+<div class="container">
+</div>
 
 @endsection
 
