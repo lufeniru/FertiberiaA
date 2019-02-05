@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('inicio');
 });
-
+Route::get('index', function () {
+    return view('inicio');
+});
 Route::post('inicio', 'controladorJaime@redirec');
 
 Route::post('compuestos', 'controladorJaime@compuestos');

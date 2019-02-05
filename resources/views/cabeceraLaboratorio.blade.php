@@ -16,7 +16,7 @@
         <link href="css/app.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-2.1.4.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <!-- Styles -->
         <style>
             html, body {
@@ -81,7 +81,7 @@
             <header>
                 <div class="row">
                     <div id="estilocab" class="col-lg-12">
-                        <a href="lab"><img src="imagenes/banner.png"></a>
+                        <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
                 <div class="row" id="menu">
@@ -93,13 +93,13 @@
                         <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
                     </form>
                 </div>
-<?php
-if (isset($existe)) {
-    echo '<div class="col-3">';
-    echo 'PLANTA ' . $existe;
-    echo '</div>';
-}
-?>
+                <?php
+                if (isset($existe)) {
+                    echo '<div class="col-3">';
+                    echo 'PLANTA ' . $existe;
+                    echo '</div>';
+                }
+                ?>
             </header>
 
 
