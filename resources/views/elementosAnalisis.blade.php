@@ -49,9 +49,12 @@ $tanques[0]->tanque;
                 //Cabecera 1--------------------------------------------------------------
                 echo '<table style="width:100%" class="table-striped"><tr>';
                 echo '<td rowspan="2">Fecha</td>';
+                 echo '<td rowspan="2">Programado</td>';
+                 echo '<td rowspan="2">Validado</td>';
                 for($i=0; $i<$nelementos;$i++)
                 {
                     $fila=$tabla[$i];
+                      
                     echo '<td>'.$fila->describe_elemento.'</td>';
                 }
 
@@ -77,7 +80,15 @@ $tanques[0]->tanque;
 
                 //Datos ------------------------------------------------------------------
                 echo '<tr>';
-                echo '<td>'.$tabla[0]->fechahora.'</td>';
+                $prog = 'si';
+                if ($tabla[0]->programado === 0) {
+                    $prog = 'no';
+                }
+                $val = 'no';
+                if ($tabla[0]->validado === 1) {
+                    $val = 'si';
+                }
+                echo '<td>'.$tabla[0]->fechahora.'</td><td>'.$prog.'</td><td>'.$val.'</td>';
                 //dd($tabla);
                 foreach ($tabla as $i=>$fila)
                 {
@@ -85,7 +96,15 @@ $tanques[0]->tanque;
                     {
                         if(($i)%$nelementos==0)
                         {
-                            echo '</tr><tr><td>'.$fila->fechahora.'</td>';
+                             $prog = 'si';
+                if ($fila->programado === 0) {
+                    $prog = 'no';
+                }
+                 $val = 'no';
+                if ($tabla[0]->validado === 1) {
+                    $val = 'si';
+                }
+                            echo '</tr><tr><td>'.$fila->fechahora.'</td><td>'.$prog.'</td><td>'.$val.'</td>';
                         }
                     }
                     echo '<td>'.$fila->lectura.'</td>';
