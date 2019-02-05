@@ -11,7 +11,6 @@ Laboratorio
         <?php
         $compuestos = \Session::get('compuestos');
         echo '<select name="compuesto" class="custom-select offset-2 col-7">';
-        echo '<option selected disabled>Elige el compuesto</option>';
         foreach ($compuestos as $comp) {
             echo '<option value="' . $comp->id_compuesto . '">' . $comp->compuesto . '</option>';
         }

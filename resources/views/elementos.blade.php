@@ -21,7 +21,11 @@ $tanques[0]->tanque
     echo 'Compuesto: ' . $compuesto[0]->compuesto . '<br>';
     ?><div class="row">
         <div class="col-12">
-            Fecha y hora: <input name="fechahora" type="datetime-local"> No programado: <input type="checkbox" name="prog">
+            <?php 
+            $fecha = Date('Y-m-d H:i');
+            
+            ?>
+            Fecha y hora: <input name="fechahora" value="<?php echo $fecha; ?>" type="datetime-local"> No programado: <input type="checkbox" name="prog">
         </div>
     </div>
     <div class="row" style="margin-top: 30px">

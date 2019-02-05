@@ -97,9 +97,7 @@
                                 <div>
                                     <input type="submit" class="btn btn-outline-success" name="boton" value="Ver analisis">
                                 </div>
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Login">
-                                </div>
+                                
                             </div>
                         </fieldset>
                     </div>

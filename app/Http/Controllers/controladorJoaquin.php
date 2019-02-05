@@ -72,10 +72,13 @@ class controladorJoaquin extends Controller {
                     return view('addPlanta');
                     break;
                 case 'Añadir compuesto':
+                    
                     return view('addCompuesto');
                     break;
                 case 'Añadir elemento':
-                    return view('addElemento');
+                    $plantas = \DB::table('plantas')->get();
+                    $datos= [ 'plantas' => $plantas];
+                    return view('addElemento',$datos);
                     break;
                 default:
                     return view('inicio');
