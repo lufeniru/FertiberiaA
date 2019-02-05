@@ -1,4 +1,4 @@
-@extends('cabeceraLaboratorio')
+@extends('admin/admin')
 
 @section('titulo')
 Añadir Elemento

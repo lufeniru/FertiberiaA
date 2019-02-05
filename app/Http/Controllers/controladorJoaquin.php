@@ -17,10 +17,9 @@ class controladorJoaquin extends Controller {
         $tanque = ($req->get('tanque'));
         $prog = $req->get('prog');
         if ($prog === 'on') {
-            $prog= 0;
-        }
-        else{
-            $prog=1;
+            $prog = 0;
+        } else {
+            $prog = 1;
         }
         $i = 0;
         foreach ($valores as $valor) {
@@ -61,30 +60,30 @@ class controladorJoaquin extends Controller {
         }
         echo '<script>alert("Insertado con exito");</script>';
         \Session::forget('planta');
-        return view('Laboratorio');
+        return view('laboratorio/Laboratorio');
     }
 
     function admin(Request $req) {
-        if ($req->get('menu2') != null) {
-            $opcion = $req->get('menu2');
+       
+             $opcion = $req->get('menu2');
             switch ($opcion) {
                 case 'Añadir planta':
-                    return view('addPlanta');
+                    return view('admin/addPlanta');
                     break;
                 case 'Añadir compuesto':
-                    
-                    return view('addCompuesto');
+
+                    return view('admin/addCompuesto');
                     break;
                 case 'Añadir elemento':
                     $plantas = \DB::table('plantas')->get();
-                    $datos= [ 'plantas' => $plantas];
-                    return view('addElemento',$datos);
+                    $datos = ['plantas' => $plantas];
+                    return view('admin/addElemento', $datos);
                     break;
                 default:
                     return view('inicio');
                     break;
             }
-        }
+        
     }
 
     function addElemento(Request $req) {
@@ -111,7 +110,7 @@ class controladorJoaquin extends Controller {
         /*         * * comprobar cuantos elementos hay en ese compuesto, para aplicar el orden* */
         $nElementos = \DB::select('select count(*) as resultados from elementos where compuesto like "' . $compuesto . '"');
         $nElementos[0]->resultados++;
-        $vector=[
+        $vector = [
             'orden' => $nElementos[0]->resultados,
             'id_elem' => $idElem,
             'condicion' => $condicion,
@@ -131,6 +130,16 @@ class controladorJoaquin extends Controller {
             'simbolo' => $simbolo,
             'compuesto' => $compuesto
         ]);
+        return view('inicio');
+    }
+
+    function addPlanta(Request $req) {
+        $nombre = $req->get('nombre');
+        $desc = $req->get('descripcion');
+        \DB::table('plantas')->insert(
+                ['nombre' => $nombre, 'descripcion' => $desc]
+        );
+        echo '<script>alert("'.$desc.' añadida con exito");</script>';
         return view('inicio');
     }
 

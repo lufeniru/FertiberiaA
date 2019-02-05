@@ -1,7 +1,7 @@
-@extends('cabeceraLaboratorio')
+@extends('vista/cabeceraAnalisis')
 
 @section('titulo')
-Laboratorio
+Ver Analisis
 @endsection
 
 @section('cuerpo')
