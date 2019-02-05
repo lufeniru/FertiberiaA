@@ -10,10 +10,14 @@ Añadir Elemento
         {{ csrf_field() }}
         <h3>Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación</h3><br>
         Compuesto al que pertenece: 
-        <select name="compuesto">
-            <option value="U-18">Compuesto 1</option>
-            <option value="Compuesto2">Compuesto 2</option>
-        </select><br>
+        Planta: <select name="planta" id="planta">
+            <?php
+            foreach ($plantas as $p) {
+                echo '<option value="' . $p->id_planta . '">' . $p->nombre . '</option>';
+            }
+            ?>
+        </select>
+
         Nombre completo del elemento: <input type="text" name="nombreElemento">
         Identificador del elemento (ej: Nitrato Total -> NiTot): 
         <input type="text" name="idElem"><br>

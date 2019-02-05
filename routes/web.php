@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('inicio');
+    return view('login');
 });
 Route::get('index', function () {
     return view('inicio');
@@ -29,5 +29,8 @@ Route::post('addElemento','controladorJoaquin@addElemento');
 Route::get('lab', function(){
     \Session::forget('planta');
 return view('Laboratorio');
+});
+Route::post('login', function () {
+    return view('inicio');
 });
 
