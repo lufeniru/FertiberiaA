@@ -19,9 +19,8 @@ function redirec(Request $req) {
                 break;
             case "Laboratorio":
                 $plantas = DB::table('plantas')->get();
-
-                $datos = ['plantas' => $plantas];
-                return view('laboratorio/Laboratorio', $datos);
+                \Session::put('plantas', $plantas);
+                return view('laboratorio/Laboratorio');
                 break;
             case "Ver analisis":
                 $plantas = DB::table('plantas')->get();
