@@ -12,9 +12,11 @@
 */
 
 Route::get('/', function () {
+    return view('login');
+});
+Route::get('index', function () {
     return view('inicio');
 });
-
 Route::post('inicio', 'controladorJaime@redirec');
 
 Route::post('compuestos', 'controladorJaime@compuestos');
@@ -26,6 +28,10 @@ Route::post('admin','controladorJoaquin@admin');
 Route::post('addElemento','controladorJoaquin@addElemento');
 Route::get('lab', function(){
     \Session::forget('planta');
-return view('Laboratorio');
+return view('laboratorio/Laboratorio');
+});
+Route::post('login', function () {
+    return view('inicio');
 });
 
+Route::post('addPlanta', 'controladorJoaquin@addPlanta');

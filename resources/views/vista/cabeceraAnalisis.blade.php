@@ -93,11 +93,11 @@
                         <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
                     </form>
                 </div>
-<?php
-if (isset($existe)) {
-    echo 'PLANTA ' . $existe;
-}
-?>
+                <?php
+                if (isset($existe)) {
+                    echo 'PLANTA ' . $existe;
+                }
+                ?>
             </header>
 
 

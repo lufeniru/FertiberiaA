@@ -28,6 +28,7 @@
             a:hover{
                 color: #4C9B01;
             }
+           
             #menu *{
                 margin: auto;
             }
@@ -43,5 +44,10 @@
             }
             #menuAdmin li{
                 width: 40px;
+            }
+            #header{
+                color: white;
+                background-color: #00522A;
+                border-radius: 4px;
             }
             

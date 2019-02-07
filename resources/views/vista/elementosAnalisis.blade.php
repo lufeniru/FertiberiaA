@@ -1,4 +1,4 @@
-@extends('cabeceraAnalisis')
+@extends('vista/cabeceraAnalisis')
 
 @section('titulo')
 Analisis
@@ -126,8 +126,8 @@ $tanques[0]->tanque;
             {
                 //Iniciando la tabla--------------------------------------------------------
                 //Cabecera 1--------------------------------------------------------------
-                echo '<table style="width: 100%" class="table-striped"><tr>';
-                echo '<td colspan="'.$ngranulometria.'">Granulometria</td>';
+                echo '<table style="width: 100%; height:95%" class="table-striped"><tr>';
+                echo '<td colspan="'.$ngranulometria.'" style="text-align: center">Granulometria</td>';
                 
 
                 echo '</tr>';

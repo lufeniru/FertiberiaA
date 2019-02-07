@@ -16,7 +16,7 @@
         <link href="css/app.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-2.1.4.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <!-- Styles -->
         <style>
             html, body {
@@ -73,29 +73,43 @@
     </head>
 
     <body>
+        @yield('cabecera')
+        <?php
+        $existe = \Session::get('planta');
+        ?>
         <div class="container">
             <header>
                 <div class="row">
                     <div id="estilocab" class="col-lg-12">
-                        <img src="imagenes/banner.png">
+                        <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
                 <div class="row" id="menu">
-                    <form action="admin" method="post">
+                    <form action="compuestos" method="post">
                         {{ csrf_field() }}
-                        <div class="row">
-                            
-                                <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir compuesto" name="menu2"></ul>
-                                <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir elemento" name="menu2"></ul>
-                                <ul><input type="submit" class="btn btn-outline-success col-12" value="Validar" name="menu2"></ul>
-                                <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir planta" name="menu2"></ul>
-                                <!--<ul><input type="submit" class="btn btn-outline-success col-12" value="Agregar un elemento a un compuesto" name="menu2"></ul>-->
-                            
-                        </div>
+                        <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
+                        <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
+                        <input type="submit" class="btn btn-outline-success" value="NITRATO" name="menu">
+                        <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
                     </form>
                 </div>
-
+                <?php
+                if (isset($existe)) {
+                    echo '<div class="col-3">';
+                    echo 'PLANTA ' . $existe;
+                    echo '</div>';
+                }
+                ?>
             </header>
+
+
+            <!-- poner en cuerpo si fuese necesario -->
+            @yield('cuerpo')
+
+
+
+
+            @yield('pie') 
             <footer>
                 <div id="estilopie" class="col-lg-12">
                     <img src="imagenes/logo.png">

@@ -15,19 +15,19 @@ function redirec(Request $req) {
         switch($boton)
         {
             case "Administrador":
-                    return view('admin');
+                    return view('admin/admin');
                 break;
             case "Laboratorio":
                 $plantas = DB::table('plantas')->get();
 
                 $datos = ['plantas' => $plantas];
-                return view('Laboratorio', $datos);
+                return view('laboratorio/Laboratorio', $datos);
                 break;
             case "Ver analisis":
                 $plantas = DB::table('plantas')->get();
 
                 $datos = ['plantas' => $plantas];
-                return view('VerAnalisis', $datos);
+                return view('vista/VerAnalisis', $datos);
                 break;
             case "Login":
                     return view('login');
@@ -44,7 +44,7 @@ function redirec(Request $req) {
 
 
 
-        return view('compuesto');
+        return view('laboratorio/compuesto');
     }
 
     function elementos(Request $req) {
@@ -60,7 +60,7 @@ function redirec(Request $req) {
             \Session::put('granu',$granu);
         }
         
-        return view('elementos');
+        return view('laboratorio/elementos');
     }
 
 }
