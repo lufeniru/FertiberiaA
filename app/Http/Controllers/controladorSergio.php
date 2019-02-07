@@ -38,6 +38,7 @@ class controladorSergio extends Controller {
             \Session::put('granu', $granu);
         }
         ////////////////////////////////////////////////////////////////////////
+        date_default_timezone_set('Europe/Madrid');
         $fecha = date("Y-m-d");
         $tanque;
         if (isset($req->fecha)) {

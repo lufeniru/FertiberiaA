@@ -64,26 +64,26 @@ class controladorJoaquin extends Controller {
     }
 
     function admin(Request $req) {
-       
-             $opcion = $req->get('menu2');
-            switch ($opcion) {
-                case 'Añadir planta':
-                    return view('admin/addPlanta');
-                    break;
-                case 'Añadir compuesto':
 
-                    return view('admin/addCompuesto');
-                    break;
-                case 'Añadir elemento':
-                    $plantas = \DB::table('plantas')->get();
-                    $datos = ['plantas' => $plantas];
-                    return view('admin/addElemento', $datos);
-                    break;
-                default:
-                    return view('inicio');
-                    break;
-            }
-        
+        $opcion = $req->get('menu2');
+        switch ($opcion) {
+            case 'Añadir planta':
+                return view('admin/addPlanta');
+                break;
+            case 'Añadir compuesto':
+                $plantas = \DB::table('plantas')->get();
+                $datos = ['plantas' => $plantas];
+                return view('admin/addComp',$datos);
+                break;
+            case 'Añadir elemento':
+                $plantas = \DB::table('plantas')->get();
+                $datos = ['plantas' => $plantas];
+                return view('admin/addElemento', $datos);
+                break;
+            default:
+                return view('inicio');
+                break;
+        }
     }
 
     function addElemento(Request $req) {
@@ -139,8 +139,19 @@ class controladorJoaquin extends Controller {
         \DB::table('plantas')->insert(
                 ['nombre' => $nombre, 'descripcion' => $desc]
         );
-        echo '<script>alert("'.$desc.' añadida con exito");</script>';
+        echo '<script>alert("' . $desc . ' añadida con exito");</script>';
         return view('inicio');
+    }
+
+    function sacarcomp() {
+        $p = $_POST['planta'];
+        $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $p);
+        $select = '<h4>Compuestos:</h4> <select name="comp" class="custom-select">';
+        foreach ($compuestos as $v) {
+            $select = $select . '<option value="' . $v->id_compuesto . '">' . $v->compuesto . '</option>';
+        }
+        $select = $select . '</select>';
+        return $select;
     }
 
 }

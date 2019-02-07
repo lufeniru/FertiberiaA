@@ -75,9 +75,8 @@
     <body>
         @yield('cabecera')
         <?php
-        $existe = \Session::get('planta');
+        $plantas = \Session::get('plantas');
         ?>
-        <div class="container">
             <header>
                 <div class="row">
                     <div id="estilocab" class="col-lg-12">
@@ -87,19 +86,15 @@
                 <div class="row" id="menu">
                     <form action="compuestos" method="post">
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="NITRATO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
+                        <?php 
+                                foreach ($plantas as $p) {
+                                  echo '<input type="submit" class="btn btn-outline-success" value="'.$p->nombre.'"   name="menu">'; 
+                                }
+                        ?>
+                        
                     </form>
                 </div>
-                <?php
-                if (isset($existe)) {
-                    echo '<div class="col-3">';
-                    echo 'PLANTA ' . $existe;
-                    echo '</div>';
-                }
-                ?>
+               
             </header>
 
 
@@ -116,7 +111,6 @@
                     <p id="letrapie">© 2019 Copyright: <a href="mailto:daw2@cifpvirgendegracia.com">Daw 2 2019</a></p>               
                 </div>
             </footer>
-        </div>
 
 
     </body>

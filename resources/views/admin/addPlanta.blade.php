@@ -6,11 +6,11 @@ Añadir Planta
 
 @section('cuerpo')
 <div class="container">
-    <form action="addPlanta" name="addPlanta" method="POST">
+    <form action="addPlanta" name="addPlanta" method="POST" class="row">
         {{ csrf_field() }}
-        Nombre de planta: <input type="text" name="nombre" placeholder="ej(UREA)">
-        Descripcion: <input type="text" name="descripcion" placeholder="ej(Planta Urea)">
-        <input type="submit" name="btAddPlanta" value="Añadir">
+        <div class="col-6">Nombre de planta: <input type="text" class="form-control" name="nombre" placeholder="ej(UREA)"></div>
+        <div class="col-6">Descripcion: <input type="text" name="descripcion" class="form-control" placeholder="ej(Planta Urea)"></div>
+        <div class="col-12"><input type="submit" class="btn btn-info" name="btAddPlanta" value="Añadir"></div>
     </form>
 </div>
 
