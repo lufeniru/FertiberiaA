@@ -110,7 +110,7 @@
 
 
             @yield('pie') 
-            <footer>
+            <footer class="row" style="width:100%">
                 <div id="estilopie" class="col-lg-12">
                     <img src="imagenes/logo.png">
                     <p id="letrapie">© 2019 Copyright: <a href="mailto:daw2@cifpvirgendegracia.com">Daw 2 2019</a></p>               
