@@ -17,10 +17,9 @@ class controladorJoaquin extends Controller {
         $tanque = ($req->get('tanque'));
         $prog = $req->get('prog');
         if ($prog === 'on') {
-            $prog= 0;
-        }
-        else{
-            $prog=1;
+            $prog = 0;
+        } else {
+            $prog = 1;
         }
         $i = 0;
         foreach ($valores as $valor) {
@@ -61,26 +60,33 @@ class controladorJoaquin extends Controller {
         }
         echo '<script>alert("Insertado con exito");</script>';
         \Session::forget('planta');
-        return view('Laboratorio');
+        return view('laboratorio/Laboratorio');
     }
 
     function admin(Request $req) {
-        if ($req->get('menu2') != null) {
-            $opcion = $req->get('menu2');
-            switch ($opcion) {
-                case 'Añadir planta':
-                    return view('addPlanta');
-                    break;
-                case 'Añadir compuesto':
-                    return view('addCompuesto');
-                    break;
-                case 'Añadir elemento':
-                    return view('addElemento');
-                    break;
-                default:
-                    return view('inicio');
-                    break;
-            }
+
+        $opcion = $req->get('menu2');
+        switch ($opcion) {
+            case 'Añadir planta':
+                return view('admin/addPlanta');
+                break;
+            case 'Añadir compuesto':
+                $plantas = \DB::table('plantas')->get();
+                $datos = ['plantas' => $plantas];
+                
+                return view('admin/addComp',$datos);
+                break;
+            case 'Añadir elemento':
+                $plantas = \DB::table('plantas')->get();
+                $comp = $this->comp($plantas[0]->id_planta);
+                $datos = ['plantas' => $plantas,
+                    'comp'=>$comp];
+                 
+                return view('admin/addElemento', $datos);
+                break;
+            default:
+                return view('inicio');
+                break;
         }
     }
 
@@ -108,7 +114,7 @@ class controladorJoaquin extends Controller {
         /*         * * comprobar cuantos elementos hay en ese compuesto, para aplicar el orden* */
         $nElementos = \DB::select('select count(*) as resultados from elementos where compuesto like "' . $compuesto . '"');
         $nElementos[0]->resultados++;
-        $vector=[
+        $vector = [
             'orden' => $nElementos[0]->resultados,
             'id_elem' => $idElem,
             'condicion' => $condicion,
@@ -129,6 +135,37 @@ class controladorJoaquin extends Controller {
             'compuesto' => $compuesto
         ]);
         return view('inicio');
+    }
+
+    function addPlanta(Request $req) {
+        $nombre = $req->get('nombre');
+        $desc = $req->get('descripcion');
+        \DB::table('plantas')->insert(
+                ['nombre' => $nombre, 'descripcion' => $desc]
+        );
+        echo '<script>alert("' . $desc . ' añadida con exito");</script>';
+        return view('inicio');
+    }
+
+    function sacarcomp() {
+        $p = $_POST['planta'];
+        $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $p);
+        $select = '<h4>Compuestos:</h4> <select name="comp" class="custom-select">';
+        foreach ($compuestos as $v) {
+            $select = $select . '<option value="' . $v->id_compuesto . '">' . $v->compuesto . '</option>';
+        }
+        $select = $select . '</select>';
+        return $select;
+    }
+    function comp($planta) {
+        
+        $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $planta);
+        $select = '<h4>Compuestos:</h4> <select name="comp" class="custom-select">';
+        foreach ($compuestos as $v) {
+            $select = $select . '<option value="' . $v->id_compuesto . '">' . $v->compuesto . '</option>';
+        }
+        $select = $select . '</select>';
+        return $select;
     }
 
 }

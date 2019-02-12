@@ -16,7 +16,7 @@
         <link href="css/app.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-2.1.4.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -85,19 +85,18 @@
                     </div>
                 </div>
                 <div class="row" id="menu">
-                    <form action="compuestos" method="post">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="NITRATO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
+                    <form action="vercompuestos" method="post">
+                       {{ csrf_field() }}
+                        <?php 
+                                foreach ($plantas as $p) {
+                                  echo '<input type="submit" class="btn btn-outline-success" value="'.$p->nombre.'"   name="menu">'; 
+                                }
+                        ?>
                     </form>
                 </div>
                 <?php
                 if (isset($existe)) {
-                    echo '<div class="col-3">';
                     echo 'PLANTA ' . $existe;
-                    echo '</div>';
                 }
                 ?>
             </header>
@@ -110,7 +109,7 @@
 
 
             @yield('pie') 
-            <footer>
+            <footer class="row" style="width:100%">
                 <div id="estilopie" class="col-lg-12">
                     <img src="imagenes/logo.png">
                     <p id="letrapie">© 2019 Copyright: <a href="mailto:daw2@cifpvirgendegracia.com">Daw 2 2019</a></p>               

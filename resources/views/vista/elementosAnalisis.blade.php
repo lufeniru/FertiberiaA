@@ -1,4 +1,4 @@
-@extends('cabeceraAnalisis')
+@extends('vista/cabeceraAnalisis')
 
 @section('titulo')
 Analisis

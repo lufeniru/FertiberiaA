@@ -2,7 +2,8 @@
 
 /* verde oscuro--> #00522A; verde claro--> #4C9B01; */
             #estilocab{                
-                text-align: center;      
+                text-align: center;   
+                width: 100%;
             }
              #estilocab *{                
                 text-align: center;      
@@ -31,7 +32,14 @@
            
             #menu *{
                 margin: auto;
+                
             }
+            #menu form input{
+                margin: 5px;
+                
+            }
+            
+            
             .btn-info{
                 background-color: #00522A;
                 color:whitesmoke;
@@ -45,4 +53,17 @@
             #menuAdmin li{
                 width: 40px;
             }
+            #header{
+                color: white;
+                background-color: #00522A;
+                border-radius: 4px;
+            }
+            
+            .breadcrumb{
+                background: transparent;
+            }
+            
+            
+          
+            
             

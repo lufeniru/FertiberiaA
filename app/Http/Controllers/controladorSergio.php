@@ -17,7 +17,7 @@ class controladorSergio extends Controller {
 
 
 
-        return view('compuestoAnalisis');
+        return view('vista/compuestoAnalisis');
     }
 
     function verelementos(Request $req) {
@@ -38,6 +38,7 @@ class controladorSergio extends Controller {
             \Session::put('granu', $granu);
         }
         ////////////////////////////////////////////////////////////////////////
+        date_default_timezone_set('Europe/Madrid');
         $fecha = date("Y-m-d");
         $tanque;
         if (isset($req->fecha)) {
@@ -75,7 +76,7 @@ class controladorSergio extends Controller {
             'tgranu' => $tgranu,
             'fecha' => $fecha
         ];
-        return view('elementosAnalisis', $datos);
+        return view('vista/elementosAnalisis', $datos);
     }
 
 }
