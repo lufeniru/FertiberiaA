@@ -5,6 +5,7 @@ Añadir Elemento
 @endsection
 
 @section('cuerpo')
+
 <div class="container" style="text-align: center">
     <form action="addElemento" name="addElemento" method="post">
         {{ csrf_field() }}
@@ -19,10 +20,7 @@ Añadir Elemento
                     ?>
                 </select></div>
             <div id="comp" class="col-6">
-                <h4>Compuestos:</h4>
-                <select class="custom-select">
-
-                </select>
+<?php echo $comp; ?>
             </div>
         </div>
         <div class="row">
@@ -64,50 +62,51 @@ Añadir Elemento
 
 <script>
     $.ajaxSetup({
-    headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
     $('#planta').change(function () {
-    //we will send data and recive data fom our AjaxController
-    $.ajax({
-    url: 'sacarcomp',
+        //we will send data and recive data fom our AjaxController
+        $.ajax({
+            url: 'sacarcomp',
             data: {'planta': $("#planta").val()},
             type: 'post',
             success: function (response) {
-            $("#comp").html(response);
+                $("#comp").html(response);
             },
             statusCode: {
-            404: function () {
-            alert('web not found');
-            }
+                404: function () {
+                    alert('web not found');
+                }
             },
             error: function (x, xs, xt) {
-            //nos dara el error si es que hay alguno
-            window.open(JSON.stringify(x));
-            alert('error: ' + JSON.stringify(x) + "\n error string: " + xs + "\n error throwed: " + xt);
+                //nos dara el error si es que hay alguno
+                window.open(JSON.stringify(x));
+                alert('error: ' + JSON.stringify(x) + "\n error string: " + xs + "\n error throwed: " + xt);
             }
-    });
+        });
     });
     $("#condicion").change(function () {
-    if ($("#condicion").val() !== 'null'){
-    if ($("#condicion").val() === '<>') {
-    $("#val2").removeAttr('hidden');
-    $("#val1").removeAttr('disabled');
-    } else {
-    $("#val2").attr('hidden', 'true');
-    $("#val1").removeAttr('disabled');
-    }
-    } else{
-    $("#val2").attr('hidden', 'true');
-    $("#val1").attr('disabled', 'true');
-    }
+        if ($("#condicion").val() !== 'null') {
+            if ($("#condicion").val() === '<>') {
+                $("#val2").removeAttr('hidden');
+                $("#val1").removeAttr('disabled');
+            } else {
+                $("#val2").attr('hidden', 'true');
+                $("#val1").removeAttr('disabled');
+            }
+        } else {
+            $("#val2").attr('hidden', 'true');
+            $("#val1").attr('disabled', 'true');
+        }
     });
-    
+
 
 
 
 </script>
+
 
 @endsection
 

@@ -86,11 +86,12 @@
                 </div>
                 <div class="row" id="menu">
                     <form action="vercompuestos" method="post">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="NITRATO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
+                       {{ csrf_field() }}
+                        <?php 
+                                foreach ($plantas as $p) {
+                                  echo '<input type="submit" class="btn btn-outline-success" value="'.$p->nombre.'"   name="menu">'; 
+                                }
+                        ?>
                     </form>
                 </div>
                 <?php

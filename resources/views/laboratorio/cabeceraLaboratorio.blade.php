@@ -79,7 +79,7 @@
         ?>
             <header>
                 <div class="row">
-                    <div id="estilocab" class="col-lg-12">
+                    <div id="estilocab" class="col-12">
                         <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
