@@ -76,6 +76,7 @@
         @yield('cabecera')
         <?php
         $existe = \Session::get('planta');
+        $plantas = \Session::get('plantas');
         ?>
         <div class="container">
             <header>

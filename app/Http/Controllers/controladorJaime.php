@@ -7,15 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class controladorJaime extends Controller {
 
-function redirec(Request $req) {
+    function redirec(Request $req) {
         $boton = $req->get('boton');
         \Session::forget('planta');
         \Session::forget('elementos');
-        
-        switch($boton)
-        {
+
+        switch ($boton) {
             case "Administrador":
-                    return view('admin/admin');
+                return view('admin/admin');
                 break;
             case "Laboratorio":
                 $plantas = DB::table('plantas')->get();
@@ -24,12 +23,12 @@ function redirec(Request $req) {
                 break;
             case "Ver analisis":
                 $plantas = DB::table('plantas')->get();
-
+                \Session::put('plantas', $plantas);
                 $datos = ['plantas' => $plantas];
                 return view('vista/VerAnalisis', $datos);
                 break;
             case "Login":
-                    return view('login');
+                return view('login');
                 break;
         }
     }
@@ -48,17 +47,17 @@ function redirec(Request $req) {
 
     function elementos(Request $req) {
         $comp = $req->get('compuesto');
-         $compuesto= DB::select("SELECT compuestos.compuesto,compuestos.granulometria, compuestos.id_compuesto from compuestos where compuestos.id_compuesto = '".$comp."'");
-         \Session::put('compuesto',$compuesto);
-        $elementos = DB::select("SELECT elementos.* , datos_elementos.describe_elemento FROM elementos, datos_elementos where elementos.compuesto = '".$comp."' and datos_elementos.id_elemento= elementos.id_elem order by orden");
+        $compuesto = DB::select("SELECT compuestos.compuesto,compuestos.granulometria, compuestos.id_compuesto from compuestos where compuestos.id_compuesto = '" . $comp . "'");
+        \Session::put('compuesto', $compuesto);
+        $elementos = DB::select("SELECT elementos.* , datos_elementos.describe_elemento FROM elementos, datos_elementos where elementos.compuesto = '" . $comp . "' and datos_elementos.id_elemento= elementos.id_elem order by orden");
         \Session::put('elementos', $elementos);
-        $tanques= DB::select("Select tanques.tanque from tanques where id_compuesto='".$comp."' ");
+        $tanques = DB::select("Select tanques.tanque from tanques where id_compuesto='" . $comp . "' ");
         \Session::put('tanques', $tanques);
         if ($compuesto[0]->granulometria != null) {
-            $granu = DB::select("SELECT * FROM `granudatos` where id_granu = '".$compuesto[0]->granulometria."' ORDER by n");
-            \Session::put('granu',$granu);
+            $granu = DB::select("SELECT * FROM `granudatos` where id_granu = '" . $compuesto[0]->granulometria . "' ORDER by n");
+            \Session::put('granu', $granu);
         }
-        
+
         return view('laboratorio/elementos');
     }
 

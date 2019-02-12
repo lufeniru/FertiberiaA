@@ -20,7 +20,7 @@ Añadir Elemento
                     ?>
                 </select></div>
             <div id="comp" class="col-6">
-<?php echo $comp; ?>
+                <?php echo $comp; ?>
             </div>
         </div>
         <div class="row">
