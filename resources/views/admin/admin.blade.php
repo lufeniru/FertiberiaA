@@ -89,13 +89,11 @@
                     <form action="admin" method="post">
                         {{ csrf_field() }}
                         <div class="row">
-
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir compuesto" name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir elemento" name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Validar" name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir planta" name="menu2"></ul>
                             <!--<ul><input type="submit" class="btn btn-outline-success col-12" value="Agregar un elemento a un compuesto" name="menu2"></ul>-->
-
                         </div>
                     </form>
                 </div>

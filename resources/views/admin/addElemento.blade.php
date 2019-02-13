@@ -9,7 +9,7 @@ Añadir Elemento
     <form action="addElemento" name="addElemento" method="post">
         {{ csrf_field() }}
         <div class="row">
-            <div class="col-12"><h3>Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación</h3></div>
+            <div class="col-12"><h4>Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación</h4></div>
 
             <div class="col-6"><h4>Planta:</h4> <select name="planta" class="custom-select" id="planta">
                     <?php
@@ -51,62 +51,54 @@ Añadir Elemento
                 <h4>¿En qué unidad se mide este elemento?</h4>
                 <input type="text" class="form-control" name="simbolo">
             </div>
-        </div>
-        <div class="row">
             <div class="col-6">
                 <input type="submit" class="btn btn-info" name="btAddElemento" value="Aceptar">
             </div>
         </div>
-
-</div>
-</form>
+    </form>
 </div>
 
 <script>
     $.ajaxSetup({
-    headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
     $('#planta').change(function () {
-    //we will send data and recive data fom our AjaxController
-    $.ajax({
-    url: 'sacarcomp',
+        //we will send data and recive data fom our AjaxController
+        $.ajax({
+            url: 'sacarcomp',
             data: {'planta': $("#planta").val()},
             type: 'post',
             success: function (response) {
-            $("#comp").html(response);
+                $("#comp").html(response);
             },
             statusCode: {
-            404: function () {
-            alert('web not found');
-            }
+                404: function () {
+                    alert('web not found');
+                }
             },
             error: function (x, xs, xt) {
-            //nos dara el error si es que hay alguno
-            window.open(JSON.stringify(x));
-            alert('error: ' + JSON.stringify(x) + "\n error string: " + xs + "\n error throwed: " + xt);
+                //nos dara el error si es que hay alguno
+                window.open(JSON.stringify(x));
+                alert('error: ' + JSON.stringify(x) + "\n error string: " + xs + "\n error throwed: " + xt);
             }
-    });
+        });
     });
     $("#condicion").change(function () {
-    if ($("#condicion").val() !== 'null'){
-    if ($("#condicion").val() === '<>') {
-    $("#val2").removeAttr('hidden');
-    $("#val1").removeAttr('disabled');
-    } else {
-    $("#val2").attr('hidden', 'true');
-    $("#val1").removeAttr('disabled');
-    }
-    } else{
-    $("#val2").attr('hidden', 'true');
-    $("#val1").attr('disabled', 'true');
-    }
+        if ($("#condicion").val() !== 'null') {
+            if ($("#condicion").val() === '<>') {
+                $("#val2").removeAttr('hidden');
+                $("#val1").removeAttr('disabled');
+            } else {
+                $("#val2").attr('hidden', 'true');
+                $("#val1").removeAttr('disabled');
+            }
+        } else {
+            $("#val2").attr('hidden', 'true');
+            $("#val1").attr('disabled', 'true');
+        }
     });
-    
-
-
-
 </script>
 
 @endsection

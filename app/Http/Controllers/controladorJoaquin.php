@@ -73,7 +73,7 @@ class controladorJoaquin extends Controller {
             case 'Añadir compuesto':
                 $plantas = \DB::table('plantas')->get();
                 $datos = ['plantas' => $plantas];
-                return view('admin/addComp',$datos);
+                return view('admin/addComp', $datos);
                 break;
             case 'Añadir elemento':
                 $plantas = \DB::table('plantas')->get();
@@ -87,7 +87,7 @@ class controladorJoaquin extends Controller {
     }
 
     function addElemento(Request $req) {
-        $compuesto = $req->get('compuesto');
+        $compuesto = $req->get('comp');
         $nombreElem = $req->get('nombreElemento');
         $idElem = $req->get('idElem');
         $condicion = null;
@@ -100,8 +100,6 @@ class controladorJoaquin extends Controller {
             $valor2 = $req->get('valor2');
         }
         $simbolo = $req->get('simbolo');
-        //dd($compuesto,$nombreElem,$idElem,$condicion,$valor1,$valor2,$simbolo);
-        /*         * * insercion en tabla: datos_elementos*** */
         \DB::table('datos_elementos')->insert([
             'id_elemento' => $idElem,
             'describe_elemento' => $nombreElem,
@@ -119,7 +117,7 @@ class controladorJoaquin extends Controller {
             'simbolo' => $simbolo,
             'compuesto' => $compuesto
         ];
-        //dd($vector);
+
         /** insercion en tabla: elemento *** */
         \DB::table('elementos')->insert([
             'orden' => $nElementos[0]->resultados,
@@ -130,6 +128,64 @@ class controladorJoaquin extends Controller {
             'simbolo' => $simbolo,
             'compuesto' => $compuesto
         ]);
+        return view('inicio');
+    }
+
+    function addComp(Request $req) {
+        $planta = $req->get('planta');
+        $nombre = $req->get('nombreComp');
+        $id = $req->get('idComp');
+
+        /** comprobar si el compuesto tiene granulometria ** */
+        if ($req->get('granulometria') == 'on') {
+            $especificaciones = $req->get('valor');
+            $condiciones = $req->get('condicion');
+            $valores = $req->get('valor1');
+            $simbolos = $req->get('simbolo');
+
+            /*             * * numero de insert en granudatos ******** */
+            $cuantos = $req->get('cuantos');
+
+            /*             * * poner la nueva granulometria ** */
+            $count = \DB::select("select count(*) as cuantos from granulometrias");
+            $count[0]->cuantos++;
+            $idGranu = 'G' . $count[0]->cuantos;
+            $descripcion = 'Granulometría de ' . $nombre;
+
+            /*             * * insertar en tabla granulometrias ** */
+            \DB::table('granulometrias')->insert([
+                'id_granulometria' => $idGranu,
+                'descripcion' => $descripcion,
+            ]);
+
+            /*             * * insertar en tabla granudatos*** */
+            for ($i = 0; $i < $cuantos; $i++) {
+                $j = $i+1;
+                \DB::table('granudatos')->insert([
+                    'id_granu' => $idGranu,
+                    'n' => $j,
+                    'valor' => $especificaciones[$i],
+                    'condicion' => $condiciones[$i],
+                    'valor1' => $valores[$i],
+                    'simbolo' => $simbolos[$i]
+                ]);
+            }
+
+            /*             * * insertar el compuesto con el id de la granulometria ** */
+            \DB::table('compuestos')->insert([
+                'id_compuesto' => $id,
+                'compuesto' => $nombre,
+                'planta' => $planta,
+                'granulometria' => $idGranu
+            ]);
+            
+        } else { /*         * * sino insertamos solo el compuesto ** */
+            \DB::table('compuestos')->insert([
+                'id_compuesto' => $id,
+                'compuesto' => $nombre,
+                'planta' => $planta,
+            ]);
+        }
         return view('inicio');
     }
 
