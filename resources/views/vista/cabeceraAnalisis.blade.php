@@ -76,6 +76,7 @@
         @yield('cabecera')
         <?php
         $existe = \Session::get('planta');
+        $plantas = \Session::get('plantas');
         ?>
         <div class="container">
             <header>
@@ -86,11 +87,12 @@
                 </div>
                 <div class="row" id="menu">
                     <form action="vercompuestos" method="post">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-outline-success" value="UREA"   name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="AMONIACO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="NITRATO" name="menu">
-                        <input type="submit" class="btn btn-outline-success" value="ACIDO NITRICO" name="menu">
+                       {{ csrf_field() }}
+                        <?php 
+                                foreach ($plantas as $p) {
+                                  echo '<input type="submit" class="btn btn-outline-success" value="'.$p->nombre.'"   name="menu">'; 
+                                }
+                        ?>
                     </form>
                 </div>
                 <?php
@@ -108,7 +110,7 @@
 
 
             @yield('pie') 
-            <footer>
+            <footer class="row" style="width:100%">
                 <div id="estilopie" class="col-lg-12">
                     <img src="imagenes/logo.png">
                     <p id="letrapie">© 2019 Copyright: <a href="mailto:daw2@cifpvirgendegracia.com">Daw 2 2019</a></p>               

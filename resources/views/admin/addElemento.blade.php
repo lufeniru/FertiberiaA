@@ -5,6 +5,7 @@ Añadir Elemento
 @endsection
 
 @section('cuerpo')
+
 <div class="container" style="text-align: center">
     <form action="addElemento" name="addElemento" method="post">
         {{ csrf_field() }}
@@ -19,10 +20,7 @@ Añadir Elemento
                     ?>
                 </select></div>
             <div id="comp" class="col-6">
-                <h4>Compuestos:</h4>
-                <select class="custom-select">
-
-                </select>
+                <?php echo $comp; ?>
             </div>
         </div>
         <div class="row">
@@ -100,6 +98,7 @@ Añadir Elemento
         }
     });
 </script>
+
 
 @endsection
 

@@ -77,7 +77,10 @@ class controladorJoaquin extends Controller {
                 break;
             case 'Añadir elemento':
                 $plantas = \DB::table('plantas')->get();
-                $datos = ['plantas' => $plantas];
+                $comp = $this->comp($plantas[0]->id_planta);
+                $datos = ['plantas' => $plantas,
+                    'comp'=>$comp];
+                 
                 return view('admin/addElemento', $datos);
                 break;
             default:
@@ -202,6 +205,16 @@ class controladorJoaquin extends Controller {
     function sacarcomp() {
         $p = $_POST['planta'];
         $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $p);
+        $select = '<h4>Compuestos:</h4> <select name="comp" class="custom-select">';
+        foreach ($compuestos as $v) {
+            $select = $select . '<option value="' . $v->id_compuesto . '">' . $v->compuesto . '</option>';
+        }
+        $select = $select . '</select>';
+        return $select;
+    }
+    function comp($planta) {
+        
+        $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $planta);
         $select = '<h4>Compuestos:</h4> <select name="comp" class="custom-select">';
         foreach ($compuestos as $v) {
             $select = $select . '<option value="' . $v->id_compuesto . '">' . $v->compuesto . '</option>';
