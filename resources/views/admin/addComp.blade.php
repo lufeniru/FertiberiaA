@@ -44,18 +44,24 @@ Añadir Compuesto
 <script>
     $(document).ready(function () {
         $('#granu').change(function () {
-            var input ='¿Nº de granulometrias? <input class="form-control" type="number" name="cuantos" id="cuantos" onchange="granus()" min="1">';
-            $('#numero').html(input);
+            alert($('#granu').val());
+
+            if ($('#granu').prop('checked')==true ) {
+                var input = '¿Nº de granulometrias? <input class="form-control" type="number" name="cuantos" id="cuantos" onchange="granus()" min="1">';
+                $('#numero').html(input);
+            } else {
+                $('#numero').html("");
+            }
         });
     });
 
     function granus() {
         var a = $('#cuantos').val();
-        var cajas='';
+        var cajas = '';
 
         for (var i = 0; i < a; i++) {
-            var j=i+1;
-            var caja = '<div class="col-6"><h4>Granulometría '+ j +'</h4>'+'<h5>Especificación:</h5> <input class="form-control" type="text" name="valor[]" placeholder="Ej: 1mm">' + '<br>' + '<h5>Condición:</h5> <input class="form-control" type="text" name="condicion[]" placeholder="Ej: > ">' + '<br>' + '<h5>Valor:</h5> <input class="form-control" type="number" name="valor1[]" placeholder="Ej: 1">' + '<br>' + '<h5>Símbolo:</h5> <input class="form-control" type="text" name="simbolo[]" placeholder="Ej: %">'+'</div>';
+            var j = i + 1;
+            var caja = '<div class="col-6"><h4>Granulometría ' + j + '</h4>' + '<h5>Especificación:</h5> <input class="form-control" type="text" name="valor[]" placeholder="Ej: 1mm">' + '<br>' + '<h5>Condición:</h5> <input class="form-control" type="text" name="condicion[]" placeholder="Ej: > ">' + '<br>' + '<h5>Valor:</h5> <input class="form-control" type="number" name="valor1[]" placeholder="Ej: 1">' + '<br>' + '<h5>Símbolo:</h5> <input class="form-control" type="text" name="simbolo[]" placeholder="Ej: %">' + '</div>';
             cajas = cajas + caja;
         }
         $('#granulometrias').html(cajas);
