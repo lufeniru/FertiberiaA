@@ -5,6 +5,17 @@ Añadir Elemento
 @endsection
 
 @section('cuerpo')
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb" class="col-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Inicio</a></li>
+                <li class="breadcrumb-item active"><a href="admin">Administrador</a></li>
+                <li class="breadcrumb-item active"aria-current="page">Añadir elemento</li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
 <div class="container" style="text-align: center">
     <form action="addElemento" name="addElemento" method="post">
