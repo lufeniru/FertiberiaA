@@ -64,10 +64,10 @@ class controladorJaime extends Controller {
         $user = $req->get("user");
         $pass = $req->get("pass");
         $users = DB::select("select * from usuarios where nombre='".$user."' and pass='".$pass."'");
-        if (isset($user[0])) {
+        if (isset($users[0])) {
             return view('inicio');
         }else{
-            echo "<script>alert('usuario o contraseña incorrecto'); window.location.href= '\';</script>";
+            echo "<script>alert('usuario o contraseña incorrecto'); window.location.href= 'volver';</script>";
         }
     }
 

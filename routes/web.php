@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('login');
 });
+Route::get('volver',function () {
+    return view('login');
+});
 Route::get('index', function () {
     return view('inicio');
 });
