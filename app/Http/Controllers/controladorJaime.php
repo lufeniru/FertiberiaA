@@ -60,5 +60,15 @@ class controladorJaime extends Controller {
 
         return view('laboratorio/elementos');
     }
+    function login(Request $req){
+        $user = $req->get("user");
+        $pass = $req->get("pass");
+        $users = DB::select("select * from usuarios where nombre='".$user."' and pass='".$pass."'");
+        if (isset($user[0])) {
+            return view('inicio');
+        }else{
+            echo "<script>alert('usuario o contraseña incorrecto'); window.location.href= '\';</script>";
+        }
+    }
 
 }
