@@ -31,9 +31,7 @@ Route::get('lab', function(){
     \Session::forget('planta');
 return view('laboratorio/Laboratorio');
 });
-Route::post('login', function () {
-    return view('inicio');
-});
+Route::post('login', 'controladorJaime@login');
 
 Route::post('addPlanta', 'controladorJoaquin@addPlanta');
 
