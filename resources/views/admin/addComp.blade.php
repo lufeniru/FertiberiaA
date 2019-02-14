@@ -56,13 +56,13 @@ Añadir Compuesto
 <script>
     $(document).ready(function () {
         $('#granu').change(function () {
-            alert($('#granu').val());
 
             if ($('#granu').prop('checked')==true ) {
                 var input = '¿Nº de granulometrias? <input class="form-control" type="number" name="cuantos" id="cuantos" onchange="granus()" min="1">';
                 $('#numero').html(input);
             } else {
                 $('#numero').html("");
+                $("#granulometrias").html("");
             }
         });
     });
