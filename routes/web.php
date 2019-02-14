@@ -20,6 +20,11 @@ Route::get('volver',function () {
 Route::get('index', function () {
     return view('inicio');
 });
+
+Route::get('admin', function () {
+    return view('admin/admin');
+});
+
 Route::post('inicio', 'controladorJaime@redirec');
 
 Route::post('compuestos', 'controladorJaime@compuestos');
@@ -38,5 +43,5 @@ Route::post('login', 'controladorJaime@login');
 
 Route::post('addPlanta', 'controladorJoaquin@addPlanta');
 
-
 Route::post('sacarcomp', 'controladorJoaquin@sacarcomp');
+
