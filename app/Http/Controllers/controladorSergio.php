@@ -44,25 +44,98 @@ class controladorSergio extends Controller {
         if (isset($req->fecha)) {
             $fecha = $req->fecha;
         }
-
+        $fechah = $fecha;
+        if(isset($req->fechah))
+        {
+            $fechah=$req->fechah;
+        }
+        
         if (isset($req->tanque)) {
             $tanque = $req->tanque;
         } else {
             $tanque = $tanques[0]->tanque;
         }
+        
+        $validado=2;
+        if(isset($req->validado))
+        {
+            $validado=$req->validado;
+        }
+        $programado=2;
+        if(isset($req->programado))
+        {
+            $programado=$req->programado;
+        }
+        
+        $filtros="";
+        if($programado!=2)
+        {
+            $filtros=$filtros." AND tabla_tocha.programado=".$programado;
+        }
+        if($validado!=2)
+        {
+            $filtros=$filtros." AND tabla_tocha.validado=".$validado;
+        }
+          
+
+        
         //Hay que sececcionar las fechas y enviarlas ordenadas por mas actual primero.
         $nelementos = DB::select("SELECT COUNT(id_elem) AS nelem FROM `elementos` WHERE compuesto='" . $comp . "'");
         $tabla = DB::select("SELECT tabla_tocha.fechahora,tabla_tocha.id_elemento,tabla_tocha.valor1,tabla_tocha.valor2,tabla_tocha.simbolo,tabla_tocha.lectura,tabla_tocha.condicion,elementos.orden,datos_elementos.describe_elemento, tabla_tocha.programado, tabla_tocha.validado
                             FROM tabla_tocha,elementos,datos_elementos
-                            WHERE tabla_tocha.id_elemento=elementos.id_elem AND elementos.id_elem=datos_elementos.id_elemento AND elementos.compuesto='" . $comp . "' AND tabla_tocha.id_compuesto='" . $comp . "' AND tabla_tocha.fechahora LIKE '%" . $fecha . "%' AND tabla_tocha.tanque='" . $tanque . "'
+                            WHERE tabla_tocha.id_elemento=elementos.id_elem AND elementos.id_elem=datos_elementos.id_elemento AND elementos.compuesto='" . $comp . "' AND tabla_tocha.id_compuesto='" . $comp . "' AND DATE_FORMAT(fechahora,'%Y-%m-%d') BETWEEN '".$fecha."' and '".$fechah."' AND tabla_tocha.tanque='" . $tanque . "'
+                                ".$filtros."
                             ORDER BY tabla_tocha.fechahora, elementos.orden;");
         if (isset($granu)) {
             $ngranu = DB::select("SELECT COUNT(`id_granu`) as ngran FROM granudatos WHERE granudatos.id_granu='" . $granu[0]->id_granu . "'");
         }
         $tgranu = DB::select("SELECT * 
                             FROM tabla_tocha_granu
-                            WHERE tabla_tocha_granu.fechahora LIKE '%" . $fecha . "%' AND tabla_tocha_granu.id_compuesto='" . $comp . "' AND tabla_tocha_granu.tanque='" . $tanque . "'");
+                            WHERE DATE_FORMAT(fechahora,'%Y-%m-%d') BETWEEN '".$fecha."' and '".$fechah."' AND tabla_tocha_granu.id_compuesto='" . $comp . "' AND tabla_tocha_granu.tanque='" . $tanque . "'");
        
+        
+        //Eliminamos los elementos de granulometria que no cumplan con los filtros de la cadena filtros.
+        $tgranul= null; 
+        unset($tgranul[0]);
+        
+        for($i=0; $i< count($tgranu) ; $i+= $ngranu[0]->ngran)
+        {
+            $elementog=$tgranu[$i];
+            $ch=false;
+            for($e=0; $e < count($tabla) ; $e+= $nelementos[0]->nelem)
+            {
+               $elementot= $tabla[$e];
+               if($elementot->fechahora==$elementog->fechahora)
+               {
+                   $ch=true;
+               }
+            }
+            if($ch)
+            {
+                for($o=$i; $o<$i+$ngranu[0]->ngran ; $o++)
+                {
+                    //unset($tgranu[$o]);
+                    if($tgranul==null)
+                    {
+                        $tgranul = [$tgranu[$o]];
+                    }
+                    else
+                    {
+                        array_push($tgranul,$tgranu[$o]);
+                    }
+                }
+            }
+        }
+        //Si tgranul viene a null significa que la tabla va vacia y no hay nada que mostrar, asi que igualamos tgranu a tabla para que no tenga dimension
+        if($tgranul!=null)
+        {
+            $tgranu=$tgranul;
+        }
+        else 
+        {
+            $tgranu=$tabla;
+        }
+        
        $ngran = '';
         if(isset($ngranu[0]->ngran)){
         $ngran= $ngranu[0]->ngran;
@@ -74,7 +147,10 @@ class controladorSergio extends Controller {
             'ngranulometria' => $ngran,
             'tabla' => $tabla,
             'tgranu' => $tgranu,
-            'fecha' => $fecha
+            'fecha' => $fecha,
+            'fechah' => $fechah,
+            'validado' => $validado,
+            'programado' => $programado
         ];
         return view('vista/elementosAnalisis', $datos);
     }
