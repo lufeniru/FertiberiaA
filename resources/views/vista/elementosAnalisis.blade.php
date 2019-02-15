@@ -46,15 +46,53 @@ $tanques[0]->tanque;
             <?php
         }
             ?>
+    </div>
+    <div class="row">
+        <label for="fecha">Desde:</label>
         <input type="date" name="fecha" id="fecha" value="<?php echo $fecha; ?>">
+        <label for="fechah">Hasta:</label>
+        <input type="date" name="fechah" id="fechah" value="<?php echo $fechah; ?>">
         <input type="submit" class="btn btn-info" name="boton" value="cargar">
+        <fieldset>
+            <ul>
+                <li>
+                    <label for="programad">Programado</label>
+                    <input type="radio" name="programado" id="programad"  value="1" <?php if($programado==1){echo "checked='checked'";} ?>>
+                </li>
+                <li>
+                    <label for="noprogramado">No programado</label>
+                    <input type="radio" name="programado" id="noprogramado"  value="0" <?php if($programado==0){echo "checked='checked'";} ?>>
+                </li>
+                <li>
+                    <label for="programadoyno">Programado y no programado</label>
+                    <input type="radio" name="programado" id="programadoyno"  value="2" <?php if($programado==2){echo "checked='checked'";} ?>>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <ul>
+                <li>
+                    <label for="validado">Validado</label>
+                    <input type="radio" name="validado" id="validado"  value="1" <?php if($validado==1){echo "checked='checked'";} ?>>
+                </li>
+                <li>
+                    <label for="novalidado">No validado</label>
+                    <input type="radio" name="validado" id="novalidado"  value="0" <?php if($validado==0){echo "checked='checked'";} ?>>
+                </li>
+                <li>
+                    <label for="validadoyno">Validado y no validado</label>
+                    <input type="radio" name="validado" id="validadoyno"  value="2" <?php if($validado==2){echo "checked='checked'";} ?>>
+                </li>
+            </ul>
+        </fieldset>
+
     </div>
     <div class="row">
         <div class=col-10 style="padding:0; margin:0">
             <?php
             if(count($tabla)>0)
             {
-                //Iniciando la tabla--------------------------------------------------------
+                 //Iniciando la tabla--------------------------------------------------------
                 //Cabecera 1--------------------------------------------------------------
                 ?>
                 
@@ -104,15 +142,15 @@ $tanques[0]->tanque;
                 <tr>
                 <?php
                 $prog = 'si';
-                if ($tabla[0]->programado === 0) {
+                if ($tabla[0]->programado == 0) {
                     $prog = 'no';
                 }
                 $val = 'no';
-                if ($tabla[0]->validado === 1) {
+                if ($tabla[0]->validado == 1) {
                     $val = 'si';
                 }
                 ?>
-                <td> <?php $tabla[0]->fechahora; ?></td><td><?php echo $prog;?> </td><td><?php echo $val; ?></td>
+                <td> <?php echo $tabla[0]->fechahora; ?></td><td><?php echo $prog;?> </td><td><?php echo $val; ?></td>
                 <?php
                 foreach ($tabla as $i=>$fila)
                 {
@@ -121,14 +159,14 @@ $tanques[0]->tanque;
                         if(($i)%$nelementos==0)
                         {
                              $prog = 'si';
-                            if ($fila->programado === 0) {
+                            if ($fila->programado == 0) {
                                 $prog = 'no';
                             }
                              $val = 'no';
-                            if ($tabla[0]->validado === 1) {
+                            if ($tabla[0]->validado == 1) {
                                 $val = 'si';
                             }
-                                        ?></tr><tr><td><?php echo $fila->fechahora; ?></td><td><?php $prog;?> </td><td> <?php $val; ?> </td>
+                                        ?></tr><tr><td><?php echo $fila->fechahora; ?></td><td><?php echo $prog;?> </td><td> <?php echo  $val; ?> </td>
                                 <?php
                         }
                     }?>
@@ -152,6 +190,7 @@ $tanques[0]->tanque;
             </div>
             <div class=col-2 style="padding:0">
             <?php
+            
             if(count($tgranu)>0)
             {
                 //Iniciando la tabla--------------------------------------------------------
@@ -166,6 +205,7 @@ $tanques[0]->tanque;
                     ?>
                     <tr>
                     <?php
+                    
                     for($i=0; $i<$ngranulometria;$i++)
                     {
                         $fila=$tgranu[$i];
