@@ -77,6 +77,7 @@
         <?php
         $plantas = \Session::get('plantas');
         ?>
+        <div class="container">
             <header>
                 <div class="row">
                     <div id="estilocab" class="col-12">
@@ -86,15 +87,15 @@
                 <div class="row" id="menu">
                     <form action="compuestos" method="post">
                         {{ csrf_field() }}
-                        <?php 
-                                foreach ($plantas as $p) {
-                                  echo '<input type="submit" class="btn btn-outline-success" value="'.$p->nombre.'"   name="menu">'; 
-                                }
+                        <?php
+                        foreach ($plantas as $p) {
+                            echo '<input type="submit" class="btn btn-outline-success" value="' . $p->nombre . '"   name="menu">';
+                        }
                         ?>
-                        
+
                     </form>
                 </div>
-               
+
             </header>
 
 
@@ -112,6 +113,6 @@
                 </div>
             </footer>
 
-
+        </div>
     </body>
 </html>
