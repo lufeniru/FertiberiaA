@@ -18,7 +18,7 @@ $tanques[0]->tanque
         <a class="btn col-1" href="lab"><span class="fa fa-arrow-left"></span>Volver</a>
     </div>
     <div class="row">
-        <form action="introducir" method="post" class="col-12">
+        <form action="introducir" method="post" onsubmit="alerta()" class="col-12">
             {{ csrf_field() }}
             <input type="text" hidden value="<?php echo $elementos[0]->compuesto; ?>" name="comp">
             <?php
@@ -43,7 +43,9 @@ $tanques[0]->tanque
                     <div style="text-align: center"><h3>Elementos</h3></div>
                     <?php
                     $i = 0;
+                    $j = 1;
                     foreach ($elementos as $elem) {
+
                         $segun = '';
                         if ($elem->valor2 != null) {
 
@@ -60,7 +62,7 @@ $tanques[0]->tanque
                                 <tr><td style="width: 120px;">
                                         <?php echo $elem->describe_elemento; ?></td>
                                     <td style="width:80px;">
-                                        <input type="number" class="form-control" name="valor[]">
+                                        <input type="number" class="form-control" name="valor[]" onblur="comprobar(<?php echo 'valor' . $j ?>)" id="<?php echo 'valor' . $j ?>">
                                     </td>
                                     <td style="width: 120px;">
                                         <?php echo $segun; ?>
@@ -74,6 +76,7 @@ $tanques[0]->tanque
                             $i = -1;
                         }
                         $i++;
+                        $j++;
                     }
                     if ($i % 3 != 0) {
                         echo '</div>';
@@ -120,6 +123,19 @@ $tanques[0]->tanque
         </form>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+                                        function alerta() {
+                                            Swal.fire({
+                                                position: 'top-end',
+                                                type: 'success',
+                                                title: "Registro completo",
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            });
+                                        }
+</script>
 @endsection
 
 
