@@ -45,3 +45,8 @@ Route::post('addPlanta', 'controladorJoaquin@addPlanta');
 
 Route::post('sacarcomp', 'controladorJoaquin@sacarcomp');
 
+
+Route::post('analisis', 'controladorJoaquin@sacaranalisis');
+
+Route::any('validar','controladorJoaquin@validar');
+Route::post('filtro','controladorJoaquin@filtraranalisis');

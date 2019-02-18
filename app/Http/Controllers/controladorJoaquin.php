@@ -77,11 +77,20 @@ class controladorJoaquin extends Controller {
                 break;
             case 'Añadir elemento':
                 $plantas = \DB::table('plantas')->get();
+                $datos = ['plantas' => $plantas];
                 $comp = $this->comp($plantas[0]->id_planta);
                 $datos = ['plantas' => $plantas,
-                    'comp'=>$comp];
-                 
+                    'comp' => $comp];
+
                 return view('admin/addElemento', $datos);
+                break;
+            case 'Validar':
+                $plantas = \DB::table('plantas')->get();
+                $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto AND plantas.id_planta= tabla_tocha.planta and validado = "0" ORDER BY `tabla_tocha`.`fechahora` ASC');
+                $datos = ['plantas' => $plantas,
+                    'analisis' => $analisis];
+                return view('admin/validar', $datos);
+
                 break;
             default:
                 return view('inicio');
@@ -163,7 +172,7 @@ class controladorJoaquin extends Controller {
 
             /*             * * insertar en tabla granudatos*** */
             for ($i = 0; $i < $cuantos; $i++) {
-                $j = $i+1;
+                $j = $i + 1;
                 \DB::table('granudatos')->insert([
                     'id_granu' => $idGranu,
                     'n' => $j,
@@ -181,7 +190,6 @@ class controladorJoaquin extends Controller {
                 'planta' => $planta,
                 'granulometria' => $idGranu
             ]);
-            
         } else { /*         * * sino insertamos solo el compuesto ** */
             \DB::table('compuestos')->insert([
                 'id_compuesto' => $id,
@@ -212,8 +220,9 @@ class controladorJoaquin extends Controller {
         $select = $select . '</select>';
         return $select;
     }
+
     function comp($planta) {
-        
+
         $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $planta);
         $select = '<h4>Compuestos:</h4> <select name="comp" class="custom-select">';
         foreach ($compuestos as $v) {
@@ -222,5 +231,74 @@ class controladorJoaquin extends Controller {
         $select = $select . '</select>';
         return $select;
     }
+
+    function sacaranalisis() {
+        $datos = $_POST['registro'];
+        $separar = explode(",", $datos);
+        $fecha = $separar[0];
+        $comp = $separar[1];
+        $result = \DB::select("SELECT * from tabla_tocha where tabla_tocha.fechahora = '" . $fecha . "' and tabla_tocha.id_compuesto = '" . $comp . "'");
+        $granu = \DB::select("select * from tabla_tocha_granu where fechahora='" . $fecha . "' and id_compuesto ='" . $comp . "'");
+        $a = '<div class = "row" style="margin-top:30px">';
+        $a = $a . '<h2 class="col-12">Fecha: ' . $result[0]->fechahora . ' Compuesto: ' . $result[0]->id_compuesto . '</h2>';
+        $a = $a . '<form action="validar" method="get" class="col-12"> <input type="text" name="datos" hidden value="' . $result[0]->fechahora . ',' . $result[0]->id_compuesto . '"/><div class="row">';
+        foreach ($result as $r) {
+            $a = $a . '<div class="col-3"> <h3>' . $r->id_elemento . '<input type="text" class="form-control" readonly value="' . $r->lectura . '"/></h3></div>';
+        }
+        if (isset($granu[0])) {
+            $a = $a . '<h2 class="col-12">Granulometria</h2>';
+            foreach ($granu as $g) {
+                $a = $a . '<div class="col-3"> <h3>' . $g->valor_granu .' '. $g->condicion.$g->valor1.'<input type="text" class="form-control" readonly value="' . $r->lectura . '"/></h3></div>';
+            }
+        }
+
+        $a = $a . '<input type="submit" class="btn btn-info col-12" value="Validar"/></div></form>';
+        $a = $a . '</div>';
+        return $a;
+    }
+
+    function validar(Request $req) {
+        $datos = $req->get('datos');
+        $separar = explode(",", $datos);
+        $fecha = $separar[0];
+        $comp = $separar[1];
+        \DB::update("update tabla_tocha set validado = 1 where fechahora='" . $fecha . "' and id_compuesto = '" . $comp . "'");
+        $plantas = \DB::table('plantas')->get();
+        $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto AND plantas.id_planta= tabla_tocha.planta and validado = "0" ORDER BY `tabla_tocha`.`fechahora` ASC');
+        $datos = ['plantas' => $plantas,
+            'analisis' => $analisis];
+        return view('admin/validar', $datos);
+    }
+    
+    
+    function filtraranalisis(){
+        $plant = $_POST['planta'];
+        $prog = $_POST['prog'];
+        $pr='';
+        $pt = '';
+        if ($prog == 'no') {
+            $pr= ' and programado = "0"';
+            
+        }else if ($prog =='si') {
+            $pr=' and programado = "1"';
+        }
+        if ($plant!=0) {
+            $pt = ' AND plantas.id_planta='. $plant;
+            
+        }
+        $b='';
+        $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto and validado = "0"'.$pt.''.$pr.' and plantas.id_planta= tabla_tocha.planta ORDER BY `tabla_tocha`.`fechahora` ASC');
+            foreach ($analisis as $a) {
+                $pro = 'no';
+                if ($a->programado == 1) {
+                    $pro = 'si';
+                }
+
+                $b = $b. '<option value="'.$a->fechahora . ',' . $a->id_compuesto . ',' . $a->nombre .'">Fecha: ' . $a->fechahora . ', Planta: ' . $a->nombre . ', Compuesto: ' . $a->compuesto . ', Programado: ' . $pro .'</option>';
+
+            }
+         return $b;
+    }
+   
 
 }

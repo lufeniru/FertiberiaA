@@ -15,7 +15,7 @@
 
         <link href="css/app.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-2.1.4.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
+        
         <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -74,6 +74,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
     </head>
 
     <body>
