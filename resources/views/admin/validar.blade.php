@@ -80,6 +80,7 @@ Validaciones
 
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -99,12 +100,8 @@ Validaciones
                 404: function () {
                     alert('web not found');
                 }
-            },
-            error: function (x, xs, xt) {
-                //nos dara el error si es que hay alguno
-                window.open(JSON.stringify(x));
-                alert('error: ' + JSON.stringify(x) + "\n error string: " + xs + "\n error throwed: " + xt);
             }
+           
         });
     });
     function filtro() {
@@ -125,7 +122,7 @@ Validaciones
         //we will send data and recive data fom our AjaxController
         $.ajax({
             url: 'filtro',
-            data: {'planta': planta , 'prog': prog},
+            data: {'planta': planta, 'prog': prog},
             type: 'post',
             success: function (response) {
                 $("#registro").html(response);
@@ -140,6 +137,16 @@ Validaciones
                 window.open(JSON.stringify(x));
                 alert('error: ' + JSON.stringify(x) + "\n error string: " + xs + "\n error throwed: " + xt);
             }
+        });
+    }
+
+    function alerta() {
+        Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: "Validacion",
+            showConfirmButton: false,
+            timer: 1500
         });
     }
 </script>

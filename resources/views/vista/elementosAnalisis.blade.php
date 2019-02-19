@@ -191,7 +191,7 @@ $tanques[0]->tanque;
             <div class=col-2 style="padding:0">
             <?php
             
-            if(count($tgranu)>0)
+            if($ngranulometria!="" || $ngranulometria>0)
             {
                 //Iniciando la tabla--------------------------------------------------------
                 //Cabecera 1----------------------------------------------------------------
