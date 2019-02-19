@@ -43,7 +43,7 @@ $tanques[0]->tanque
                     <div style="text-align: center"><h3>Elementos</h3></div>
                     <?php
                     $i = 0;
-                    $j = 1;
+                    $j = 0;
                     foreach ($elementos as $elem) {
 
                         $segun = '';
@@ -62,7 +62,8 @@ $tanques[0]->tanque
                                 <tr><td style="width: 120px;">
                                         <?php echo $elem->describe_elemento; ?></td>
                                     <td style="width:80px;">
-                                        <input type="number" class="form-control" name="valor[]" onblur="comprobar(<?php echo 'valor' . $j ?>)" id="<?php echo 'valor' . $j ?>">
+                                        <input type="number" class="form-control" name="valor[]" onblur="comprobar(<?php echo 'valor'. $j.','. $j?>)" id="<?php echo 'valor' . $j ?>">
+                                        <input type="number" hidden class="form-control"  id="<?php echo $j ?>" value="<?='hola'?>">
                                     </td>
                                     <td style="width: 120px;">
                                         <?php echo $segun; ?>
@@ -126,15 +127,18 @@ $tanques[0]->tanque
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
-                                        function alerta() {
-                                            Swal.fire({
-                                                position: 'top-end',
-                                                type: 'success',
-                                                title: "Registro completo",
-                                                showConfirmButton: false,
-                                                timer: 1500
-                                            });
-                                        }
+        function alerta() {
+            Swal.fire({
+                position: 'top-end',
+                type: 'success',
+                title: "Registro completo",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        function comprobar(valor,indice){
+        }
+        
 </script>
 @endsection
 
