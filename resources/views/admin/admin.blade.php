@@ -83,8 +83,8 @@
         <div class="container">
             <header>
                 <div class="row">
-                    <div id="estilocab" class="col-lg-12">
-                        <img src="imagenes/banner.png">
+                    <div id="estilocab" class="col-12">
+                        <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
                 <div class="row" id="menu">

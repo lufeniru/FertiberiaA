@@ -21,7 +21,9 @@ Añadir Elemento
     <form action="addElemento" name="addElemento" method="post">
         {{ csrf_field() }}
         <div class="row">
-            <div class="col-12"><h4>Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación</h4></div>
+            <div class="alert alert-danger col-12" role="alert">
+                Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación
+            </div>
 
             <div class="col-6"><h4>Planta:</h4> <select name="planta" class="custom-select" id="planta">
                     <?php
@@ -35,8 +37,8 @@ Añadir Elemento
             </div>
         </div>
         <div class="row">
-            <div class="col-6"><h4>Nombre completo del elemento:</h4> <input type="text" class="form-control" name="nombreElemento"></div>
-            <div class="col-6"> <h4>Identificador del elemento:</h4> <input type="text" class="form-control" name="idElem" placeholder="(ej: Nitrato Total -> NiTot)"></div>
+            <div class="col-6"><h4>Nombre completo del elemento:</h4> <input type="text" class="form-control" name="nombreElemento" required=""></div>
+            <div class="col-6"> <h4>Identificador del elemento:</h4> <input type="text" class="form-control" name="idElem" required="" placeholder="(ej: Nitrato Total -> NiTot)"></div>
             <div class="col-12"> 
                 <div class="row">
                     <div class="col-6"> <h4>Condición:</h4>

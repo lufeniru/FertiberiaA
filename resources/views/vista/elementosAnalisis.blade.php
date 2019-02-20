@@ -9,10 +9,24 @@ Analisis
 $elementos = \Session::get('elementos');
 $compuesto = \Session::get('compuesto');
 $tanques = \Session::get('tanques');
-
+$planta= 'PLANTA ' . \Session::get('planta');
 $tanques[0]->tanque;
         
 ?>
+
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb" class="col-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="verAnalisis">Ver Análisis</a></li>
+                <li class="breadcrumb-item"> <a href="javascript:window.history.back();"> <?php echo $planta ?></a></li>
+                <li class="breadcrumb-item active"aria-current="page"><?php echo $compuesto[0]->compuesto; ?></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
 <form action="elementosAnalisis" method="post">
     {{ csrf_field() }}
     

@@ -33,11 +33,16 @@ $tanques[0]->tanque
                         $fecha = Date('Y-m-d');
                         $hora = Date('H:i');
                         $valor = $fecha . 'T' . $hora;
+//                        $diaSiguiente = Date('d');
+//                        $diaSiguiente++;
+//                        $valorMax= Date('Y-m').'-'.$diaSiguiente. 'T' . $hora;
+//                        echo $valorMax.' y '.$valor;
                         ?>
-                        <div class="col-3">Fecha y hora: <input name="fechahora" class="form-control" value="<?php echo $valor ?>" type="datetime-local"></div><div class="col-3 custom-control custom-checkbox ">  <input type="checkbox" class="custom-control-input" id="prog" name="prog"><label class="custom-control-label" for="prog">No programado</label></div>
+                        <div class="col-3">Fecha y hora: <input name="fechahora" max="<?php echo $valor?>" class="form-control" value="<?php echo $valor ?>" type="datetime-local"></div><div class="col-3 custom-control custom-checkbox ">  <input type="checkbox" class="custom-control-input" id="prog" name="prog"><label class="custom-control-label" for="prog">No programado</label></div>
                     </div>
                 </div>
             </div>
+            
             <div class="row" style="margin-top: 30px">
                 <div class="col-12">
                     <div style="text-align: center"><h3>Elementos</h3></div>

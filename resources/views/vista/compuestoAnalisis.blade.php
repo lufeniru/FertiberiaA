@@ -5,6 +5,22 @@ Analisis
 @endsection
 
 @section('cuerpo')
+<?php 
+$planta= 'PLANTA ' . \Session::get('planta');
+
+?>
+<div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb" class="col-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="javascript:window.history.back();">Ver Análisis</a></li>
+                <li class="breadcrumb-item active"aria-current="page"><?php echo $planta ?></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
 <form action="elementosAnalisis" method="post">
     {{ csrf_field() }}
     <?php $compuestos = \Session::get('compuestos');
