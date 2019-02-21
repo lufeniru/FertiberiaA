@@ -45,6 +45,7 @@ Route::post('addPlanta', 'controladorJoaquin@addPlanta');
 
 Route::post('sacarcomp', 'controladorJoaquin@sacarcomp');
 
+Route::post('recelal', 'controladorSergio@recelal');
 
 Route::post('analisis', 'controladorJoaquin@sacaranalisis');
 
@@ -54,5 +55,6 @@ Route::post('filtro','controladorJoaquin@filtraranalisis');
 Route::get('verAnalisis', function () {
     return view('vista/VerAnalisis');
 });
+
 
 

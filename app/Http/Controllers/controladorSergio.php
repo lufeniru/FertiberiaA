@@ -22,6 +22,7 @@ class controladorSergio extends Controller {
 
     function verelementos(Request $req) {
         $comp;
+        //Controlamos la recarga y la primera entrada.
         if (isset($req->comp)) {
             $comp = $req->get('comp');
         } else {
@@ -40,7 +41,7 @@ class controladorSergio extends Controller {
         ////////////////////////////////////////////////////////////////////////
         date_default_timezone_set('Europe/Madrid');
         $fecha = date("Y-m-d");
-        $tanque;
+        
         if (isset($req->fecha)) {
             $fecha = $req->fecha;
         }
@@ -49,7 +50,7 @@ class controladorSergio extends Controller {
         {
             $fechah=$req->fechah;
         }
-        
+        $tanque;
         if (isset($req->tanque)) {
             $tanque = $req->tanque;
         } else {
@@ -97,7 +98,6 @@ class controladorSergio extends Controller {
         //Eliminamos los elementos de granulometria que no cumplan con los filtros de la cadena filtros.
         $tgranul= null; 
         unset($tgranul[0]);
-        
         for($i=0; $i< count($tgranu) ; $i+= $ngranu[0]->ngran)
         {
             $elementog=$tgranu[$i];
@@ -136,6 +136,75 @@ class controladorSergio extends Controller {
             $tgranu=$tabla;
         }
         
+        //Vamos a dividir la tabla en filas correspondientes a los registros.
+        $tabnor=null;
+        $fil=null;
+        foreach ($tabla as $i=> $fila)
+        {           
+            if($fil==null)
+            {
+                $fil[] = $fila;
+                
+            }
+            else
+            {
+                array_push($fil, $fila);
+            }
+            
+            if($i>0)
+            {
+                if(($i+1) % $nelementos[0]->nelem == 0)
+                {   
+                    if($tabnor==null)
+                    {
+                        $tabnor[]=$fil;
+                        $fil=null;
+                    }
+                    else
+                    {
+                        array_push($tabnor,$fil);
+                        $fil=null;
+                    }
+                }
+            }
+        }
+
+        $tabla=$tabnor;
+        //Ahora la tabla en tabnor esta guardada por filas.
+        //Vamos a dividir la tabla de granulometria en filas correspondientes a la granulometria.
+        $tabnor=null;
+        $fil=null;
+        foreach ($tgranu as $i=> $fila)
+        {           
+            if($fil==null)
+            {
+                $fil[] = $fila;
+                
+            }
+            else
+            {
+                array_push($fil, $fila);
+            }
+            
+            if($i>0)
+            {
+                if(($i+1) % $ngranu[0]->ngran == 0)
+                {   
+                    if($tabnor==null)
+                    {
+                        $tabnor[]=$fil;
+                        $fil=null;
+                    }
+                    else
+                    {
+                        array_push($tabnor,$fil);
+                        $fil=null;
+                    }
+                }
+            }
+        }
+        $tgranu=$tabnor;
+        
        $ngran = '';
         if(isset($ngranu[0]->ngran)){
         $ngran= $ngranu[0]->ngran;
@@ -155,4 +224,8 @@ class controladorSergio extends Controller {
         return view('vista/elementosAnalisis', $datos);
     }
 
+    public function recelal() {
+        $ret ="hola";
+        return $ret;
+    }
 }
