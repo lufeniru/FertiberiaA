@@ -45,3 +45,5 @@ Route::post('addPlanta', 'controladorJoaquin@addPlanta');
 
 Route::post('sacarcomp', 'controladorJoaquin@sacarcomp');
 
+Route::post('recelal', 'controladorSergio@recelal');
+
