@@ -21,8 +21,9 @@ Añadir Compuesto
     <form action="addComp" name="addComponente" method="post">
         {{ csrf_field() }}
         <div class="row">
-            <div class="col-12"><h3>Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación</h3></div>
-
+            <div class="alert alert-danger col-12" role="alert">
+                Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación
+            </div>
             <div class="col-6"><h4>Planta:</h4> 
                 <select name="planta" class="custom-select" id="planta">
                     <?php
@@ -32,10 +33,10 @@ Añadir Compuesto
                     ?>
                 </select>
             </div>
-            <div class="col-6"><h4>Nombre completo del compuesto:</h4> <input type="text" class="form-control" name="nombreComp"></div>
+            <div class="col-6"><h4>Nombre completo del compuesto:</h4> <input type="text" class="form-control" name="nombreComp" required=""></div>
         </div>
         <div class="row">
-            <div class="col-6"> <h4>Identificador del compuesto:</h4> <input type="text" class="form-control" name="idComp" placeholder="(ej: Urea -> U-18)"></div>
+            <div class="col-6"> <h4>Identificador del compuesto:</h4> <input type="text" class="form-control" name="idComp" placeholder="(ej: Urea -> U-18)" required=""></div>
             <div class="col-6 form-check">
                 <h4 style="margin-top: 30px">
                     <label class="form-check-label" for="granu">Granulometría</label>

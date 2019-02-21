@@ -9,7 +9,7 @@ Analisis
 $elementos = \Session::get('elementos');
 $compuesto = \Session::get('compuesto');
 $tanques = \Session::get('tanques');
-
+$planta= 'PLANTA ' . \Session::get('planta');
 $tanques[0]->tanque;
         
 ?>

@@ -95,11 +95,6 @@
                         ?>
                     </form>
                 </div>
-                <?php
-                if (isset($existe)) {
-                    echo 'PLANTA ' . $existe;
-                }
-                ?>
             </header>
 
 

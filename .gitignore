@@ -1,5 +1,5 @@
 /nbproject
-
+/vendor
 .env
 local.env
 remoto.env

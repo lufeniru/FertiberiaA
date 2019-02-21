@@ -1,69 +1,75 @@
 
 
 /* verde oscuro--> #00522A; verde claro--> #4C9B01; */
-            #estilocab{                
-                text-align: center;   
-                width: 100%;
-            }
-             #estilocab *{                
-                text-align: center;      
-                width: 100%;
-            }
+#estilocab{                
+    text-align: center;   
+    width: 100%;
+}
+#estilocab *{                
+    text-align: center;      
+    width: 100%;
+}
 
-            #estilopie{
-                text-align: center;
-                margin-top: 200px;
-                
-            }
+#estilopie{
+    text-align: center;
+    margin-top: 200px;
 
-            #letrapie{
-                color: #4C9B01;
-            }
+}
 
-            a{
-                color: #00522A;
-                font-weight:bold;
-                
-            }
+#letrapie{
+    color: #4C9B01;
+}
 
-            a:hover{
-                color: #4C9B01;
-            }
-           
-            #menu *{
-                margin: auto;
-                
-            }
-            #menu form input{
-                margin: 5px;
-                
-            }
-            
-            
-            .btn-info{
-                background-color: #00522A;
-                color:whitesmoke;
-                border-color: white;
-            }
-            .btn-info:hover{
-                background-color: #4C9B01;
-                border-color: white;
-                
-            }
-            #menuAdmin li{
-                width: 40px;
-            }
-            #header{
-                color: white;
-                background-color: #00522A;
-                border-radius: 4px;
-            }
-            
-            .breadcrumb{
-                background: transparent;
-            }
-            
-            
-          
-            
-            
+a{
+    color: #00522A;
+    font-weight:bold;
+
+}
+
+a:hover{
+    color: #4C9B01;
+}
+
+#menu *{
+    margin: auto;
+
+}
+#menu form input{
+    margin: 5px;
+
+}
+
+
+.btn-info{
+    background-color: #00522A;
+    color:whitesmoke;
+    border-color: white;
+}
+.btn-info:hover{
+    background-color: #4C9B01;
+    border-color: white;
+
+}
+#menuAdmin li{
+    width: 40px;
+}
+#header{
+    color: white;
+    background-color: #00522A;
+    border-radius: 4px;
+}
+
+.breadcrumb{
+    background: transparent;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    background-color: #4C9B01;
+}
+.custom-radio .custom-control-input:checked~.custom-control-label::before{
+    background-color: #4C9B01;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label:before {
+    background-color: #4C9B01;
+}
+

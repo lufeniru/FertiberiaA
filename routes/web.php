@@ -47,3 +47,14 @@ Route::post('sacarcomp', 'controladorJoaquin@sacarcomp');
 
 Route::post('recelal', 'controladorSergio@recelal');
 
+Route::post('analisis', 'controladorJoaquin@sacaranalisis');
+
+Route::any('validar','controladorJoaquin@validar');
+Route::post('filtro','controladorJoaquin@filtraranalisis');
+
+Route::get('verAnalisis', function () {
+    return view('vista/VerAnalisis');
+});
+
+
+
