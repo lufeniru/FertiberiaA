@@ -10,70 +10,13 @@
 
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
 
-        <link href="css/app.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-2.1.4.min.js"></script>
-        
-        <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+       
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
     </head>
 
@@ -91,10 +34,11 @@
                     <form action="admin" method="post">
                         {{ csrf_field() }}
                         <div class="row">
+                            <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir planta" name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir compuesto" name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir elemento" name="menu2"></ul>
                             <ul><input type="submit" class="btn btn-outline-success col-12" value="Validar" name="menu2"></ul>
-                            <ul><input type="submit" class="btn btn-outline-success col-12" value="Añadir planta" name="menu2"></ul>
+                            
                         </div>
                     </form>
                 </div>

@@ -21,10 +21,10 @@ $planta= 'PLANTA ' . \Session::get('planta');
     </div>
 </div>
 
-<form action="elementosAnalisis" method="post">
+<form action="elementosAnalisis" class="row" method="post">
     {{ csrf_field() }}
     <?php $compuestos = \Session::get('compuestos');
-    echo 'Compuesto: <select name="compuesto">';
+    echo 'Compuesto: <select name="compuesto" class="custom-select col-4">';
     foreach ($compuestos as $comp) {
         echo '<option value="'.$comp->id_compuesto.'">'.$comp->compuesto.'</option>';
     }
