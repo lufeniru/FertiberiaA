@@ -7,8 +7,9 @@
         <title>Inicio</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-        <link href="css/app.css" rel="stylesheet" type="text/css">
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
