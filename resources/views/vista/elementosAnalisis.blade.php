@@ -14,7 +14,7 @@ $tanques[0]->tanque;
 ?>
 
 <div class="container">
-    
+
     <form action="elementosAnalisis" class="col-12" method="post">
         {{ csrf_field() }}
 
@@ -56,7 +56,7 @@ $tanques[0]->tanque;
                                 <table>
                                     <tr><td><label for="fecha">Desde:</label></td>
                                         <td><input type="date" name="fecha" id="fecha" value="<?php echo $fecha; ?>"></td></tr>
-                                
+
                             </div>
                             <div class="col-12" style="padding:0; margin:0">
                                 <tr><td><label for="fechah">Hasta:</label></td>
@@ -69,29 +69,19 @@ $tanques[0]->tanque;
                         <fieldset>
                             <ul>
                                 <li class="custom-control custom-radio custom-control-inline">
-                                    
+
                                     <input type="radio" name="programado" id="programad" class="custom-control-input" value="1" <?php
-                                    if ($programado == 1) {
-                                        echo "checked='checked'";
-                                    }
-                                    ?>><label for="programad" class="custom-control-label">Programado</label>
+            ?>><label for="programad" class="custom-control-label">Programado</label>
                                 </li>
                                 <li  class="custom-control custom-radio custom-control-inline">
-                                    
+
                                     <input type="radio" name="programado" id="noprogramado" class="custom-control-input"  value="0" <?php
-                                    if ($programado == 0) {
-                                        echo "checked='checked'";
-                                    }
-                                    ?>>
+            ?>>
                                     <label for="noprogramado" class="custom-control-label">No programado</label>
                                 </li>
                                 <li class="custom-control custom-radio custom-control-inline">
-                                    
-                                    <input type="radio" name="programado" id="programadoyno" class="custom-control-input" value="2" <?php
-                                    if ($programado == 2) {
-                                        echo "checked='checked'";
-                                    }
-                                    ?>>
+
+                                    <input type="radio" name="programado" id="programadoyno" checked class="custom-control-input" value="2" <?php ?>>
                                     <label class="custom-control-label" for="programadoyno">Programado y no programado</label>
                                 </li>
                             </ul>
@@ -101,30 +91,19 @@ $tanques[0]->tanque;
                         <fieldset>
                             <ul>
                                 <li class="custom-control custom-radio custom-control-inline">
-                                   
-                                    <input type="radio" name="validado" id="validado" class="custom-control-input" value="1" <?php
-                                    if ($validado == 1) {
-                                        echo "checked='checked'";
-                                    }
-                                    ?>>
-                                     <label class="custom-control-label" for="validado">Validado</label>
+
+                                    <input type="radio" name="validado" id="validado" class="custom-control-input" value="1" <?php ?>>
+                                    <label class="custom-control-label" onchange="filtro()" for="validado">Validado</label>
                                 </li>
                                 <li class="custom-control custom-radio custom-control-inline">
-                                    
-                                    <input type="radio" name="validado" id="novalidado" class="custom-control-input" value="0" <?php
-                                    if ($validado == 0) {
-                                        echo "checked='checked'";
-                                    }
-                                    ?>>
+
+                                    <input type="radio" name="validado" id="novalidado" class="custom-control-input" value="0" <?php ?>>
                                     <label class="custom-control-label" for="novalidado">No validado</label>
                                 </li>
                                 <li class="custom-control custom-radio custom-control-inline">
-                                    
-                                    <input type="radio" name="validado" id="validadoyno" class="custom-control-input" value="2" <?php
-                                    if ($validado == 2) {
-                                        echo "checked='checked'";
-                                    }
-                                    ?>>
+
+                                    <input type="radio" name="validado" id="validadoyno" checked class="custom-control-input" value="2" <?php
+            ?>>
                                     <label class="custom-control-label" for="validadoyno">Validado y no validado</label>
                                 </li>
                             </ul>
@@ -139,34 +118,34 @@ $tanques[0]->tanque;
         <div class="row">
             <div class="col-12 table-responsive" style="padding:0; margin-top:20px">
                 <table style="width:100%" class="table-striped table-success">
-                        <?php
-                        if ($tabla != null && count($tabla) > 0) {
-                            //dd($tabla,$tgranu);
-                            $ch = true;
-                            foreach ($tabla as $i => $fila) {
-                                //Pintado de cabeceras.
-                                if ($i == 0 || $ch) {
-                                    //Primera cabecera
-                                    ?><tr>
+                    <?php
+                    if ($tabla != null && count($tabla) > 0) {
+                        //dd($tabla,$tgranu);
+                        $ch = true;
+                        foreach ($tabla as $i => $fila) {
+                            //Pintado de cabeceras.
+                            if ($i == 0 || $ch) {
+                                //Primera cabecera
+                                ?><tr>
                                     <th rowspan="2">Fecha</th>
                                     <th rowspan="2">Programado</th>
                                     <th rowspan="2">Validado</th>
-                                <?php
-                                foreach ($fila as $elemento) {
-                                    ?><th><?php echo $elemento->describe_elemento ?></th><?php
-                                }
-                                //Si hay granulometria se mete tambien.
-                                if ($tgranu != null && $tgranu > 0) {
-                                    $filag = $tgranu[0];
-                                    ?> <th colspan="<?php echo count($filag); ?>" style="text-align: center"> Granulometria</th> <?php
-                                    }
-                                    //Fin de la primera cabecera de granulometrias.
-                                    ?> 
-                                </tr>
                                     <?php
-                                    //Fin de la primera cabecera.
-                                    //Segunda cabecera.
-                                    ?><tr><?php
+                                    foreach ($fila as $elemento) {
+                                        ?><th><?php echo $elemento->describe_elemento ?></th><?php
+                                        }
+                                        //Si hay granulometria se mete tambien.
+                                        if ($tgranu != null && $tgranu > 0) {
+                                            $filag = $tgranu[0];
+                                            ?> <th colspan="<?php echo count($filag); ?>" style="text-align: center"> Granulometria</th> <?php
+                                        }
+                                        //Fin de la primera cabecera de granulometrias.
+                                        ?> 
+                                </tr>
+                                <?php
+                                //Fin de la primera cabecera.
+                                //Segunda cabecera.
+                                ?><tr><?php
                                     foreach ($fila as $elemento) {
                                         if ($elemento->valor2 == "" || $elemento->valor2 == null) {
                                             ?>
@@ -184,9 +163,9 @@ $tanques[0]->tanque;
                                             if ($elementog->valor2 == "" || $elementog->valor2 == null) {
                                                 ?>
                                                 <td><?php echo $elementog->condicion; ?> <?php echo $elementog->valor1; ?> <br> <?php echo $elementog->simbolo; ?></td>
-                                            <?php
-                                        } else {
-                                            ?>
+                                                <?php
+                                            } else {
+                                                ?>
                                                 <td> <?php echo $elementog->valor1; ?> <?php echo $elementog->condicion; ?> <?php echo $elementog->valor2; ?></td>
                                                 <?php
                                             }
@@ -194,27 +173,27 @@ $tanques[0]->tanque;
                                     }
                                     ?>
                                 </tr>    
-                                    <?php
-                                    //Fin de la segunda cabecera.
-                                }
-                                //Pintado de datos.
-                                ?>
+                                <?php
+                                //Fin de la segunda cabecera.
+                            }
+                            //Pintado de datos.
+                            ?>
                             <tr>    
                                 <?php
                                 foreach ($fila as $e => $elemento) {
                                     if ($e == 0) {
                                         ?><td> <?php echo $elemento->fechahora ?></td><?php ?><td> <?php echo $elemento->programado ?></td><?php ?><td> <?php echo $elemento->validado ?></td><?php ?><td> <?php echo $elemento->lectura ?></td><?php
-                    } else {
+                                    } else {
                                         ?><td> <?php echo $elemento->lectura ?></td><?php
+                                    }
                                 }
-                            }
-                            if ($tgranu != null && $tgranu > 0) {
-                                $filag = $tgranu[$i];
-                                foreach ($filag as $elementog) {
-                                    ?><td> <?php echo $elementog->lectura ?></td><?php
+                                if ($tgranu != null && $tgranu > 0) {
+                                    $filag = $tgranu[$i];
+                                    foreach ($filag as $elementog) {
+                                        ?><td> <?php echo $elementog->lectura ?></td><?php
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
                             </tr>    
                             <?php
                             //fin de pintado de datos

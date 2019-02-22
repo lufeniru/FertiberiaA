@@ -100,7 +100,8 @@ Validaciones
                 404: function () {
                     alert('web not found');
                 }
-            }
+            },
+            
            
         });
     });
