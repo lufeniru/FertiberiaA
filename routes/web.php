@@ -25,34 +25,37 @@ Route::get('admin', function () {
     return view('admin/admin');
 });
 
-Route::post('inicio', 'controladorJaime@redirec');
+Route::post('inicio', 'Controlador@redirec');
 
-Route::post('compuestos', 'controladorJaime@compuestos');
-Route::post('elementos', 'controladorJaime@elementos');
-Route::post('introducir', 'controladorJoaquin@introducirDatos');
-Route::post('vercompuestos', 'controladorSergio@vercompuestos');
-Route::post('elementosAnalisis', 'controladorSergio@verelementos');
-Route::post('admin','controladorJoaquin@admin');
-Route::post('addElemento','controladorJoaquin@addElemento');
-Route::post('addComp','controladorJoaquin@addComp');
+Route::post('compuestos', 'Controlador@compuestos');
+Route::post('elementos', 'Controlador@elementos');
+Route::post('introducir', 'Controlador@introducirDatos');
+Route::post('vercompuestos', 'Controlador@vercompuestos');
+Route::post('elementosAnalisis', 'Controlador@verelementos');
+Route::post('admin','Controlador@admin');
+Route::post('addElemento','Controlador@addElemento');
+Route::post('addComp','Controlador@addComp');
 Route::get('lab', function(){
     \Session::forget('planta');
 return view('laboratorio/Laboratorio');
 });
-Route::post('login', 'controladorJaime@login');
+Route::post('login', 'Controlador@login');
 
-Route::post('addPlanta', 'controladorJoaquin@addPlanta');
+Route::post('addPlanta', 'Controlador@addPlanta');
 
-Route::post('sacarcomp', 'controladorJoaquin@sacarcomp');
+Route::post('sacarcomp', 'Controlador@sacarcomp');
 
+Route::post('recelal', 'Controlador@recelal');
 
-Route::post('analisis', 'controladorJoaquin@sacaranalisis');
+Route::post('analisis', 'Controlador@sacaranalisis');
 
-Route::any('validar','controladorJoaquin@validar');
-Route::post('filtro','controladorJoaquin@filtraranalisis');
+Route::any('validar','Controlador@validar');
+Route::post('filtro','Controlador@filtraranalisis');
 
 Route::get('verAnalisis', function () {
     return view('vista/VerAnalisis');
 });
+
+
 
 

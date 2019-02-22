@@ -30,7 +30,18 @@ Añadir Planta
         </div>
     </form>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+        function alerta() {
+            Swal.fire({
+                position: 'top-end',
+                type: 'success',
+                title: "Planta " + $("#planta").val() + " añadida con exito",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+</script>
 @endsection
 
 

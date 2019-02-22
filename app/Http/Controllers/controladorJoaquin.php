@@ -58,7 +58,7 @@ class controladorJoaquin extends Controller {
                 $i++;
             }
         }
-        echo '<script>alert("Insertado con exito");</script>';
+        
         \Session::forget('planta');
         return view('laboratorio/Laboratorio');
     }
@@ -86,7 +86,7 @@ class controladorJoaquin extends Controller {
                 break;
             case 'Validar':
                 $plantas = \DB::table('plantas')->get();
-                $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto AND plantas.id_planta= tabla_tocha.planta and validado = "0" ORDER BY `tabla_tocha`.`fechahora` ASC');
+                $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto AND plantas.id_planta= tabla_tocha.planta and validado = "0" ORDER BY `tabla_tocha`.`fechahora` DESC');
                 $datos = ['plantas' => $plantas,
                     'analisis' => $analisis];
                 return view('admin/validar', $datos);
@@ -206,7 +206,7 @@ class controladorJoaquin extends Controller {
         \DB::table('plantas')->insert(
                 ['nombre' => $nombre, 'descripcion' => $desc]
         );
-        echo '<script>alert("' . $desc . ' añadida con exito");</script>';
+        
         return view('inicio');
     }
 
@@ -241,7 +241,7 @@ class controladorJoaquin extends Controller {
         $granu = \DB::select("select * from tabla_tocha_granu where fechahora='" . $fecha . "' and id_compuesto ='" . $comp . "'");
         $a = '<div class = "row" style="margin-top:30px">';
         $a = $a . '<h2 class="col-12">Fecha: ' . $result[0]->fechahora . ' Compuesto: ' . $result[0]->id_compuesto . '</h2>';
-        $a = $a . '<form action="validar" method="get" class="col-12"> <input type="text" name="datos" hidden value="' . $result[0]->fechahora . ',' . $result[0]->id_compuesto . '"/><div class="row">';
+        $a = $a . '<form action="validar" onSubmit="alerta()" method="get" class="col-12"><input type="text" name="datos" hidden value="' . $result[0]->fechahora . ',' . $result[0]->id_compuesto . '"/><div class="row">';
         foreach ($result as $r) {
             $a = $a . '<div class="col-3"> <h3>' . $r->id_elemento . '<input type="text" class="form-control" readonly value="' . $r->lectura . '"/></h3></div>';
         }
@@ -262,7 +262,7 @@ class controladorJoaquin extends Controller {
         $separar = explode(",", $datos);
         $fecha = $separar[0];
         $comp = $separar[1];
-        \DB::update("update tabla_tocha set validado = 1 where fechahora='" . $fecha . "' and id_compuesto = '" . $comp . "'");
+        \DB::update("update tabla_tocha set validado = '1' where fechahora='" . $fecha . "' and id_compuesto = '" . $comp . "'");
         $plantas = \DB::table('plantas')->get();
         $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto AND plantas.id_planta= tabla_tocha.planta and validado = "0" ORDER BY `tabla_tocha`.`fechahora` ASC');
         $datos = ['plantas' => $plantas,

@@ -4,17 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
         <title> @yield('titulo') </title>
 
 
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
 
-        <link href="css/app.css" rel="stylesheet" type="text/css">
         <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
 
         <!-- Styles -->
@@ -87,11 +86,11 @@
                 </div>
                 <div class="row" id="menu">
                     <form action="vercompuestos" method="post">
-                       {{ csrf_field() }}
-                        <?php 
-                                foreach ($plantas as $p) {
-                                  echo '<input type="submit" class="btn btn-outline-success" value="'.$p->nombre.'"   name="menu">'; 
-                                }
+                        {{ csrf_field() }}
+                        <?php
+                        foreach ($plantas as $p) {
+                            echo '<input type="submit" class="btn btn-outline-success" value="' . $p->nombre . '"   name="menu">';
+                        }
                         ?>
                     </form>
                 </div>

@@ -11,14 +11,39 @@ $compuesto = \Session::get('compuesto');
 $tanques = \Session::get('tanques');
 
 
-$tanques[0]->tanque
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+        function alerta() {
+            Swal.fire({
+                position: 'top-end',
+                type: 'success',
+                title: "Registro completo",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        function nohay(){
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: "No Existen elementos para este compuesto",
+                showConfirmButton: false,
+                footer: '<a href="javascript:window.history.back();">Volver</a>'
+            });
+        }
+       
+        
+</script>
 <div class="container">
     <div class="row">
-        <a class="btn col-1" href="lab"><span class="fa fa-arrow-left"></span>Volver</a>
+        <a class="btn col-1" href="javascript:window.history.back();"><span class="fa fa-arrow-left"></span>Volver</a>
     </div>
     <div class="row">
-        <form action="introducir" method="post" class="col-12">
+        <?php if (isset($elementos[0])) {
+            
+        ?>
+        <form action="introducir" method="post" onsubmit="alerta()" class="col-12">
             {{ csrf_field() }}
             <input type="text" hidden value="<?php echo $elementos[0]->compuesto; ?>" name="comp">
             <?php
@@ -33,10 +58,6 @@ $tanques[0]->tanque
                         $fecha = Date('Y-m-d');
                         $hora = Date('H:i');
                         $valor = $fecha . 'T' . $hora;
-//                        $diaSiguiente = Date('d');
-//                        $diaSiguiente++;
-//                        $valorMax= Date('Y-m').'-'.$diaSiguiente. 'T' . $hora;
-//                        echo $valorMax.' y '.$valor;
                         ?>
                         <div class="col-3">Fecha y hora: <input name="fechahora" max="<?php echo $valor?>" class="form-control" value="<?php echo $valor ?>" type="datetime-local"></div><div class="col-3 custom-control custom-checkbox ">  <input type="checkbox" class="custom-control-input" id="prog" name="prog"><label class="custom-control-label" for="prog">No programado</label></div>
                     </div>
@@ -48,7 +69,9 @@ $tanques[0]->tanque
                     <div style="text-align: center"><h3>Elementos</h3></div>
                     <?php
                     $i = 0;
+                    $j = 0;
                     foreach ($elementos as $elem) {
+
                         $segun = '';
                         if ($elem->valor2 != null) {
 
@@ -65,7 +88,8 @@ $tanques[0]->tanque
                                 <tr><td style="width: 120px;">
                                         <?php echo $elem->describe_elemento; ?></td>
                                     <td style="width:80px;">
-                                        <input type="number" class="form-control" name="valor[]">
+                                        <input type="number" class="form-control" name="valor[]" onblur="comprobar(<?php echo 'valor'. $j.','. $j?>)" id="<?php echo 'valor' . $j ?>">
+                                        <input type="number" hidden class="form-control"  id="<?php echo $j ?>" value="<?='hola'?>">
                                     </td>
                                     <td style="width: 120px;">
                                         <?php echo $segun; ?>
@@ -79,6 +103,7 @@ $tanques[0]->tanque
                             $i = -1;
                         }
                         $i++;
+                        $j++;
                     }
                     if ($i % 3 != 0) {
                         echo '</div>';
@@ -123,8 +148,15 @@ $tanques[0]->tanque
                 <input type="submit" class="btn btn-info offset-4 col-4" name="boton" value="Introducir">
             </div>
         </form>
+        <?php 
+        }else{
+            echo '<script>nohay()</script>';
+        }
+        ?>
     </div>
 </div>
+
+
 @endsection
 
 
