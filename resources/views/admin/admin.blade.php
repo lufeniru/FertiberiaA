@@ -98,10 +98,6 @@
             @yield('cuerpo')
 
 
-
-
-
-
             @yield('pie') 
             <footer>
                 <div id="estilopie" class="col-lg-12">

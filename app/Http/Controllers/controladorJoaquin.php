@@ -58,7 +58,7 @@ class controladorJoaquin extends Controller {
                 $i++;
             }
         }
-        
+
         \Session::forget('planta');
         return view('laboratorio/Laboratorio');
     }
@@ -203,11 +203,22 @@ class controladorJoaquin extends Controller {
     function addPlanta(Request $req) {
         $nombre = $req->get('nombre');
         $desc = $req->get('descripcion');
-        \DB::table('plantas')->insert(
-                ['nombre' => $nombre, 'descripcion' => $desc]
-        );
-        
-        return view('inicio');
+
+        /*         * *** comprobar que no existe ya esa planta ** */
+        $existe = \DB::select("select * from plantas where nombre='" . $nombre . "'");
+
+        /*** si existe un registro, no se puede añadir y devolvemos a la página **/
+        if ($existe != null) {
+            $mensaje=[
+              "msg" => 'Ya existe esa planta'  
+            ];
+            return view('addPlanta', $mensaje);
+        } else {
+            \DB::table('plantas')->insert(
+                    ['nombre' => $nombre, 'descripcion' => $desc]
+            );
+            return view('inicio');
+        }
     }
 
     function sacarcomp() {
@@ -248,7 +259,7 @@ class controladorJoaquin extends Controller {
         if (isset($granu[0])) {
             $a = $a . '<h2 class="col-12">Granulometria</h2>';
             foreach ($granu as $g) {
-                $a = $a . '<div class="col-3"> <h3>' . $g->valor_granu .' '. $g->condicion.$g->valor1.'<input type="text" class="form-control" readonly value="' . $r->lectura . '"/></h3></div>';
+                $a = $a . '<div class="col-3"> <h3>' . $g->valor_granu . ' ' . $g->condicion . $g->valor1 . '<input type="text" class="form-control" readonly value="' . $r->lectura . '"/></h3></div>';
             }
         }
 
@@ -269,36 +280,45 @@ class controladorJoaquin extends Controller {
             'analisis' => $analisis];
         return view('admin/validar', $datos);
     }
-    
-    
-    function filtraranalisis(){
+
+    function filtraranalisis() {
         $plant = $_POST['planta'];
         $prog = $_POST['prog'];
-        $pr='';
+        $pr = '';
         $pt = '';
         if ($prog == 'no') {
-            $pr= ' and programado = "0"';
-            
-        }else if ($prog =='si') {
-            $pr=' and programado = "1"';
+            $pr = ' and programado = "0"';
+        } else if ($prog == 'si') {
+            $pr = ' and programado = "1"';
         }
-        if ($plant!=0) {
-            $pt = ' AND plantas.id_planta='. $plant;
-            
+        if ($plant != 0) {
+            $pt = ' AND plantas.id_planta=' . $plant;
         }
-        $b='';
-        $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto and validado = "0"'.$pt.''.$pr.' and plantas.id_planta= tabla_tocha.planta ORDER BY `tabla_tocha`.`fechahora` ASC');
-            foreach ($analisis as $a) {
-                $pro = 'no';
-                if ($a->programado == 1) {
-                    $pro = 'si';
-                }
-
-                $b = $b. '<option value="'.$a->fechahora . ',' . $a->id_compuesto . ',' . $a->nombre .'">Fecha: ' . $a->fechahora . ', Planta: ' . $a->nombre . ', Compuesto: ' . $a->compuesto . ', Programado: ' . $pro .'</option>';
-
+        $b = '';
+        $analisis = \DB::select('SELECT DISTINCT fechahora, programado, compuestos.compuesto,tabla_tocha.id_compuesto, plantas.nombre FROM `tabla_tocha`, compuestos, plantas where compuestos.id_compuesto = tabla_tocha.id_compuesto and validado = "0"' . $pt . '' . $pr . ' and plantas.id_planta= tabla_tocha.planta ORDER BY `tabla_tocha`.`fechahora` ASC');
+        foreach ($analisis as $a) {
+            $pro = 'no';
+            if ($a->programado == 1) {
+                $pro = 'si';
             }
-         return $b;
+
+            $b = $b . '<option value="' . $a->fechahora . ',' . $a->id_compuesto . ',' . $a->nombre . '">Fecha: ' . $a->fechahora . ', Planta: ' . $a->nombre . ', Compuesto: ' . $a->compuesto . ', Programado: ' . $pro . '</option>';
+        }
+        return $b;
     }
-   
+
+    function exportarExcel() {
+        \Excel::create('plantas', function($excel) {
+            $plantas = \DB::select('select * from plantas');
+
+            $excel = sheet('plantas', function($sheet) use($plantas) {
+                $sheet->fromArray($plantas);
+            });
+        })->export('xlsx');
+    }
+
+    public function export() {
+        return \Excel::download(new exportarExcel, 'pruebaExcel.xlsx');
+    }
 
 }

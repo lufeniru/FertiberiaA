@@ -100,6 +100,12 @@
                 </div>
             </div>
         </div>
+        <div>
+            <form action="exportarExcel" name="export" method="POST">
+                {{ csrf_field() }}
+                <input type="submit" name="bt" value="Exportar">
+            </form>
+        </div>
     </body>
 </html>
 

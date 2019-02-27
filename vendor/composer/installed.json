@@ -1606,7 +1606,7 @@
         },
         "time": "2018-10-13T23:28:42+00:00",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-4": {
                 "Complex\\": "classes/src/"
@@ -1703,7 +1703,7 @@
         },
         "time": "2018-11-04T22:12:12+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Matrix\\": "classes/src/"
