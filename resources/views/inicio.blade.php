@@ -37,7 +37,9 @@
                     {{ csrf_field() }}
                     <div id="inicio">
                         <fieldset>
-                            <legend><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjghD4hNePzqXUpoZN4TLc6Ue5lRMWdlBpxGX_Zag6MsXRMBW" alt="logo de fertiberia"></legend>
+                            <legend>
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjghD4hNePzqXUpoZN4TLc6Ue5lRMWdlBpxGX_Zag6MsXRMBW" alt="logo de fertiberia">
+                            </legend>
                             <div id="inicio2">
                                 <div>
                                     <input type="submit" class="btn btn-outline-success" name="boton" value="Administrador">

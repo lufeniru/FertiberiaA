@@ -5,6 +5,7 @@ Añadir Compuesto
 @endsection
 
 @section('cuerpo')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <div class="container">
     <div class="row">
         <nav aria-label="breadcrumb" class="col-12">
@@ -18,6 +19,19 @@ Añadir Compuesto
 </div>
 
 <div class="container" style="text-align: center">
+    <?php
+    if (isset($msg)) {
+        ?>
+        <script> 
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: '<?= $msg?>',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+        <?php } ?>
     <form action="addComp" name="addComponente" method="post">
         {{ csrf_field() }}
         <div class="row">
@@ -59,7 +73,7 @@ Añadir Compuesto
         $('#granu').change(function () {
 
             if ($('#granu').prop('checked')==true ) {
-                var input = '¿Nº de granulometrias? <input class="form-control" type="number" name="cuantos" id="cuantos" onchange="granus()" min="1">';
+                var input = '¿Nº de granulometrias? <input class="form-control" type="number" name="cuantos" id="cuantos" max="7" onkeyup="granus()" onchange="granus()" min="1">';
                 $('#numero').html(input);
             } else {
                 $('#numero').html("");
