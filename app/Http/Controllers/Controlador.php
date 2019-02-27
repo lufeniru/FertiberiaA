@@ -146,8 +146,7 @@ class Controlador extends Controller {
                 $datos = ['plantas' => $plantas];
                 $comp = $this->comp($plantas[0]->id_planta);
                 $datos = ['plantas' => $plantas,
-                    'comp' => $comp];
-
+                'comp' => $comp];
                 return view('admin/addElemento', $datos);
                 break;
             case 'Validar':
@@ -168,45 +167,63 @@ class Controlador extends Controller {
         $compuesto = $req->get('comp');
         $nombreElem = $req->get('nombreElemento');
         $idElem = $req->get('idElem');
-        $condicion = null;
-        if ($req->get('condicion') != 'null') {
-            $condicion = $req->get('condicion');
-        }
-        $valor1 = $req->get('valor1');
-        $valor2 = null;
-        if ($req->get('valor2') != 0) {
-            $valor2 = $req->get('valor2');
-        }
-        $simbolo = $req->get('simbolo');
-        \DB::table('datos_elementos')->insert([
-            'id_elemento' => $idElem,
-            'describe_elemento' => $nombreElem,
-        ]);
 
-        /*         * * comprobar cuantos elementos hay en ese compuesto, para aplicar el orden* */
-        $nElementos = \DB::select('select count(*) as resultados from elementos where compuesto like "' . $compuesto . '"');
-        $nElementos[0]->resultados++;
-        $vector = [
-            'orden' => $nElementos[0]->resultados,
-            'id_elem' => $idElem,
-            'condicion' => $condicion,
-            'valor1' => $valor1,
-            'valor2' => $valor2,
-            'simbolo' => $simbolo,
-            'compuesto' => $compuesto
-        ];
+        /*         * *** comprobar que no existe ya ese elemento ** */
+        $existe = \DB::select("select * from datos_elementos where id_elemento like '" . $idElem . "' or describe_elemento like '" . $nombreElem . "'");
 
-        /** insercion en tabla: elemento *** */
-        \DB::table('elementos')->insert([
-            'orden' => $nElementos[0]->resultados,
-            'id_elem' => $idElem,
-            'condicion' => $condicion,
-            'valor1' => $valor1,
-            'valor2' => $valor2,
-            'simbolo' => $simbolo,
-            'compuesto' => $compuesto
-        ]);
-        return view('inicio');
+        /*         * * si existe un registro, no se puede añadir y devolvemos a la página * */
+        if ($existe != null) {
+            $plantas = \DB::table('plantas')->get();
+            $comp = $this->comp($plantas[0]->id_planta);
+                
+            $mensaje = [
+                'msg' => 'Ya existe ese elemento',
+                'plantas' => $plantas,
+                'comp' => $comp
+            ];
+            
+            return view('admin/addElemento', $mensaje);
+        } else {
+            $condicion = null;
+            if ($req->get('condicion') != 'null') {
+                $condicion = $req->get('condicion');
+            }
+            $valor1 = $req->get('valor1');
+            $valor2 = null;
+            if ($req->get('valor2') != 0) {
+                $valor2 = $req->get('valor2');
+            }
+            $simbolo = $req->get('simbolo');
+            \DB::table('datos_elementos')->insert([
+                'id_elemento' => $idElem,
+                'describe_elemento' => $nombreElem,
+            ]);
+
+            /*             * * comprobar cuantos elementos hay en ese compuesto, para aplicar el orden* */
+            $nElementos = \DB::select('select count(*) as resultados from elementos where compuesto like "' . $compuesto . '"');
+            $nElementos[0]->resultados++;
+            $vector = [
+                'orden' => $nElementos[0]->resultados,
+                'id_elem' => $idElem,
+                'condicion' => $condicion,
+                'valor1' => $valor1,
+                'valor2' => $valor2,
+                'simbolo' => $simbolo,
+                'compuesto' => $compuesto
+            ];
+
+            /** insercion en tabla: elemento *** */
+            \DB::table('elementos')->insert([
+                'orden' => $nElementos[0]->resultados,
+                'id_elem' => $idElem,
+                'condicion' => $condicion,
+                'valor1' => $valor1,
+                'valor2' => $valor2,
+                'simbolo' => $simbolo,
+                'compuesto' => $compuesto
+            ]);
+            return view('inicio');
+        }
     }
 
     function addComp(Request $req) {
@@ -214,66 +231,87 @@ class Controlador extends Controller {
         $nombre = $req->get('nombreComp');
         $id = $req->get('idComp');
 
-        /** comprobar si el compuesto tiene granulometria ** */
-        if ($req->get('granulometria') == 'on') {
-            $especificaciones = $req->get('valor');
-            $condiciones = $req->get('condicion');
-            $valores = $req->get('valor1');
-            $simbolos = $req->get('simbolo');
+        /*         * *** comprobar que no existe ya ese compuesto ** */
+        $existe = \DB::select("select * from compuestos where compuesto like '" . $nombre . "' or id_compuesto like '" . $id . "';");
 
-            /*             * * numero de insert en granudatos ******** */
-            $cuantos = $req->get('cuantos');
+        /*         * * si existe un registro, no se puede añadir y devolvemos a la página * */
+        if ($existe != null) {
+            $mensaje = [
+                "msg" => 'Ya existe ese compuesto'
+            ];
+            return view('admin/addComp', $mensaje);
+        } else {
+            /** comprobar si el compuesto tiene granulometria ** */
+            if ($req->get('granulometria') == 'on') {
+                $especificaciones = $req->get('valor');
+                $condiciones = $req->get('condicion');
+                $valores = $req->get('valor1');
+                $simbolos = $req->get('simbolo');
 
-            /*             * * poner la nueva granulometria ** */
-            $count = \DB::select("select count(*) as cuantos from granulometrias");
-            $count[0]->cuantos++;
-            $idGranu = 'G' . $count[0]->cuantos;
-            $descripcion = 'Granulometría de ' . $nombre;
+                /*                 * * numero de insert en granudatos ******** */
+                $cuantos = $req->get('cuantos');
 
-            /*             * * insertar en tabla granulometrias ** */
-            \DB::table('granulometrias')->insert([
-                'id_granulometria' => $idGranu,
-                'descripcion' => $descripcion,
-            ]);
+                /*                 * * poner la nueva granulometria ** */
+                $count = \DB::select("select count(*) as cuantos from granulometrias");
+                $count[0]->cuantos++;
+                $idGranu = 'G' . $count[0]->cuantos;
+                $descripcion = 'Granulometría de ' . $nombre;
 
-            /*             * * insertar en tabla granudatos*** */
-            for ($i = 0; $i < $cuantos; $i++) {
-                $j = $i + 1;
-                \DB::table('granudatos')->insert([
-                    'id_granu' => $idGranu,
-                    'n' => $j,
-                    'valor' => $especificaciones[$i],
-                    'condicion' => $condiciones[$i],
-                    'valor1' => $valores[$i],
-                    'simbolo' => $simbolos[$i]
+                /*                 * * insertar en tabla granulometrias ** */
+                \DB::table('granulometrias')->insert([
+                    'id_granulometria' => $idGranu,
+                    'descripcion' => $descripcion,
+                ]);
+
+                /*                 * * insertar en tabla granudatos*** */
+                for ($i = 0; $i < $cuantos; $i++) {
+                    $j = $i + 1;
+                    \DB::table('granudatos')->insert([
+                        'id_granu' => $idGranu,
+                        'n' => $j,
+                        'valor' => $especificaciones[$i],
+                        'condicion' => $condiciones[$i],
+                        'valor1' => $valores[$i],
+                        'simbolo' => $simbolos[$i]
+                    ]);
+                }
+
+                /*                 * * insertar el compuesto con el id de la granulometria ** */
+                \DB::table('compuestos')->insert([
+                    'id_compuesto' => $id,
+                    'compuesto' => $nombre,
+                    'planta' => $planta,
+                    'granulometria' => $idGranu
+                ]);
+            } else { /*             * * sino insertamos solo el compuesto ** */
+                \DB::table('compuestos')->insert([
+                    'id_compuesto' => $id,
+                    'compuesto' => $nombre,
+                    'planta' => $planta,
                 ]);
             }
-
-            /*             * * insertar el compuesto con el id de la granulometria ** */
-            \DB::table('compuestos')->insert([
-                'id_compuesto' => $id,
-                'compuesto' => $nombre,
-                'planta' => $planta,
-                'granulometria' => $idGranu
-            ]);
-        } else { /*         * * sino insertamos solo el compuesto ** */
-            \DB::table('compuestos')->insert([
-                'id_compuesto' => $id,
-                'compuesto' => $nombre,
-                'planta' => $planta,
-            ]);
+            return view('inicio');
         }
-        return view('inicio');
     }
 
     function addPlanta(Request $req) {
         $nombre = $req->get('nombre');
         $desc = $req->get('descripcion');
-        \DB::table('plantas')->insert(
-                ['nombre' => $nombre, 'descripcion' => $desc]
-        );
+        /*         * *** comprobar que no existe ya esa planta ** */
+        $existe = \DB::select("select * from plantas where nombre='" . $nombre . "'");
 
-        return view('inicio');
+        /*         * * si existe un registro, no se puede añadir y devolvemos a la página * */
+        if ($existe != null) {
+            $mensaje = [
+                "msg" => 'Ya existe esa planta'
+            ];
+            return view('admin/addPlanta', $mensaje);
+        } else {
+            \DB::table('plantas')->insert(
+                    ['nombre' => $nombre, 'descripcion' => $desc]
+            );
+            return view('inicio');
+        }
     }
 
     function sacarcomp() {
@@ -545,6 +583,5 @@ class Controlador extends Controller {
         $ret = "hola";
         return $ret;
     }
-    
 
 }

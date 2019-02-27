@@ -5,6 +5,7 @@ Añadir Planta
 @endsection
 
 @section('cuerpo')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <div class="container">
     <div class="row">
         <nav aria-label="breadcrumb" class="col-12">
@@ -18,6 +19,19 @@ Añadir Planta
 </div>
 
 <div class="container" style="text-align: center">
+    <?php
+    if (isset($msg)) {
+        ?>
+        <script> 
+            Swal.fire({
+                position: 'center',
+                type: 'error',
+                title: '<?= $msg?>',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+        <?php } ?>
     <form action="addPlanta" name="addPlanta" method="POST" class="row" style="margin-top: 20px">
         {{ csrf_field() }}
         <div class="row">

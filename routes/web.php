@@ -56,6 +56,11 @@ Route::get('verAnalisis', function () {
     return view('vista/VerAnalisis');
 });
 
+Route::post('exportarExcel','controladorJoaquin@exportarExcel');
+
+
+
+
 
 
 
