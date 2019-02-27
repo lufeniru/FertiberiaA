@@ -465,8 +465,6 @@ class Controlador extends Controller {
             $filtros = $filtros . " AND tabla_tocha.validado=" . $validado;
         }
 
-
-
         //Hay que sececcionar las fechas y enviarlas ordenadas por mas actual primero.
         $nelementos = DB::select("SELECT COUNT(id_elem) AS nelem FROM `elementos` WHERE compuesto='" . $comp . "'");
         $tabla = DB::select("SELECT tabla_tocha.fechahora,tabla_tocha.id_elemento,tabla_tocha.valor1,tabla_tocha.valor2,tabla_tocha.simbolo,tabla_tocha.lectura,tabla_tocha.condicion,elementos.orden,datos_elementos.describe_elemento, tabla_tocha.programado, tabla_tocha.validado
