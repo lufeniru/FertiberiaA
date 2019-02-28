@@ -32,6 +32,7 @@
         </style>
     </head>
     <body>
+        <!--parte realizada por Jaime-->
         <div class="container">
             <div class="row">
                 <form name="formu" class="col-12" method="post" action="inicio">

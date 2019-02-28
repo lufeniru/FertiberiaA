@@ -12,6 +12,7 @@ $tanques = \Session::get('tanques');
 
 
 ?>
+<!--parte realizada por Jaime-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
         function alerta() {

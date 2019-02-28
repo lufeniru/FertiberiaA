@@ -19,6 +19,7 @@
     </head>
 
     <body>
+        <!--parte realizada por Jaime-->
         @yield('cabecera')
         <?php
         $plantas = \Session::get('plantas');
