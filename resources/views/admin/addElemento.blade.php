@@ -5,6 +5,7 @@ Añadir Elemento
 @endsection
 
 @section('cuerpo')
+<!--parte realizada por Jaime-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <div class="container">
     <div class="row">
@@ -86,6 +87,7 @@ Añadir Elemento
 </div>
 
 <script>
+//    Parte realizada por Jaime y Joaquin
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

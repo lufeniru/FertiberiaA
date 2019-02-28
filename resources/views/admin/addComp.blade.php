@@ -5,6 +5,7 @@ Añadir Compuesto
 @endsection
 
 @section('cuerpo')
+    <!--parte realizada por Joaquin-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <div class="container">
     <div class="row">
@@ -69,6 +70,7 @@ Añadir Compuesto
 </div>
 
 <script>
+//    parte realizada por Joaquin
     $(document).ready(function () {
         $('#granu').change(function () {
 
