@@ -26,16 +26,16 @@
         <div class="container">
             <header>
                 <div class="row">
-                    <div id="estilocab" class="col-12">
+                    <div id="estilocab" >
                         <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
-                <div class="row" id="menu">
-                    <form action="compuestos" method="post">
+                <div class="menu">
+                    <form action="compuestos"  class="row" method="post">
                         {{ csrf_field() }}
                         <?php
                         foreach ($plantas as $p) {
-                            echo '<input type="submit" class="btn btn-outline-success" value="' . $p->nombre . '"   name="menu">';
+                            echo '<input type="submit" class="btn btn-outline-success col-lg-3 col-md-4 col-sm-12" value="' . $p->nombre . '"   name="menu">';
                         }
                         ?>
 
@@ -52,13 +52,13 @@
 
 
             @yield('pie') 
-            <footer>
-                <div id="estilopie" class="col-lg-12">
+            <footer class="row">
+                <div id="estilopie" class="col-12">
                     <img src="imagenes/logo.png">
                     <p id="letrapie">© 2019 Copyright: <a href="mailto:daw2@cifpvirgendegracia.com">Daw 2 2019</a></p>               
                 </div>
             </footer>
-
         </div>
+        
     </body>
 </html>

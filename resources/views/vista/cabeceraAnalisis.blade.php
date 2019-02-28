@@ -28,16 +28,16 @@
         <div class="container">
             <header>
                 <div class="row">
-                    <div id="estilocab" class="col-lg-12">
+                    <div id="estilocab">
                         <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
-                <div class="row" id="menu">
-                    <form action="vercompuestos" method="post">
+                <div  class="menu">
+                    <form action="vercompuestos" class="row" method="post">
                         {{ csrf_field() }}
                         <?php
                         foreach ($plantas as $p) {
-                            echo '<input type="submit" class="btn btn-outline-success" value="' . $p->nombre . '"   name="menu">';
+                            echo '<input type="submit" class="btn btn-outline-success col-lg-3 col-md-4 col-sm-12" value="' . $p->nombre . '"   name="menu">';
                         }
                         ?>
                     </form>
