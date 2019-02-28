@@ -237,4 +237,52 @@ $tanques[0]->tanque;
 
     </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+    $("#fecha" ).change(function () {
+        
+        var fd = $("#fecha").val();
+        frac=fd.toString().split("-");
+        fd = new Date(frac[0],frac[1],frac[2]);
+        var fh = $("#fechah").val();
+        frac=fh.toString().split("-");
+        fh = new Date(frac[0],frac[1],frac[2]);
+
+        if(fd > fh)
+        {
+            $("#fecha").val($("#fechah").val()) ;
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'La fecha "desde" no puede ser superior a la fecha "hasta"!',
+                showConfirmButton:false,
+                timer:2000
+              });
+        }
+  })
+  .change();
+  
+  $("#fechah" ).change(function () {
+        
+        var fd = $("#fecha").val();
+        frac=fd.toString().split("-");
+        fd = new Date(frac[0],frac[1],frac[2]);
+        var fh = $("#fechah").val();
+        frac=fh.toString().split("-");
+        fh = new Date(frac[0],frac[1],frac[2]);
+
+        if(fh < fd)
+        {
+            $("#fechah").val($("#fecha").val()) ;
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'La fecha "hasta" no puede ser inferior a la fecha "desde"!',
+                showConfirmButton:false,
+                timer:2000
+              });
+        }
+  })
+  .change();
+</script>
 @endsection
