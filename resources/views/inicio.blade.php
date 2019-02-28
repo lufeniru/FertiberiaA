@@ -20,12 +20,13 @@
 
             }
             #inicio2{
-                border: thick solid #33cc00;
+                box-shadow: 0px 0px 5px 5px #4C9B01;
+                border: thin solid #000000;
+                border-radius: 10px;
+                margin-top: 20px;
             }
-            .row{
-                margin-top: 50px;
-            }
-            .btn-outline-success{
+            
+            .btn-info{
                 width: 200px;
             }
         </style>
@@ -33,24 +34,27 @@
     <body>
         <div class="container">
             <div class="row">
-                <form name="formu" class=" offset-3 col-5" method="post" action="inicio">
+                <form name="formu" class="col-12" method="post" action="inicio">
                     {{ csrf_field() }}
-                    <div id="inicio">
-                        <fieldset>
-                            <legend>
+                    <div id="inicio" class="row">
+                        <fieldset class="col-12">
+                            <div class="row">
+                                <legend class="col-12">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjghD4hNePzqXUpoZN4TLc6Ue5lRMWdlBpxGX_Zag6MsXRMBW" alt="logo de fertiberia">
                             </legend>
-                            <div id="inicio2">
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Administrador">
+                                <div id="inicio2" class="col-12">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-12">
+                                    <input type="submit" class="btn btn-info" name="boton" value="Administrador">
                                 </div>
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Laboratorio">
+                                <div class="col-lg-4 col-sm-12">
+                                    <input type="submit" class="btn btn-info" name="boton" value="Laboratorio">
                                 </div>
-                                <div>
-                                    <input type="submit" class="btn btn-outline-success" name="boton" value="Ver analisis">
+                                <div class="col-lg-4 col-sm-12">
+                                    <input type="submit" class="btn btn-info" name="boton" value="Ver analisis">
                                 </div>
-
+                                    </div>
+                            </div>
                             </div>
                         </fieldset>
                     </div>
