@@ -146,7 +146,7 @@ class Controlador extends Controller {
                 $datos = ['plantas' => $plantas];
                 $comp = $this->comp($plantas[0]->id_planta);
                 $datos = ['plantas' => $plantas,
-                'comp' => $comp];
+                    'comp' => $comp];
                 return view('admin/addElemento', $datos);
                 break;
             case 'Validar':
@@ -175,13 +175,13 @@ class Controlador extends Controller {
         if ($existe != null) {
             $plantas = \DB::table('plantas')->get();
             $comp = $this->comp($plantas[0]->id_planta);
-                
+
             $mensaje = [
                 'msg' => 'Ya existe ese elemento',
                 'plantas' => $plantas,
                 'comp' => $comp
             ];
-            
+
             return view('admin/addElemento', $mensaje);
         } else {
             $condicion = null;
@@ -290,6 +290,11 @@ class Controlador extends Controller {
                     'planta' => $planta,
                 ]);
             }
+            /*             * * insertar en la tabla tanques ** */
+            \DB::table('tanques')->insert([
+                'id_compuesto' => $id
+            ]);
+
             return view('inicio');
         }
     }

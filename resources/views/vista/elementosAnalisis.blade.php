@@ -12,7 +12,7 @@ $tanques = \Session::get('tanques');
 $planta = 'PLANTA ' . \Session::get('planta');
 $tanques[0]->tanque;
 ?>
-
+<!--parte realizada por Sergio-->
 <div class="container">
 
     <form action="elementosAnalisis" class="col-12" method="post">

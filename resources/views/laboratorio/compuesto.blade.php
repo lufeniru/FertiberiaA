@@ -7,6 +7,7 @@ Laboratorio
 @section('cuerpo')
 <?php $existe = \Session::get('planta'); ?>
 <div class="container">
+    <!--parte realizada por Joaquin-->
     <div class="row">
         <nav aria-label="breadcrumb" class="col-12">
 
@@ -17,6 +18,7 @@ Laboratorio
             </ol>
         </nav>
     </div>
+    <!--parte realizada por Jaime-->
     <div class="row">
         <form action="elementos" method="post" class="col-12">
             {{ csrf_field() }}

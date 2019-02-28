@@ -5,7 +5,7 @@ Validaciones
 @endsection
 
 @section('cuerpo')
-
+<!--parte realizada por Jaime-->
 <div class="container">
     <div class="row">
         <nav aria-label="breadcrumb" class="col-12">

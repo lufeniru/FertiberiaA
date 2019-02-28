@@ -31,6 +31,7 @@
         </style>
     </head>
     <body>
+        <!--parte realizada por Jaime-->
         <div class="container">
             <div class="row">
                 <form name="formu" class=" offset-3 col-5" method="post" action="inicio">
