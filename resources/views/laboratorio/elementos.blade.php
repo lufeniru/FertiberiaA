@@ -68,6 +68,7 @@ $tanques = \Session::get('tanques');
             <div class="row" style="margin-top: 30px">
                 <div class="col-12">
                     <div style="text-align: center"><h3>Elementos</h3></div>
+                    <div class="row" style= "width:100%; margin-top:10px">
                     <?php
                     $i = 0;
                     $j = 0;
@@ -80,11 +81,9 @@ $tanques = \Session::get('tanques');
                         } else {
                             $segun = $elem->condicion . ' ' . $elem->valor1 . ' ' . $elem->simbolo;
                         }
-                        if ($i == 0) {
-                            echo '<div class="row" style= "width:100%; margin-top:10px">';
-                        }
+                        
                         ?> 
-                        <div class="col-lg-4 col-sm-12">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
                             <table>
                                 <tr><td style="width: 120px;">
                                         <?php echo $elem->describe_elemento; ?></td>
@@ -97,19 +96,8 @@ $tanques = \Session::get('tanques');
                                     </td>
                                 </tr>
                             </table>
-                        </div>
-                        <?php
-                        if ($i == 2) {
-                            echo '</div>';
-                            $i = -1;
-                        }
-                        $i++;
-                        $j++;
-                    }
-                    if ($i % 3 != 0) {
-                        echo '</div>';
-                    }
-                    ?>
+                    </div><?php }?>
+                    </div>
                 </div>
             </div>
 

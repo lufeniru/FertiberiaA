@@ -33,7 +33,7 @@
 
             </header>
             <div class="row">
-                <div class="offset-lg-4 col-4" style="margin-top: 30px; text-align: center; border: thin solid green">
+                <div class="offset-lg-4 col-lg-4 col-sm-12" style="margin-top: 30px; text-align: center; border: thin solid green">
                     <div id="header"> <h2>Login</h2></div>
                     <form action="login" name="login" method="post" style="text-align: center">
                         {{ csrf_field() }}
@@ -50,12 +50,7 @@
                 </div>
             </div>
         </div>
-        <div>
-            <form action="exportarExcel" name="export" method="POST">
-                {{ csrf_field() }}
-                <input type="submit" name="bt" value="Exportar">
-            </form>
-        </div>
+       
     </body>
 </html>
 

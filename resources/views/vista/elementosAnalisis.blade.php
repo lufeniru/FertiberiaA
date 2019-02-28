@@ -50,7 +50,7 @@ $tanques[0]->tanque;
         <div class="row">
             <div class="col-12" style="padding:0; margin:0">
                 <div class="row">
-                    <div class="col-3" style="padding:0; margin:0">
+                    <div class="col-lg-3 col-md-3 col-sm-3" style="padding:0; margin:0">
                         <div class="col-12">
                             <div class="col-12" style="padding:0; margin:0">
                                 <table>
@@ -65,51 +65,49 @@ $tanques[0]->tanque;
                             </div>
                         </div>
                     </div>
-                    <div class="col-4" style="padding:0; margin:0">
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="padding:0; margin:0">
                         <fieldset>
                             <ul>
                                 <li class="custom-control custom-radio custom-control-inline">
 
-                                    <input type="radio" name="programado" id="programad" class="custom-control-input" value="1" <?php
-            ?>><label for="programad" class="custom-control-label">Programado</label>
+                                    <input type="radio" name="programado" id="programad" class="custom-control-input" value="1" <?php if($programado==1){echo "checked";}?>>
+                                    <label for="programad" class="custom-control-label">Programado</label>
                                 </li>
                                 <li  class="custom-control custom-radio custom-control-inline">
 
-                                    <input type="radio" name="programado" id="noprogramado" class="custom-control-input"  value="0" <?php
-            ?>>
+                                    <input type="radio" name="programado" id="noprogramado" class="custom-control-input"  value="0" <?php if($programado==0){echo "checked";}?>>
                                     <label for="noprogramado" class="custom-control-label">No programado</label>
                                 </li>
                                 <li class="custom-control custom-radio custom-control-inline">
 
-                                    <input type="radio" name="programado" id="programadoyno" checked class="custom-control-input" value="2" <?php ?>>
+                                    <input type="radio" name="programado" id="programadoyno" class="custom-control-input" value="2" <?php if($programado!=1 && $programado!=0){echo "checked";}?>>
                                     <label class="custom-control-label" for="programadoyno">Programado y no programado</label>
                                 </li>
                             </ul>
                         </fieldset>
                     </div>
-                    <div class="col-3" style="padding:0; margin:0">
+                    <div class="col-lg-3 col-md-3 col-sm-3" style="padding:0; margin:0">
                         <fieldset>
                             <ul>
                                 <li class="custom-control custom-radio custom-control-inline">
 
-                                    <input type="radio" name="validado" id="validado" class="custom-control-input" value="1" <?php ?>>
+                                    <input type="radio" name="validado" id="validado" class="custom-control-input" value="1" <?php if($validado==1){echo "checked";}?>>
                                     <label class="custom-control-label" onchange="filtro()" for="validado">Validado</label>
                                 </li>
                                 <li class="custom-control custom-radio custom-control-inline">
 
-                                    <input type="radio" name="validado" id="novalidado" class="custom-control-input" value="0" <?php ?>>
+                                    <input type="radio" name="validado" id="novalidado" class="custom-control-input" value="0" <?php if($validado==0){echo "checked";}?>>
                                     <label class="custom-control-label" for="novalidado">No validado</label>
                                 </li>
                                 <li class="custom-control custom-radio custom-control-inline">
 
-                                    <input type="radio" name="validado" id="validadoyno" checked class="custom-control-input" value="2" <?php
-            ?>>
+                                    <input type="radio" name="validado" id="validadoyno" class="custom-control-input" value="2" <?php if($validado!=1 && $validado!=0){echo "checked";}?>>
                                     <label class="custom-control-label" for="validadoyno">Validado y no validado</label>
                                 </li>
                             </ul>
                         </fieldset>
                     </div>
-                    <div class="col-2" style="padding:0; margin:0;">
+                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0; margin:0;">
                         <input type="submit" class="btn btn-info" style="width: 100px" name="boton" value="cargar">
                     </div>
                 </div>
@@ -239,4 +237,52 @@ $tanques[0]->tanque;
 
     </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+    $("#fecha" ).change(function () {
+        
+        var fd = $("#fecha").val();
+        frac=fd.toString().split("-");
+        fd = new Date(frac[0],frac[1],frac[2]);
+        var fh = $("#fechah").val();
+        frac=fh.toString().split("-");
+        fh = new Date(frac[0],frac[1],frac[2]);
+
+        if(fd > fh)
+        {
+            $("#fecha").val($("#fechah").val()) ;
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'La fecha "desde" no puede ser superior a la fecha "hasta"!',
+                showConfirmButton:false,
+                timer:2000
+              });
+        }
+  })
+  .change();
+  
+  $("#fechah" ).change(function () {
+        
+        var fd = $("#fecha").val();
+        frac=fd.toString().split("-");
+        fd = new Date(frac[0],frac[1],frac[2]);
+        var fh = $("#fechah").val();
+        frac=fh.toString().split("-");
+        fh = new Date(frac[0],frac[1],frac[2]);
+
+        if(fh < fd)
+        {
+            $("#fechah").val($("#fecha").val()) ;
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'La fecha "hasta" no puede ser inferior a la fecha "desde"!',
+                showConfirmButton:false,
+                timer:2000
+              });
+        }
+  })
+  .change();
+</script>
 @endsection
