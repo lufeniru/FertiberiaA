@@ -33,6 +33,7 @@
                         <a href="index"><img src="imagenes/banner.png"></a>
                     </div>
                 </div>
+                <!--parte realizada por Sergio-->
                 <div  class="menu">
                     <form action="vercompuestos" class="row" method="post">
                         {{ csrf_field() }}
@@ -43,6 +44,7 @@
                         ?>
                     </form>
                 </div>
+                <!--fin parte realizada por Sergio-->
             </header>
 
 
