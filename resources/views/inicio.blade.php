@@ -41,7 +41,7 @@
                         <fieldset class="col-12">
                             <div class="row">
                                 <legend class="col-12">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjghD4hNePzqXUpoZN4TLc6Ue5lRMWdlBpxGX_Zag6MsXRMBW" alt="logo de fertiberia">
+                                <img src="imagenes/Fertiberia.png" alt="logo de fertiberia">
                             </legend>
                                 <div id="inicio2" class="col-12">
                                     <div class="row">
