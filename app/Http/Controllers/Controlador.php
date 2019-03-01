@@ -534,11 +534,11 @@ class Controlador extends Controller {
                 }
             }
         }
-        //Si tgranul viene a null significa que la tabla va vacia y no hay nada que mostrar, asi que igualamos tgranu a tabla para que no tenga dimension
+        //Si tgranul viene a null significa que la tabla va vacia y no hay nada que mostrar, asi que la ponemos sin dimension;
         if ($tgranul != null) {
             $tgranu = $tgranul;
         } else {
-            $tgranu = $tabla;
+            $tgranu = [];
         }
 
         //Vamos a dividir la tabla en filas correspondientes a los registros.
@@ -569,25 +569,26 @@ class Controlador extends Controller {
         //Vamos a dividir la tabla de granulometria en filas correspondientes a la granulometria.
         $tabnor = null;
         $fil = null;
-        foreach ($tgranu as $i => $fila) {
-            if ($fil == null) {
-                $fil[] = $fila;
-            } else {
-                array_push($fil, $fila);
-            }
 
-            if ($i > 0) {
-                if (($i + 1) % $ngranu[0]->ngran == 0) {
-                    if ($tabnor == null) {
-                        $tabnor[] = $fil;
-                        $fil = null;
-                    } else {
-                        array_push($tabnor, $fil);
-                        $fil = null;
+            foreach ($tgranu as $i => $fila) {
+                if ($fil == null) {
+                    $fil[] = $fila;
+                } else {
+                    array_push($fil, $fila);
+                }
+                if ($i > 0) {
+                    if (($i + 1) % $ngranu[0]->ngran == 0) {
+                        if ($tabnor == null) {
+                            $tabnor[] = $fil;
+                            $fil = null;
+                        } else {
+                            array_push($tabnor, $fil);
+                            $fil = null;
+                        }
                     }
                 }
             }
-        }
+        
         $tgranu = $tabnor;
 
         $ngran = '';
@@ -605,7 +606,13 @@ class Controlador extends Controller {
             'validado' => $validado,
             'programado' => $programado
         ];
+        
+        //En caso de pulsar el boton de exportar vamos a la vista del analisis.
+        if (isset($req->exportar))
+        {
+            return view('vista/excelAnalisis', $datos);
+        }
+        
         return view('vista/elementosAnalisis', $datos);
     }
-
 }
