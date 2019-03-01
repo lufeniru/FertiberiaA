@@ -42,23 +42,23 @@ Añadir Elemento
                 Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación
             </div>
 
-            <div class="col-6"><h4>Planta:</h4> <select name="planta" class="custom-select" id="planta">
+            <div class="col-lg-6 col-sm-12"><h4>Planta:</h4> <select name="planta" class="custom-select" id="planta">
                     <?php
                     foreach ($plantas as $p) {
                         echo '<option value="' . $p->id_planta . '">' . $p->nombre . '</option>';
                     }
                     ?>
                 </select></div>
-            <div id="comp" class="col-6">
+            <div id="comp" class="col-lg-6 col-sm-12">
 <?php echo $comp; ?>
             </div>
         </div>
         <div class="row">
-            <div class="col-6"><h4>Nombre completo del elemento:</h4> <input type="text" class="form-control" name="nombreElemento" required=""></div>
-            <div class="col-6"> <h4>Identificador del elemento:</h4> <input type="text" class="form-control" name="idElem" required="" placeholder="(ej: Nitrato Total -> NiTot)"></div>
+            <div class="col-lg-6 col-sm-12"><h4>Nombre completo del elemento:</h4> <input type="text" class="form-control" name="nombreElemento" required=""></div>
+            <div class="col-lg-6 col-sm-12"> <h4>Identificador del elemento:</h4> <input type="text" class="form-control" name="idElem" required="" placeholder="(ej: Nitrato Total -> NiTot)"></div>
             <div class="col-12"> 
                 <div class="row">
-                    <div class="col-6"> <h4>Condición:</h4>
+                    <div class="col-lg-6 col-sm-12"> <h4>Condición:</h4>
                         <select name="condicion" id="condicion" class="custom-select">
                             <option selected value="null">Sin condición</option>
                             <option value=">"> Mayor que '>'</option>
@@ -66,7 +66,7 @@ Añadir Elemento
                             <option value="<>"> Entre '< >'</option>
                         </select>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-sm-12">
                         <h4>Valor/es de la condición:</h4>
                         <input type="number" class="form-control" name="valor1" id="val1" disabled placeholder="Valor 1">
                         <input type="number" hidden class="form-control" id="val2" name="valor2" placeholder="Valor 2">
@@ -75,11 +75,11 @@ Añadir Elemento
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6 col-sm-12">
                 <h4>¿En qué unidad se mide este elemento?</h4>
                 <input type="text" class="form-control" name="simbolo">
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-sm-12">
                 <input type="submit" class="btn btn-info" name="btAddElemento" value="Aceptar">
             </div>
         </div>

@@ -79,13 +79,9 @@ a:hover{
     color: #4C9B01;
 }
 
-#menu *{
-    margin: auto;
 
-}
-#menu form input{
-    margin: 5px;
-
+.menu{
+    margin-top: 30px;
 }
 
 
