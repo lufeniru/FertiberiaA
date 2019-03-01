@@ -33,7 +33,7 @@
 
             </header>
             <div class="row">
-                <div class="offset-lg-4 col-lg-4 col-sm-12" style="margin-top: 30px; text-align: center; border: thin solid green">
+                <div class="offset-lg-4 col-lg-4 col-sm-12" style="margin-top: 30px; text-align: center; border: thin solid green; padding: 30px;">
                     <div id="header"> <h2>Login</h2></div>
                     <form action="login" name="login" method="post" style="text-align: center">
                         {{ csrf_field() }}

@@ -231,7 +231,7 @@ class Controlador extends Controller {
                 'simbolo' => $simbolo,
                 'compuesto' => $compuesto
             ]);
-            return view('inicio');
+            return view('admin/admin');
         }
     }
 
@@ -306,7 +306,7 @@ class Controlador extends Controller {
                 'id_compuesto' => $id
             ]);
 
-            return view('inicio');
+            return view('admin/admin');
         }
     }
 
@@ -328,7 +328,7 @@ class Controlador extends Controller {
             \DB::table('plantas')->insert(
                     ['nombre' => $nombre, 'descripcion' => $desc]
             );
-            return view('inicio');
+            return view('admin/admin');
         }
     }
 

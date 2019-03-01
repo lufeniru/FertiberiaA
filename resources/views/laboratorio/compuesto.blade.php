@@ -6,8 +6,7 @@ Laboratorio
 
 @section('cuerpo')
 <?php $existe = \Session::get('planta'); ?>
-<div class="container">
-    <!--parte realizada por Joaquin-->
+    <!--parte realizada por Jaime-->
     <div class="row">
         <nav aria-label="breadcrumb" class="col-12">
 
@@ -24,7 +23,7 @@ Laboratorio
             {{ csrf_field() }}
             <?php
             $compuestos = \Session::get('compuestos');
-            echo '<select name="compuesto" class="custom-select offset-2 col-7">';
+            echo '<select name="compuesto" class="custom-select offset-2 col-lg-7">';
             foreach ($compuestos as $comp) {
                 echo '<option value="' . $comp->id_compuesto . '">' . $comp->compuesto . '</option>';
             }
@@ -32,7 +31,6 @@ Laboratorio
             <input type="submit" class="btn btn-info offset-2 col-2" name="boton" value="Mostrar">
         </form>
     </div>
-</div>
 @endsection
 
 

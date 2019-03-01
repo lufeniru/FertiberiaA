@@ -87,7 +87,7 @@ Añadir Elemento
 </div>
 
 <script>
-//    Parte realizada por Jaime y Joaquin
+//    Parte realizada por Jaime
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
