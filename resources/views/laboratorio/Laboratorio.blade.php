@@ -6,7 +6,6 @@ Laboratorio
 
 @section('cuerpo')
 <!--parte realizada por Jaime-->
-<div class="container">
     <div class="row">
         <nav aria-label="breadcrumb" class="col-12">
             <ol class="breadcrumb">
@@ -15,7 +14,6 @@ Laboratorio
             </ol>
         </nav>
     </div>
-</div>
 @endsection
 
 
