@@ -5,6 +5,7 @@ Añadir Planta
 @endsection
 
 @section('cuerpo')
+   <!--parte realizada por Joaquin-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <div class="container">
     <div class="row">
@@ -44,6 +45,7 @@ Añadir Planta
         </div>
     </form>
 </div>
+<!--parte realizada por Joaquin-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
         function alerta() {

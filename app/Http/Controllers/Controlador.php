@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class Controlador extends Controller {
+    /*     * ** Realizado por Joaquín ** */
 
     function redirec(Request $req) {
         $boton = $req->get('boton');
@@ -34,17 +35,18 @@ class Controlador extends Controller {
         }
     }
 
+    /*     * ** Realizado por Jaime ** */
+
     function compuestos(Request $req) {
         $boton = $req->get('menu');
 
         \Session::put('planta', $boton);
         $compuestos = DB::select("SELECT * FROM `compuestos` WHERE compuestos.planta = (select plantas.id_planta from plantas where nombre= '" . $boton . "') ORDER by orden");
         \Session::put('compuestos', $compuestos);
-
-
-
         return view('laboratorio/compuesto');
     }
+
+    /*     * ** Realizado por Jaime ** */
 
     function elementos(Request $req) {
         $comp = $req->get('compuesto');
@@ -62,6 +64,8 @@ class Controlador extends Controller {
         return view('laboratorio/elementos');
     }
 
+    /*     * ** Realizado por Jaime ** */
+
     function login(Request $req) {
         $user = $req->get("user");
         $pass = $req->get("pass");
@@ -72,6 +76,8 @@ class Controlador extends Controller {
             echo "<script>alert('usuario o contraseña incorrecto'); window.location.href= 'volver';</script>";
         }
     }
+
+    /*     * ** Realizado por Joaquín ** */
 
     function introducirDatos(Request $req) {
         /*         * ** las sesiones para coger los campos e insertar * */
@@ -129,8 +135,9 @@ class Controlador extends Controller {
         return view('laboratorio/Laboratorio');
     }
 
-    function admin(Request $req) {
+    /*     * ** Realizado por Jaime ** */
 
+    function admin(Request $req) {
         $opcion = $req->get('menu2');
         switch ($opcion) {
             case 'Añadir planta':
@@ -146,7 +153,7 @@ class Controlador extends Controller {
                 $datos = ['plantas' => $plantas];
                 $comp = $this->comp($plantas[0]->id_planta);
                 $datos = ['plantas' => $plantas,
-                'comp' => $comp];
+                    'comp' => $comp];
                 return view('admin/addElemento', $datos);
                 break;
             case 'Validar':
@@ -163,6 +170,8 @@ class Controlador extends Controller {
         }
     }
 
+    /*     * ** Realizado por Joaquín ** */
+
     function addElemento(Request $req) {
         $compuesto = $req->get('comp');
         $nombreElem = $req->get('nombreElemento');
@@ -175,13 +184,13 @@ class Controlador extends Controller {
         if ($existe != null) {
             $plantas = \DB::table('plantas')->get();
             $comp = $this->comp($plantas[0]->id_planta);
-                
+
             $mensaje = [
                 'msg' => 'Ya existe ese elemento',
                 'plantas' => $plantas,
                 'comp' => $comp
             ];
-            
+
             return view('admin/addElemento', $mensaje);
         } else {
             $condicion = null;
@@ -225,6 +234,8 @@ class Controlador extends Controller {
             return view('inicio');
         }
     }
+
+    /*     * ** Realizado por Joaquín ** */
 
     function addComp(Request $req) {
         $planta = $req->get('planta');
@@ -290,9 +301,16 @@ class Controlador extends Controller {
                     'planta' => $planta,
                 ]);
             }
+            /*             * * insertar en la tabla tanques ** */
+            \DB::table('tanques')->insert([
+                'id_compuesto' => $id
+            ]);
+
             return view('inicio');
         }
     }
+
+    /*     * ** Realizado por Joaquín ** */
 
     function addPlanta(Request $req) {
         $nombre = $req->get('nombre');
@@ -314,6 +332,8 @@ class Controlador extends Controller {
         }
     }
 
+    /*     * ** Realizado por Jaime ** */
+
     function sacarcomp() {
         $p = $_POST['planta'];
         $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $p);
@@ -325,8 +345,9 @@ class Controlador extends Controller {
         return $select;
     }
 
-    function comp($planta) {
+    /*     * ** Realizado por Jaime ** */
 
+    function comp($planta) {
         $compuestos = \DB::select("SELECT id_compuesto, compuesto FROM `compuestos` where planta =" . $planta);
         $select = '<h4>Compuestos:</h4> <select name="comp" class="custom-select">';
         foreach ($compuestos as $v) {
@@ -335,6 +356,8 @@ class Controlador extends Controller {
         $select = $select . '</select>';
         return $select;
     }
+
+    /*     * ** Realizado por Jaime ** */
 
     function sacaranalisis() {
         $datos = $_POST['registro'];
@@ -361,6 +384,8 @@ class Controlador extends Controller {
         return $a;
     }
 
+    /*     * ** Realizado por Jaime ** */
+
     function validar(Request $req) {
         $datos = $req->get('datos');
         $separar = explode(",", $datos);
@@ -373,6 +398,8 @@ class Controlador extends Controller {
             'analisis' => $analisis];
         return view('admin/validar', $datos);
     }
+
+    /*     * ** Realizado por Jaime ** */
 
     function filtraranalisis() {
         $plant = $_POST['planta'];
@@ -400,6 +427,8 @@ class Controlador extends Controller {
         return $b;
     }
 
+    /*     * ** Realizado por Sergio ** */
+
     function vercompuestos(Request $req) {
         $boton = $req->get('menu');
 
@@ -411,6 +440,8 @@ class Controlador extends Controller {
 
         return view('vista/compuestoAnalisis');
     }
+
+    /*     * ** Realizado por Sergio ** */
 
     function verelementos(Request $req) {
         $comp;
@@ -575,11 +606,6 @@ class Controlador extends Controller {
             'programado' => $programado
         ];
         return view('vista/elementosAnalisis', $datos);
-    }
-
-    public function recelal() {
-        $ret = "hola";
-        return $ret;
     }
 
 }

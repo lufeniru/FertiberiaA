@@ -12,7 +12,7 @@ $tanques = \Session::get('tanques');
 $planta = 'PLANTA ' . \Session::get('planta');
 $tanques[0]->tanque;
 ?>
-
+<!--parte realizada por Sergio-->
 <div class="container">
 
     <form action="elementosAnalisis" class="col-12" method="post">
@@ -115,7 +115,7 @@ $tanques[0]->tanque;
         </div>
         <div class="row">
             <div class="col-12 table-responsive" style="padding:0; margin-top:20px">
-                <table style="width:100%" class="table-striped table-success">
+                <table style="width:100%" class="table-striped table-success text-center">
                     <?php
                     if ($tabla != null && count($tabla) > 0) {
                         //dd($tabla,$tgranu);
@@ -179,8 +179,16 @@ $tanques[0]->tanque;
                             <tr>    
                                 <?php
                                 foreach ($fila as $e => $elemento) {
+                                    $prog="SI";
+                                    $val="SI";
+                                    if ($elemento->programado == '0') {
+                                        $prog= 'NO';
+                                    }
+                                    if ($elemento->validado == '0') {
+                                        $val = 'NO';
+                                    }
                                     if ($e == 0) {
-                                        ?><td> <?php echo $elemento->fechahora ?></td><?php ?><td> <?php echo $elemento->programado ?></td><?php ?><td> <?php echo $elemento->validado ?></td><?php ?><td> <?php echo $elemento->lectura ?></td><?php
+                                        ?><td> <?php echo $elemento->fechahora ?></td><?php ?><td> <?php echo $prog ?></td><?php ?><td> <?php echo $val ?></td><?php ?><td> <?php echo $elemento->lectura ?></td><?php
                                     } else {
                                         ?><td> <?php echo $elemento->lectura ?></td><?php
                                     }

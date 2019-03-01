@@ -5,6 +5,7 @@ Analisis
 @endsection
 
 @section('cuerpo')
+<!--parte realizada por Sergio-->
 <?php 
 $planta= 'PLANTA ' . \Session::get('planta');
 

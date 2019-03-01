@@ -12,6 +12,7 @@ $tanques = \Session::get('tanques');
 
 
 ?>
+<!--parte realizada por Jaime-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
         function alerta() {
@@ -102,7 +103,7 @@ $tanques = \Session::get('tanques');
 
             <?php if ($tanques[0]->tanque != 'Tanque1') { ?>
                 <div class="row" style="margin-top: 20px">
-                    <div class="col-4">
+                    <div class="col-lg-4 col-sm-12">
                         Muestra: <select name="tanque" class="custom-select">
                             <?php foreach ($tanques as $t) { ?>
                                 <option value="<?php echo $t->tanque ?>"> <?php echo $t->tanque ?></option>

@@ -5,6 +5,7 @@ Añadir Compuesto
 @endsection
 
 @section('cuerpo')
+    <!--parte realizada por Joaquin-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <div class="container">
     <div class="row">
@@ -38,7 +39,7 @@ Añadir Compuesto
             <div class="alert alert-danger col-12" role="alert">
                 Advertencia: se está modificando la estructura de la aplicación, podría causar fallos inesperados, no contemplados en el desarrollo de la aplicación
             </div>
-            <div class="col-6"><h4>Planta:</h4> 
+            <div class="col-lg-6 col-sm-12"><h4>Planta:</h4> 
                 <select name="planta" class="custom-select" id="planta">
                     <?php
                     foreach ($plantas as $p) {
@@ -47,15 +48,13 @@ Añadir Compuesto
                     ?>
                 </select>
             </div>
-            <div class="col-6"><h4>Nombre completo del compuesto:</h4> <input type="text" class="form-control" name="nombreComp" required=""></div>
+            <div class="col-lg-6 col-sm-12"><h4>Nombre completo del compuesto:</h4> <input type="text" class="form-control" name="nombreComp" required=""></div>
         </div>
         <div class="row">
-            <div class="col-6"> <h4>Identificador del compuesto:</h4> <input type="text" class="form-control" name="idComp" placeholder="(ej: Urea -> U-18)" required=""></div>
-            <div class="col-6 form-check">
-                <h4 style="margin-top: 30px">
-                    <label class="form-check-label" for="granu">Granulometría</label>
-                    <input type="checkbox" class="custom-checkbox" name="granulometria" id="granu">
-                </h4>
+            <div class="col-lg-6 col-sm-12"> <h4>Identificador del compuesto:</h4> <input type="text" class="form-control" name="idComp" placeholder="(ej: Urea -> U-18)" required=""></div>
+            <div class="col-lg-6 col-sm-12 custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="granulometria" id="granu"> 
+                    <label class="custom-control-label" for="granu">Granulometría</label>
                 <div id="numero"></div>
             </div>
         </div>
@@ -69,6 +68,7 @@ Añadir Compuesto
 </div>
 
 <script>
+//    parte realizada por Joaquin
     $(document).ready(function () {
         $('#granu').change(function () {
 
