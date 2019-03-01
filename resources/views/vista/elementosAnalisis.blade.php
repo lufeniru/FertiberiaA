@@ -235,6 +235,16 @@ $tanques[0]->tanque;
                             }
                             //Fin de las comprobaciones de cambios de cabecera
                         }
+                        ?><tr><td colspan="<?php 
+                        if ($tgranu != null && $tgranu > 0)
+                            {
+                                echo (count($tabla[0]) + count($tgranu[0]) +1);
+                            } 
+                            else 
+                            { 
+                                echo (count($tabla[0])+1);
+                                
+                            } ?>"><input type="submit" id="exportar" name="exportar" value="exportar" class="btn btn-info" style="width: 100px">.</td></tr><?php
                     } else {
                         ?> <tr><td>Sin resultados.</td></tr> <?php
                     }
@@ -242,7 +252,6 @@ $tanques[0]->tanque;
                 </table>
             </div>
         </div>
-
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
@@ -262,7 +271,7 @@ $tanques[0]->tanque;
             Swal.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'La fecha "desde" no puede ser superior a la fecha "hasta"!',
+                text: '¡La fecha "desde" no puede ser superior a la fecha "hasta"!',
                 showConfirmButton:false,
                 timer:2000
               });
