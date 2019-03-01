@@ -36,7 +36,6 @@ $tanques = \Session::get('tanques');
        
         
 </script>
-<div class="container">
     <div class="row">
         <a class="btn col-1" href="javascript:window.history.back();"><span class="fa fa-arrow-left"></span>Volver</a>
     </div>
@@ -83,12 +82,12 @@ $tanques = \Session::get('tanques');
                         }
                         
                         ?> 
-                        <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="col-lg-4 col-md-6 col-sm-10">
                             <table>
                                 <tr><td style="width: 120px;">
                                         <?php echo $elem->describe_elemento; ?></td>
                                     <td style="width:80px;">
-                                        <input type="number" class="form-control" name="valor[]" onblur="comprobar(<?php echo 'valor'. $j.','. $j?>)" id="<?php echo 'valor' . $j ?>">
+                                        <input type="number" class="form-control" name="valor[]" id="<?php echo 'valor' . $j ?>">
                                         <input type="number" hidden class="form-control"  id="<?php echo $j ?>" value="<?='hola'?>">
                                     </td>
                                     <td style="width: 120px;">
@@ -117,14 +116,14 @@ $tanques = \Session::get('tanques');
             <?php } ?>
 
             <?php if ($compuesto[0]->granulometria != null) { ?>
-                <div class="row" style="margin-top: 10px">
+                <div class="row" style="margin-top: 10px; background-color: #e8e8e8; margin-top: 20px;">
                     <?php $granu = \Session::get('granu'); ?>
                     <input type="text" value="' . $granu[0]->id_granu . '" hidden name="idgranu">
                     <div class="col-12">
                         <div style="text-align: center"><h3>Granulometria</h3></div>
                         <div class="row">
                             <?php foreach ($granu as $g) { ?>
-                                <div class="col-4">
+                                <div class="col-lg-4 col-sm-12 mt-2">
                                     <?php echo $g->valor . ' <input type="number" class="form-control" name="granulometria[]" value="">' . $g->condicion . ' ' . $g->valor1 . ' ' . $g->simbolo; ?>
                                 </div>
                             <?php } ?>
@@ -134,7 +133,7 @@ $tanques = \Session::get('tanques');
             <?php }
             ?>
             <div class="row">
-                <input type="submit" class="btn btn-info offset-4 col-4" name="boton" value="Introducir">
+                <input type="submit" class="btn btn-info offset-lg-4 col-lg-4 col-sm-12 mt-sm-3" name="boton" value="Introducir">
             </div>
         </form>
         <?php 
@@ -143,7 +142,6 @@ $tanques = \Session::get('tanques');
         }
         ?>
     </div>
-</div>
 
 
 @endsection

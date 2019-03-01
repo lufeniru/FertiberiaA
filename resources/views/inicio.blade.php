@@ -41,19 +41,13 @@
                         <fieldset class="col-12">
                             <div class="row">
                                 <legend class="col-12">
-                                <img src="imagenes/Fertiberia.png" alt="logo de fertiberia">
+                                <img  src="imagenes/Fertiberia.png" alt="logo de fertiberia">
                             </legend>
                                 <div id="inicio2" class="col-12">
                                     <div class="row">
-                                        <div class="col-lg-4 col-sm-12">
-                                    <input type="submit" class="btn btn-info" name="boton" value="Administrador">
-                                </div>
-                                <div class="col-lg-4 col-sm-12">
-                                    <input type="submit" class="btn btn-info" name="boton" value="Laboratorio">
-                                </div>
-                                <div class="col-lg-4 col-sm-12">
-                                    <input type="submit" class="btn btn-info" name="boton" value="Ver analisis">
-                                </div>
+                                    <input type="submit" class="btn btn-info col-lg-4 col-md-4 col-sm-12 mt-5" name="boton" value="Administrador">
+                                    <input type="submit" class="btn btn-info col-lg-4 col-md-4 col-sm-12 mt-5" name="boton" value="Laboratorio">
+                                    <input type="submit" class="btn btn-info col-lg-4 col-md-4 col-sm-12 mt-5" name="boton" value="Ver analisis">
                                     </div>
                             </div>
                             </div>
