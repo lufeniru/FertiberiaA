@@ -52,9 +52,9 @@ Añadir Compuesto
         </div>
         <div class="row">
             <div class="col-lg-6 col-sm-12"> <h4>Identificador del compuesto:</h4> <input type="text" class="form-control" name="idComp" placeholder="(ej: Urea -> U-18)" required=""></div>
-            <div class="col-lg-6 col-sm-12 custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="granulometria" id="granu"> 
-                    <label class="custom-control-label" for="granu">Granulometría</label>
+            <div class="col-lg-6 col-sm-12 custom-control">
+                    <input type="checkbox" class="custom-checkbox" name="granulometria" id="granu"> 
+                    <label  for="granu">Granulometría</label>
                 <div id="numero"></div>
             </div>
         </div>

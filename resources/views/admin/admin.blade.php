@@ -17,7 +17,7 @@
         <script src="js/bootstrap.min.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-       
+
         <link rel="stylesheet" type="text/css" href="{!! asset('css/estiloEstructuraCabPie.css') !!}"/>
     </head>
 
@@ -34,15 +34,16 @@
                 <div  class="menu">
                     <form action="admin" class="row" method="post">
                         {{ csrf_field() }}
-                           <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Añadir planta" name="menu2">
-                           <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Añadir compuesto" name="menu2">
-                           <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Añadir elemento" name="menu2">
-                           <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Validar" name="menu2">
+                        <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Añadir planta" name="menu2">
+                        <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Añadir compuesto" name="menu2">
+                        <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Añadir elemento" name="menu2">
+                        <input type="submit" class="btn btn-outline-success col-lg-3 col-md-6 col-sm-12" value="Validar" name="menu2">
                     </form>
                 </div>
 
             </header>
             @yield('cuerpo')
+           
 
 
             @yield('pie') 

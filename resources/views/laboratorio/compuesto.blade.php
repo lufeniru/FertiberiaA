@@ -7,7 +7,7 @@ Laboratorio
 @section('cuerpo')
 <?php $existe = \Session::get('planta'); ?>
 <div class="container">
-    <!--parte realizada por Joaquin-->
+    <!--parte realizada por Jaime-->
     <div class="row">
         <nav aria-label="breadcrumb" class="col-12">
 
